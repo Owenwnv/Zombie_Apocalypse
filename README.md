@@ -17,7 +17,11 @@ N'oubliez pas d'ajouter les autres membres de votre équipe aux membres du proje
 
 [Le sujet 2024](https://www.fil.univ-lille.fr/~varre/portail/l2s4-projet/sujet2024.pdf)
 
-# Livrables
+# UML
+
+https://lucid.app/lucidchart/456a610a-a383-48a7-834a-eb0eaf49c5d9/edit?invitationId=inv_6f89afeb-2641-4162-bb06-7419f331ac1c
+
+# Livrable
 
 ## Livrable 1
 
