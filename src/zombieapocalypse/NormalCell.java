@@ -12,6 +12,6 @@ public class NormalCell implements Cell{
     }
 
     public String toString() {
-        return "This is a NormalCell ";
+        return "This is a NormalCell";
     }
 }
