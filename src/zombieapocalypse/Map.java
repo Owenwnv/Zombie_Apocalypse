@@ -17,9 +17,55 @@ public class Map {
     public Map(int height, int width) {
         this.height = height;
         this.width = width;
+        this.cells = new Cell[height][width];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 this.cells[i][j] = new EmptyCell();
+            }
+        }
+    }
+
+    /**
+     * Returns symbol depending on type of Cell
+     * @return symbol of the Cell
+     */
+    public String getCellSymbol(Cell cell) {
+        if (cell instanceof EmptyCell) {
+            return "·";
+        } else {
+            return "?";
+        }
+    }
+
+    /**
+     * Prints out this Map
+     */
+    public void showMap() {
+        for (int i = 0; i < this.height; i++) {
+            for (int j = 0; j < this.width; j++) {
+                System.out.print("______");
+            }
+            System.out.println();
+            for (int j = 0; j < this.width; j++) {
+                System.out.print("|     ");
+            }
+            System.out.print("|");
+            System.out.println();
+            for (int j = 0; j < this.width; j++) {
+                System.out.print("|  " + getCellSymbol(this.cells[i][j]) + "  ");
+            }
+            System.out.print("|");
+            System.out.println();
+            for (int j = 0; j < this.width; j++) {
+                System.out.print("|     ");
+            }
+            System.out.print("|");
+            System.out.println();
+            if (i == height - 1) {
+                for (int j = 0; j < this.width; j++) {
+                    System.out.print("______");
+                }
+                System.out.println();
             }
         }
     }
