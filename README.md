@@ -51,9 +51,19 @@ https://lucid.app/lucidchart/456a610a-a383-48a7-834a-eb0eaf49c5d9/edit?invitatio
 
 ## Semaine 1
 
+- Absent (neige)
+
 ## Semaine 2
 
+- Familiarisation avec le sujet
+- Mise en commun des idées
+- Début de l'UML
+
 ## Semaine 3
+
+- 1er version de l'UML
+- Discussion de l'UML avec l'enseignant
+- Création des premières class java
 
 ## Semaine 4
 
