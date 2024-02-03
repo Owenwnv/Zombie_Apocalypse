@@ -1,20 +1,23 @@
 package zombieapocalypse;
 
+/* Class representing a door */
 public class Door {
+    // if the Door is open
     private boolean isOpen;
-    private Cardinal cardinal;
 
-    public Door(boolean isOpen, Cardinal cardinal) {
+    /**
+     * Builds a Door
+     * @param isOpen if the door is open
+     */
+    public Door(boolean isOpen) {
         this.isOpen = isOpen;
-        this.cardinal = cardinal;
     }
 
+    /**
+     * Returns whether the Door is open or not
+     * @return true if door is open, false otherwise
+     */
     public boolean getIsOpen() {
         return this.isOpen;
     }
-
-    public Cardinal getCardinal() {
-        return this.cardinal;
-    }
-
 }
