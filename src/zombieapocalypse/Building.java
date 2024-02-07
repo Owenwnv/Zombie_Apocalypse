@@ -11,8 +11,9 @@ public class Building {
 
     /**
      * Builds a Building
-     * @param name name of this Building
-     * @param rooms rooms of this Building
+     * 
+     * @param name      name of this Building
+     * @param rooms     rooms of this Building
      * @param isSpecial if this Building is special
      */
     public Building(String name, RoomCell[] rooms, boolean isSpecial) {
@@ -23,6 +24,7 @@ public class Building {
 
     /**
      * Returns this Building's rooms
+     * 
      * @return Building's rooms
      */
     public RoomCell[] getRooms() {
@@ -31,6 +33,7 @@ public class Building {
 
     /**
      * Returns this Building's name
+     * 
      * @return Building's name
      */
     public String getName() {
@@ -39,6 +42,7 @@ public class Building {
 
     /**
      * Returns whether this Building is special or not
+     * 
      * @return true if Building is special, false otherwise
      */
     public boolean getIsSpecial() {

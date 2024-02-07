@@ -9,7 +9,8 @@ public class Street {
 
     /**
      * Builds a Street
-     * @param name name of this Street
+     * 
+     * @param name     name of this Street
      * @param hasSewer if this Street has sewers
      */
     public Street(String name, boolean hasSewer) {
@@ -19,6 +20,7 @@ public class Street {
 
     /**
      * Returns whether this Street has sewers or not
+     * 
      * @return true if street has sewers, false otherwise
      */
     public boolean getHasSewer() {
@@ -27,6 +29,7 @@ public class Street {
 
     /**
      * Returns this Street's name
+     * 
      * @return Street's name
      */
     public String getName() {

@@ -11,8 +11,9 @@ public class RoomCell implements Cell {
 
     /**
      * Builds a RoomCell
-     * @param name name of this RoomCell
-     * @param doors doors of this RoomCell
+     * 
+     * @param name     name of this RoomCell
+     * @param doors    doors of this RoomCell
      * @param building building of this RoomCell
      */
     public RoomCell(String name, Door[] doors, Building building) {
@@ -23,6 +24,7 @@ public class RoomCell implements Cell {
 
     /**
      * Returns this Cell's name
+     * 
      * @return Cell's name
      */
     @Override

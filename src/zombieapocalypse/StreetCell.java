@@ -9,7 +9,8 @@ public class StreetCell implements Cell {
 
     /**
      * Builds a StreetCell
-     * @param name name of this StreetCell
+     * 
+     * @param name   name of this StreetCell
      * @param street street of this StreetCell
      */
     public StreetCell(String name, Street street) {
@@ -19,6 +20,7 @@ public class StreetCell implements Cell {
 
     /**
      * Returns this StreetCell's name
+     * 
      * @return StreetCell's name
      */
     public String getName() {
@@ -27,6 +29,7 @@ public class StreetCell implements Cell {
 
     /**
      * Returns this StreetCell's Street
+     * 
      * @return StreetCell's Street
      */
     public Street getStreet() {
@@ -34,8 +37,9 @@ public class StreetCell implements Cell {
     }
 
     /**
-     * Returns a description of this StreetCell 
-     * @return description of this StreetCell 
+     * Returns a description of this StreetCell
+     * 
+     * @return description of this StreetCell
      */
     @Override
     public String toString() {

@@ -7,6 +7,7 @@ public class Door {
 
     /**
      * Builds a Door
+     * 
      * @param isOpen if the door is open
      */
     public Door(boolean isOpen) {
@@ -15,6 +16,7 @@ public class Door {
 
     /**
      * Returns whether the Door is open or not
+     * 
      * @return true if door is open, false otherwise
      */
     public boolean getIsOpen() {

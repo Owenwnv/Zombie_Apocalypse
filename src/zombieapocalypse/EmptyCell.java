@@ -1,7 +1,7 @@
 package zombieapocalypse;
 
 /* Class representing an empty cell, implements the Cell interface */
-public class EmptyCell implements Cell{
+public class EmptyCell implements Cell {
     // name of this Cell
     private String name;
 
@@ -14,6 +14,7 @@ public class EmptyCell implements Cell{
 
     /**
      * Returns this Cell's name
+     * 
      * @return Cell's name
      */
     public String getName() {
@@ -21,8 +22,9 @@ public class EmptyCell implements Cell{
     }
 
     /**
-     * Returns a description of this Cell 
-     * @return description of this Cell 
+     * Returns a description of this Cell
+     * 
+     * @return description of this Cell
      */
     @Override
     public String toString() {
