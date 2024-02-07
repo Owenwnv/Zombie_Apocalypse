@@ -132,19 +132,55 @@ public class Map {
 
     }
 
-    public boolean createStreet(int width, int height) {
+    /*public boolean createStreet(int width, int height) {
+        
         if (width < 5 && height < 5) {
             return true;
         } else{
-            width = width/
-            ;
-            height = height/2;
-            for(int i = 0; i < height; i++){
-                setCel
+            Street street = new Street("Street", false);
+            StreetCell streetCell = new StreetCell("Street", street);
+            
+            for(int i = 0; i < width; i++){
+                setCell(i, height, streetCell);
             }
+            for(int j = 0; j < height; j++){
+                setCell(width, j, streetCell);
+            }
+            width = width/2;
+            height = height/2;
             createStreet(width, height);
-        }
 
+        }
+        return true;
     }
 
+    public void createStreet(int width, int height){
+        Street street = new Street("Street", false);
+        StreetCell streetCell = new StreetCell("Street", street);
+        if(width >= 5 && height >=5){
+            width = width/2;
+            height = height/2;
+            for(int i = 0; i < width; i++){
+                setCell(width, i, streetCell);
+            }
+            for(int j = 0; j < height; j++){
+                setCell(j, height, streetCell);
+            }
+            createStreet(width, height);
+        } else if(width >= 5 && height < 5){
+            width = width/2;
+            for(int i = 0; i < width; i++){
+                setCell(width, i, streetCell);
+            }
+            createStreet(width, height);
+            
+        } else if(width < 5 && height >= 5){
+            height = height/2;
+            for(int j = 0; j < height; j++){
+                setCell(j, height, streetCell);
+            }
+
+        }
+
+    }*/
 }
