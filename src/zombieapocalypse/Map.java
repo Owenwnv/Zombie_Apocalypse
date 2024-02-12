@@ -58,11 +58,11 @@ public class Map {
      * Prints out this Map
      */
     public void showMap() {
+        for (int j = 0; j < this.height; j++) {
+            System.out.print("______");
+        }
+        System.out.println();
         for (int i = 0; i < this.width; i++) {
-            for (int j = 0; j < this.height; j++) {
-                System.out.print("______");
-            }
-            System.out.println();
             for (int j = 0; j < this.height; j++) {
                 System.out.print("|     ");
             }
@@ -75,16 +75,10 @@ public class Map {
             System.out.print("|");
             System.out.println();
             for (int j = 0; j < this.height; j++) {
-                System.out.print("|     ");
+                System.out.print("|_____");
             }
             System.out.print("|");
             System.out.println();
-            if (i == width - 1) {
-                for (int j = 0; j < this.height; j++) {
-                    System.out.print("______");
-                }
-                System.out.println();
-            }
         }
     }
 
@@ -104,14 +98,6 @@ public class Map {
      */
     public int getWidth() {
         return this.width;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
     }
 
     /**
