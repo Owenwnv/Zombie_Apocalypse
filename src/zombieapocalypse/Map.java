@@ -144,6 +144,36 @@ public class Map {
             }
         }
     }
+
+    public boolean canBeSplitX() {
+        int temp = 0;
+        for (int i = 0; i < this.height; i++) {
+            if (this.cells[0][i] instanceof EmptyCell) {
+                temp++;
+                if (temp > 4) {
+                    return true;
+                }
+            } else {
+                temp = 0;
+            }
+        }
+        return false;
+    }
+
+    public boolean canBeSplitY() {
+        int temp = 0;
+        for (int i = 0; i < this.width; i++) {
+            if (this.cells[i][0] instanceof EmptyCell) {
+                temp++;
+                if (temp > 4) {
+                    return true;
+                }
+            } else {
+                temp = 0;
+            }
+        }
+        return false;
+    }
     /* 
     public void initBoardToRoomCells() {
         RoomCell roomCell = new RoomCell("Room", null, null);
