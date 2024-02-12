@@ -1,4 +1,7 @@
 package zombieapocalypse;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /* Class representing a map */
 public class Map {
@@ -145,96 +148,54 @@ public class Map {
         }
     }
 
-    public boolean canBeSplitX() {
+    public List<Integer> canBeSplitX() {
+        List<Integer> res = new ArrayList<>();
         int temp = 0;
         for (int i = 0; i < this.height; i++) {
             if (this.cells[0][i] instanceof EmptyCell) {
                 temp++;
                 if (temp > 4) {
-                    return true;
+                    res.add(i - 2);
                 }
             } else {
                 temp = 0;
             }
         }
-        return false;
+        return res;
     }
 
-    public boolean canBeSplitY() {
+    public List<Integer> canBeSplitY() {
+        List<Integer> res = new ArrayList<>();
         int temp = 0;
         for (int i = 0; i < this.width; i++) {
             if (this.cells[i][0] instanceof EmptyCell) {
                 temp++;
                 if (temp > 4) {
-                    return true;
+                    res.add(i - 2);
                 }
             } else {
                 temp = 0;
             }
         }
-        return false;
-    }
-    /* 
-    public void initBoardToRoomCells() {
-        RoomCell roomCell = new RoomCell("Room", null, null);
-
-        for (int i = 0; i < this.width; i++) {
-            for (int j = 0; j < this.height; j++) {
-                this.cells[i][j] = roomCell;
-            }
-        }
-
-    }
-    */
-    /*public boolean createStreet(int width, int height) {
-        
-        if (width < 5 && height < 5) {
-            return true;
-        } else{
-            Street street = new Street("Street", false);
-            StreetCell streetCell = new StreetCell("Street", street);
-            
-            for(int i = 0; i < width; i++){
-                setCell(i, height, streetCell);
-            }
-            for(int j = 0; j < height; j++){
-                setCell(width, j, streetCell);
-            }
-            width = width/2;
-            height = height/2;
-            createStreet(width, height);
-
-        }
-        return true;
+        return res;
     }
 
-    public void createStreet(int width, int height){
-        Street street = new Street("Street", false);
-        StreetCell streetCell = new StreetCell("Street", street);
-        if(width >= 5 && height >=5){
-            width = width/2;
-            height = height/2;
-            for(int i = 0; i < width; i++){
-                setCell(width, i, streetCell);
-            }
-            for(int j = 0; j < height; j++){
-                setCell(j, height, streetCell);
-            }
-            createStreet(width, height);
-        } else if(width >= 5 && height < 5){
-            width = width/2;
-            for(int i = 0; i < width; i++){
-                setCell(width, i, streetCell);
-            }
-            createStreet(width, height);
-            
-        } else if(width < 5 && height >= 5){
-            height = height/2;
-            for(int j = 0; j < height; j++){
-                setCell(j, height, streetCell);
-            }
+    public int generateRandomInt(int x, int y) {
+        Random random = new Random();
+        return random.nextInt(y - x + 1) + x;
+    }
 
+    public void addStreets() {
+        Random random = new Random();
+        addStreetX(new Street("Street", false), generateRandomInt(2, this.width - 3), true);
+        addStreetY(new Street("Street", false), generateRandomInt(2, this.height - 3), true);
+        while(canBeSplitX().size() > 0) {
+            List<Integer> possibleStreets = canBeSplitX();
+            addStreetX(new Street("Street", false), possibleStreets.get(random.nextInt(possibleStreets.size())), random.nextBoolean());
         }
-
-    }*/
+        while(canBeSplitY().size() > 0) {
+            List<Integer> possibleStreets = canBeSplitY();
+            addStreetY(new Street("Street", false), possibleStreets.get(random.nextInt(possibleStreets.size())), random.nextBoolean());
+        }
+    }
 }
