@@ -189,4 +189,14 @@ public class Map {
             addStreetY(new Street("Street", false), possibleStreets.get(random.nextInt(possibleStreets.size())));
         }
     }
+
+    public void addRooms() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (this.cells[i][j] instanceof EmptyCell) {
+                    this.cells[i][j] = new RoomCell("Room");
+                }
+            }
+        }
+    }
 }

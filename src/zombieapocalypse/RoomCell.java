@@ -10,12 +10,11 @@ public class RoomCell implements Cell {
     /**
      * Builds a RoomCell
      * 
-     * @param name     name of this RoomCell
-     * @param doors    doors of this RoomCell
+     * @param name  name of this RoomCell
+     * @param doors doors of this RoomCell
      */
-    public RoomCell(String name, Door[] doors) {
+    public RoomCell(String name) {
         this.name = name;
-        this.doors = doors;
     }
 
     /**
