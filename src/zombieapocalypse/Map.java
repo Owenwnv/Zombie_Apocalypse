@@ -1,4 +1,5 @@
 package zombieapocalypse;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -124,27 +125,19 @@ public class Map {
         this.cells[x][y] = cell;
     }
 
-    public void addStreetX(Street street, int index, boolean intersect) {
+    public void addStreetX(Street street, int index) {
         int i = 0;
         while (i < this.width) {
-            if (this.cells[i][index] instanceof EmptyCell || intersect) {
-                this.cells[i][index] = new StreetCell("street", street);
-                i++;
-            } else {
-                break;
-            }
+            this.cells[i][index] = new StreetCell("street", street);
+            i++;
         }
     }
 
-    public void addStreetY(Street street, int index, boolean intersect) {
+    public void addStreetY(Street street, int index) {
         int i = 0;
         while (i < this.height) {
-            if (this.cells[index][i] instanceof EmptyCell || intersect) {
-                this.cells[index][i] = new StreetCell("street", street);
-                i++;
-            } else {
-                break;
-            }
+            this.cells[index][i] = new StreetCell("street", street);
+            i++;
         }
     }
 
@@ -187,15 +180,13 @@ public class Map {
 
     public void addStreets() {
         Random random = new Random();
-        addStreetX(new Street("Street", false), generateRandomInt(2, this.width - 3), true);
-        addStreetY(new Street("Street", false), generateRandomInt(2, this.height - 3), true);
-        while(canBeSplitX().size() > 0) {
+        while (canBeSplitX().size() > 0) {
             List<Integer> possibleStreets = canBeSplitX();
-            addStreetX(new Street("Street", false), possibleStreets.get(random.nextInt(possibleStreets.size())), random.nextBoolean());
+            addStreetX(new Street("Street", false), possibleStreets.get(random.nextInt(possibleStreets.size())));
         }
-        while(canBeSplitY().size() > 0) {
+        while (canBeSplitY().size() > 0) {
             List<Integer> possibleStreets = canBeSplitY();
-            addStreetY(new Street("Street", false), possibleStreets.get(random.nextInt(possibleStreets.size())), random.nextBoolean());
+            addStreetY(new Street("Street", false), possibleStreets.get(random.nextInt(possibleStreets.size())));
         }
     }
 }
