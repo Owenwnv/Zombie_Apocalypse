@@ -6,19 +6,15 @@ public class Building {
     private String name;
     // rooms of this Building
     private RoomCell[] rooms;
-    // if this Building is special
-    private boolean isSpecial;
 
     /**
      * Builds a Building
      * 
      * @param name      name of this Building
      * @param rooms     rooms of this Building
-     * @param isSpecial if this Building is special
      */
-    public Building(String name, RoomCell[] rooms, boolean isSpecial) {
+    public Building(String name, RoomCell[] rooms) {
         this.name = name;
-        this.isSpecial = isSpecial;
         this.rooms = rooms;
     }
 
@@ -38,14 +34,5 @@ public class Building {
      */
     public String getName() {
         return this.name;
-    }
-
-    /**
-     * Returns whether this Building is special or not
-     * 
-     * @return true if Building is special, false otherwise
-     */
-    public boolean getIsSpecial() {
-        return this.isSpecial;
     }
 }

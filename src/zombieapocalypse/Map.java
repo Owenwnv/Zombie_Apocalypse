@@ -121,6 +121,30 @@ public class Map {
         this.cells[x][y] = cell;
     }
 
+    public void addStreetX(Street street, int index, boolean intersect) {
+        int i = 0;
+        while (i < this.width) {
+            if (this.cells[i][index] instanceof EmptyCell || intersect) {
+                this.cells[i][index] = new StreetCell("street", street);
+                i++;
+            } else {
+                break;
+            }
+        }
+    }
+
+    public void addStreetY(Street street, int index, boolean intersect) {
+        int i = 0;
+        while (i < this.height) {
+            if (this.cells[index][i] instanceof EmptyCell || intersect) {
+                this.cells[index][i] = new StreetCell("street", street);
+                i++;
+            } else {
+                break;
+            }
+        }
+    }
+    /* 
     public void initBoardToRoomCells() {
         RoomCell roomCell = new RoomCell("Room", null, null);
 
@@ -131,7 +155,7 @@ public class Map {
         }
 
     }
-
+    */
     /*public boolean createStreet(int width, int height) {
         
         if (width < 5 && height < 5) {

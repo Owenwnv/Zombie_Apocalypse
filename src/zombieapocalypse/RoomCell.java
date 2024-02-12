@@ -6,20 +6,16 @@ public class RoomCell implements Cell {
     protected String name;
     // Doors of this RoomCell
     protected Door[] doors;
-    // Building of this RoomCell
-    protected Building building;
 
     /**
      * Builds a RoomCell
      * 
      * @param name     name of this RoomCell
      * @param doors    doors of this RoomCell
-     * @param building building of this RoomCell
      */
-    public RoomCell(String name, Door[] doors, Building building) {
+    public RoomCell(String name, Door[] doors) {
         this.name = name;
         this.doors = doors;
-        this.building = building;
     }
 
     /**
