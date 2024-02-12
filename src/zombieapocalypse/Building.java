@@ -1,21 +1,31 @@
 package zombieapocalypse;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /* Class representing a building */
 public class Building {
-    // name of this Building
+    /** name of this Building */
     private String name;
-    // rooms of this Building
-    private RoomCell[] rooms;
+    /** rooms of this Building */
+    private List<RoomCell> rooms;
 
     /**
      * Builds a Building
      * 
-     * @param name      name of this Building
-     * @param rooms     rooms of this Building
+     * @param name name of this Building
+     * @param rooms rooms of this Building
      */
-    public Building(String name, RoomCell[] rooms) {
+    public Building(String name) {
         this.name = name;
-        this.rooms = rooms;
+        this.rooms = new ArrayList<>();
+    }
+
+    /**
+     * Adds a RoomCell to this Building
+     */
+    public void addRoom(RoomCell room) {
+        this.rooms.add(room);
     }
 
     /**
@@ -23,7 +33,7 @@ public class Building {
      * 
      * @return Building's rooms
      */
-    public RoomCell[] getRooms() {
+    public List<RoomCell> getRooms() {
         return this.rooms;
     }
 

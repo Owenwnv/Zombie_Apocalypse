@@ -6,11 +6,11 @@ import java.util.Random;
 
 /* Class representing a map */
 public class Map {
-    // height of this Map
+    /** height of this Map */
     private int height;
-    // width of this Map
+    /** width of this Map */
     private int width;
-    // Cells of this Map
+    /** cells of this Map */
     private Cell[][] cells;
 
     /**
@@ -27,58 +27,6 @@ public class Map {
             for (int j = 0; j < height; j++) {
                 this.cells[i][j] = new EmptyCell();
             }
-        }
-    }
-
-    /**
-     * Returns symbol depending on type of Cell
-     * 
-     * @return symbol of the Cell
-     */
-    public String getCellSymbol(Cell cell) {
-        if (cell instanceof EmptyCell) {
-            return "·";
-        } else if (cell instanceof StreetCell) {
-            return "S";
-        } else {
-            return "R";
-        }
-    }
-
-    public String getCellColor(Cell cell) {
-        if (cell instanceof StreetCell) {
-            return PimpStyle.BLUE;
-        } else if (cell instanceof RoomCell) {
-            return PimpStyle.RED;
-        }
-        return "";
-    }
-
-    /**
-     * Prints out this Map
-     */
-    public void showMap() {
-        for (int j = 0; j < this.height; j++) {
-            System.out.print("______");
-        }
-        System.out.println();
-        for (int i = 0; i < this.width; i++) {
-            for (int j = 0; j < this.height; j++) {
-                System.out.print("|     ");
-            }
-            System.out.print("|");
-            System.out.println();
-            for (int j = 0; j < this.height; j++) {
-                System.out.print("|  " + getCellColor(this.cells[i][j]) + getCellSymbol(this.cells[i][j])
-                        + PimpStyle.RESET + "  ");
-            }
-            System.out.print("|");
-            System.out.println();
-            for (int j = 0; j < this.height; j++) {
-                System.out.print("|_____");
-            }
-            System.out.print("|");
-            System.out.println();
         }
     }
 
@@ -121,6 +69,69 @@ public class Map {
         this.cells[x][y] = cell;
     }
 
+    /**
+     * Returns symbol depending on type of Cell
+     * 
+     * @return symbol of the Cell
+     */
+    public String getCellSymbol(Cell cell) {
+        if (cell instanceof EmptyCell) {
+            return "·";
+        } else if (cell instanceof StreetCell) {
+            return "S";
+        } else {
+            return "R";
+        }
+    }
+
+    /**
+     * Returns color depending on type of Cell
+     * 
+     * @return color of the Cell
+     */
+    public String getCellColor(Cell cell) {
+        if (cell instanceof StreetCell) {
+            return PimpStyle.BLUE;
+        } else if (cell instanceof RoomCell) {
+            return PimpStyle.RED;
+        }
+        return "";
+    }
+
+    /**
+     * Prints out this Map
+     */
+    public void showMap() {
+        for (int j = 0; j < this.height; j++) {
+            System.out.print("______");
+        }
+        System.out.println();
+        for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
+                System.out.print("|     ");
+            }
+            System.out.print("|");
+            System.out.println();
+            for (int j = 0; j < this.height; j++) {
+                System.out.print("|  " + getCellColor(this.cells[i][j]) + getCellSymbol(this.cells[i][j])
+                        + PimpStyle.RESET + "  ");
+            }
+            System.out.print("|");
+            System.out.println();
+            for (int j = 0; j < this.height; j++) {
+                System.out.print("|_____");
+            }
+            System.out.print("|");
+            System.out.println();
+        }
+    }
+
+    /**
+     * Adds a column of StreetCells at specified index
+     * 
+     * @param street street to add
+     * @param index column to add the Street
+     */
     public void addStreetX(Street street, int index) {
         int i = 0;
         while (i < this.width) {
@@ -129,6 +140,12 @@ public class Map {
         }
     }
 
+    /**
+     * Adds a row of StreetCells at specified index
+     * 
+     * @param street street to add
+     * @param index row to add the Street
+     */
     public void addStreetY(Street street, int index) {
         int i = 0;
         while (i < this.height) {
@@ -137,6 +154,12 @@ public class Map {
         }
     }
 
+    /**
+     * Returns a list of possible columns for a Street
+     * empty list if not possible
+     * 
+     * @return list of possible columns for a Street
+     */
     public List<Integer> canBeSplitX() {
         List<Integer> res = new ArrayList<>();
         int temp = 0;
@@ -153,6 +176,12 @@ public class Map {
         return res;
     }
 
+    /**
+     * Returns a list of possible rows for a Street
+     * empty list if not possible
+     * 
+     * @return list of possible rows for a Street
+     */
     public List<Integer> canBeSplitY() {
         List<Integer> res = new ArrayList<>();
         int temp = 0;
@@ -169,11 +198,9 @@ public class Map {
         return res;
     }
 
-    public int generateRandomInt(int x, int y) {
-        Random random = new Random();
-        return random.nextInt(y - x + 1) + x;
-    }
-
+    /**
+     * Adds the Streets to this Map
+     */
     public void addStreets() {
         Random random = new Random();
         while (canBeSplitX().size() > 0) {
@@ -186,6 +213,9 @@ public class Map {
         }
     }
 
+    /**
+     * Adds the Rooms to this Map
+     */
     public void addRooms() {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {

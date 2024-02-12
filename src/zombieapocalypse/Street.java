@@ -2,9 +2,9 @@ package zombieapocalypse;
 
 /* Class representing a street */
 public class Street {
-    // name of this Street
+    /** name of this Street */
     private String name;
-    // if this Street has sewers
+    /** whether this building has sewers */
     private boolean hasSewer;
 
     /**

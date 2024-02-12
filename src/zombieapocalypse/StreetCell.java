@@ -2,9 +2,9 @@ package zombieapocalypse;
 
 /* Class representing a street cell, implements the Cell interface */
 public class StreetCell implements Cell {
-    // name of this StreetCell
+    /** name of this StreetCell */
     private String name;
-    // Street of this StreetCell
+    /** Street of this StreetCell */
     private Street street;
 
     /**
@@ -23,6 +23,7 @@ public class StreetCell implements Cell {
      * 
      * @return StreetCell's name
      */
+    @Override
     public String getName() {
         return this.name;
     }

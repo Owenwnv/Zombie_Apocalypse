@@ -2,7 +2,7 @@ package zombieapocalypse;
 
 /* Class representing a door */
 public class Door {
-    // if the Door is open
+    /** whether this Door is open */
     private boolean isOpen;
 
     /**

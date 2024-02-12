@@ -1,5 +1,6 @@
 package zombieapocalypse;
 
+/* Class containing color constants */
 public class PimpStyle {
     public static final String RESET = "\u001B[0m";
     public static final String BLACK = "\u001B[30m";
