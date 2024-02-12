@@ -45,6 +45,15 @@ public class Map {
         }
     }
 
+    public String getCellColor(Cell cell) {
+        if (cell instanceof StreetCell) {
+            return PimpStyle.BLUE;
+        } else if (cell instanceof RoomCell) {
+            return PimpStyle.RED;
+        }
+        return "";
+    }
+
     /**
      * Prints out this Map
      */
@@ -60,7 +69,8 @@ public class Map {
             System.out.print("|");
             System.out.println();
             for (int j = 0; j < this.height; j++) {
-                System.out.print("|  " + getCellSymbol(this.cells[i][j]) + "  ");
+                System.out.print("|  " + getCellColor(this.cells[i][j]) + getCellSymbol(this.cells[i][j])
+                        + PimpStyle.RESET + "  ");
             }
             System.out.print("|");
             System.out.println();
