@@ -67,7 +67,15 @@ https://lucid.app/lucidchart/456a610a-a383-48a7-834a-eb0eaf49c5d9/edit?invitatio
 
 ## Semaine 4
 
+- 1er version de createStreets
+- Ajout des RoomCells dans la Map
+
 ## Semaine 5
+
+- Ajout de canBeSplit et addStreet
+- Ajout du makefile
+- Ajout de PimpStyle
+- Rendu du Livrable 1
 
 ## Semaine 6
 
