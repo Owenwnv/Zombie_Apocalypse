@@ -82,7 +82,7 @@ public class Map {
         if (cell instanceof EmptyCell) {
             return "·";
         } else if (cell instanceof PharmacyRoomCell) {
-            return "+";
+            return "🞥";
         } else if (cell instanceof HotelRoomCell) {
             return "C";
         } else if (cell instanceof StreetCell) {
