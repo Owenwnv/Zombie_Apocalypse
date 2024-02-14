@@ -100,7 +100,7 @@ public class Map {
             return PimpStyle.RED;
         }
         return "";
-    } 
+    }
 
     /**
      * Prints out this Map
@@ -134,7 +134,7 @@ public class Map {
      * Adds a column of StreetCells at specified index
      * 
      * @param street street to add
-     * @param index column to add the Street
+     * @param index  column to add the Street
      */
     public void addStreetX(Street street, int index) {
         int i = 0;
@@ -148,7 +148,7 @@ public class Map {
      * Adds a row of StreetCells at specified index
      * 
      * @param street street to add
-     * @param index row to add the Street
+     * @param index  row to add the Street
      */
     public void addStreetY(Street street, int index) {
         int i = 0;
@@ -226,6 +226,18 @@ public class Map {
                 if (this.cells[i][j] instanceof EmptyCell) {
                     this.cells[i][j] = new RoomCell("Room");
                 }
+            }
+        }
+    }
+
+    public void addCellRandom(Cell cell) {
+        Random random = new Random();
+        while (true) {
+            int x = random.nextInt(this.width);
+            int y = random.nextInt(this.height);
+            if (this.cells[x][y].getName().equals("Room")) {
+                this.cells[x][y] = cell;
+                break;
             }
         }
     }

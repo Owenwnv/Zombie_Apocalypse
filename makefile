@@ -23,7 +23,7 @@ compile:
 		./src/zombieapocalypse/TestMain.java
 
 exec:
-	cd bin/classes; java $(MainClass) 5 5
+	cd bin/classes; java $(MainClass) 5 10
 
 clean:
 	rm -rf bin

@@ -1,5 +1,6 @@
 package zombieapocalypse;
 
+import zombieapocalypse.cell.EmptyCell;
 import zombieapocalypse.mapcreation.Map;
 
 public class TestMain {
@@ -10,9 +11,11 @@ public class TestMain {
             width = Integer.parseInt(args[0]);
             height = Integer.parseInt(args[1]);
         }
-        Map map = new Map(width, height); 
+        Map map = new Map(width, height);
         map.addStreets();
         map.addRooms();
+        map.addCellRandom(new EmptyCell());
+        map.addCellRandom(new EmptyCell());
         map.showMap();
     }
 }

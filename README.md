@@ -79,6 +79,8 @@ https://lucid.app/lucidchart/456a610a-a383-48a7-834a-eb0eaf49c5d9/edit?invitatio
 
 ## Semaine 6
 
+- Réorganisation des fichiers
+
 ## Semaine 7
 
 ## Semaine 8
