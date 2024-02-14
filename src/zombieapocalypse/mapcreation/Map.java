@@ -81,6 +81,10 @@ public class Map {
     public String getCellSymbol(Cell cell) {
         if (cell instanceof EmptyCell) {
             return "·";
+        } else if (cell instanceof PharmacyRoomCell) {
+            return "+";
+        } else if (cell instanceof HotelRoomCell) {
+            return "C";
         } else if (cell instanceof StreetCell) {
             return "S";
         } else {
@@ -96,6 +100,10 @@ public class Map {
     public String getCellColor(Cell cell) {
         if (cell instanceof StreetCell) {
             return PimpStyle.BLUE;
+        } else if (cell instanceof PharmacyRoomCell) {
+            return PimpStyle.GREEN;
+        } else if (cell instanceof HotelRoomCell) {
+            return PimpStyle.YELLOW;
         } else if (cell instanceof RoomCell) {
             return PimpStyle.RED;
         }

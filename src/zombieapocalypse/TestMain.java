@@ -1,6 +1,7 @@
 package zombieapocalypse;
 
-import zombieapocalypse.cell.EmptyCell;
+import zombieapocalypse.cell.HotelRoomCell;
+import zombieapocalypse.cell.PharmacyRoomCell;
 import zombieapocalypse.mapcreation.Map;
 
 public class TestMain {
@@ -14,8 +15,8 @@ public class TestMain {
         Map map = new Map(width, height);
         map.addStreets();
         map.addRooms();
-        map.addCellRandom(new EmptyCell());
-        map.addCellRandom(new EmptyCell());
+        map.addCellRandom(new PharmacyRoomCell());
+        map.addCellRandom(new HotelRoomCell());
         map.showMap();
     }
 }
