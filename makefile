@@ -16,6 +16,7 @@ compile:
 		./src/zombieapocalypse/structure/Door.java \
 		./src/zombieapocalypse/cell/EmptyCell.java \
 		./src/zombieapocalypse/mapcreation/Map.java \
+		./src/zombieapocalypse/mapcreation/MapGenerator.java \
 		./src/zombieapocalypse/style/PimpStyle.java \
 		./src/zombieapocalypse/cell/RoomCell.java \
 		./src/zombieapocalypse/structure/Street.java \
@@ -23,7 +24,7 @@ compile:
 		./src/zombieapocalypse/TestMain.java
 
 exec:
-	cd bin/classes; java $(MainClass) 5 10
+	cd bin/classes; java $(MainClass) 5 5
 
 clean:
 	rm -rf bin

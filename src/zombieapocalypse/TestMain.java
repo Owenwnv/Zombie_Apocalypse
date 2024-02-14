@@ -2,7 +2,7 @@ package zombieapocalypse;
 
 import zombieapocalypse.cell.HotelRoomCell;
 import zombieapocalypse.cell.PharmacyRoomCell;
-import zombieapocalypse.mapcreation.Map;
+import zombieapocalypse.mapcreation.MapGenerator;
 
 public class TestMain {
     public static void main(String[] args) {
@@ -12,11 +12,11 @@ public class TestMain {
             width = Integer.parseInt(args[0]);
             height = Integer.parseInt(args[1]);
         }
-        Map map = new Map(width, height);
-        map.addStreets();
-        map.addRooms();
-        map.addCellRandom(new PharmacyRoomCell());
-        map.addCellRandom(new HotelRoomCell());
-        map.showMap();
+        MapGenerator mapg = new MapGenerator(width, height);
+        mapg.addStreets();
+        mapg.addRooms();
+        mapg.addCellRandom(new PharmacyRoomCell());
+        mapg.addCellRandom(new HotelRoomCell());
+        mapg.getMap().showMap();
     }
 }
