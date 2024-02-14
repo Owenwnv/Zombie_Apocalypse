@@ -1,7 +1,9 @@
-package zombieapocalypse;
+package zombieapocalypse.structure;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import zombieapocalypse.cell.RoomCell;
 
 /* Class representing a building */
 public class Building {

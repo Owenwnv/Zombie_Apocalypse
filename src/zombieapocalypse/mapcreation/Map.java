@@ -1,8 +1,12 @@
-package zombieapocalypse;
+package zombieapocalypse.mapcreation;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import zombieapocalypse.cell.*;
+import zombieapocalypse.structure.Street;
+import zombieapocalypse.style.PimpStyle;
 
 /* Class representing a map */
 public class Map {
@@ -96,7 +100,7 @@ public class Map {
             return PimpStyle.RED;
         }
         return "";
-    }
+    } 
 
     /**
      * Prints out this Map

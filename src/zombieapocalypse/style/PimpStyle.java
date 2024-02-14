@@ -1,4 +1,4 @@
-package zombieapocalypse;
+package zombieapocalypse.style;
 
 /* Class containing color constants */
 public class PimpStyle {

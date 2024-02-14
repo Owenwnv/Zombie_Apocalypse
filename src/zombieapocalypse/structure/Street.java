@@ -1,4 +1,4 @@
-package zombieapocalypse;
+package zombieapocalypse.structure;
 
 /* Class representing a street */
 public class Street {

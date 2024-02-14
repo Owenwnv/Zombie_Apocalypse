@@ -1,5 +1,7 @@
 package zombieapocalypse;
 
+import zombieapocalypse.mapcreation.Map;
+
 public class TestMain {
     public static void main(String[] args) {
         int width = 5;
