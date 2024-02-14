@@ -1,4 +1,4 @@
-package zombieapocalypse;
+package zombieapocalypse.cell;
 
 /* Class representing a cell */
 public interface Cell {

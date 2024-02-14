@@ -1,7 +1,9 @@
-package zombieapocalypse;
+package zombieapocalypse.cell;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import zombieapocalypse.structure.Door;
 
 /* Class representing a room cell, implements the Cell interface */
 public class RoomCell implements Cell {

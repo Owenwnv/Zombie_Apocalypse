@@ -1,4 +1,6 @@
-package zombieapocalypse;
+package zombieapocalypse.cell;
+
+import zombieapocalypse.structure.Street;
 
 /* Class representing a street cell, implements the Cell interface */
 public class StreetCell implements Cell {

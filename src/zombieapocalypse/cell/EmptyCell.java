@@ -1,4 +1,4 @@
-package zombieapocalypse;
+package zombieapocalypse.cell;
 
 /* Class representing an empty cell, implements the Cell interface */
 public class EmptyCell implements Cell {
