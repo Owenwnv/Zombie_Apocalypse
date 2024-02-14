@@ -11,15 +11,15 @@ compile:
 	mkdir -p $(ClassesDir)
 	$(JAVAC) -cp $(Classpath) \
 		-d $(ClassesDir) \
-		./src/zombieapocalypse/Building.java \
-		./src/zombieapocalypse/Cell.java \
-		./src/zombieapocalypse/Door.java \
-		./src/zombieapocalypse/EmptyCell.java \
-		./src/zombieapocalypse/Map.java \
-		./src/zombieapocalypse/PimpStyle.java \
-		./src/zombieapocalypse/RoomCell.java \
-		./src/zombieapocalypse/Street.java \
-		./src/zombieapocalypse/StreetCell.java \
+		./src/zombieapocalypse/structure/Building.java \
+		./src/zombieapocalypse/cell/Cell.java \
+		./src/zombieapocalypse/structure/Door.java \
+		./src/zombieapocalypse/cell/EmptyCell.java \
+		./src/zombieapocalypse/mapcreation/Map.java \
+		./src/zombieapocalypse/style/PimpStyle.java \
+		./src/zombieapocalypse/cell/RoomCell.java \
+		./src/zombieapocalypse/structure/Street.java \
+		./src/zombieapocalypse/cell/StreetCell.java \
 		./src/zombieapocalypse/TestMain.java
 
 exec:
