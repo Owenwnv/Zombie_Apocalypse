@@ -25,6 +25,9 @@ https://lucid.app/lucidchart/456a610a-a383-48a7-834a-eb0eaf49c5d9/edit?invitatio
 
 ## Livrable 1
 
+Pour compiler et executer le jeu:  ```make```  
+Pour choisir la taille de la map : ```java TestMain 5 5```
+
 ### Atteinte des objectifs
 
 ### Difficultés restant à résoudre
