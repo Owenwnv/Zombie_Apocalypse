@@ -9,7 +9,13 @@ import zombieapocalypse.structure.Door;
 public class RoomCell implements Cell {
     /** name of this RoomCell */
     protected String name;
-    /** doors of this RoomCell */
+    /**
+     * doors of this RoomCell
+     * 0 -> top Door
+     * 1 -> right Door
+     * 2 -> bottom Door
+     * 3 -> left Door
+     */
     protected List<Door> doors;
 
     /**
@@ -26,10 +32,13 @@ public class RoomCell implements Cell {
     }
 
     /**
-     * Adds a Door to this RoomCell
+     * Sets a Door to this RoomCell at index
+     * 
+     * @param door  Door to replace with
+     * @param index index to put in
      */
-    public void addRoom(Door door) {
-        this.doors.add(door);
+    public void setDoor(Door door, int index) {
+        this.doors.set(index, door);
     }
 
     /**

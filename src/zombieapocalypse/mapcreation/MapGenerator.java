@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import zombieapocalypse.structure.*;
 import zombieapocalypse.cell.Cell;
 import zombieapocalypse.cell.EmptyCell;
 import zombieapocalypse.cell.RoomCell;
@@ -115,7 +116,7 @@ public class MapGenerator {
         for (int i = 0; i < this.map.getWidth(); i++) {
             for (int j = 0; j < this.map.getHeight(); j++) {
                 if (this.map.getCell(i, j) instanceof EmptyCell) {
-                    this.map.setCell(i, j, new RoomCell("Room"));
+                    this.map.setCell(i, j, new RoomCell("Room" + " " + i + " " + j));
                 }
             }
         }
@@ -126,9 +127,37 @@ public class MapGenerator {
         while (true) {
             int x = random.nextInt(this.map.getWidth());
             int y = random.nextInt(this.map.getHeight());
-            if (this.map.getCell(x, y).getName().equals("Room")) {
+            if (this.map.getCell(x, y).getName().substring(0, 4).equals("Room")) {
                 this.map.setCell(x, y, cell);
                 break;
+            }
+        }
+    }
+
+    public void addDoors() {
+        for (int i = 0; i < this.map.getWidth(); i++) {
+            for (int j = 0; j < this.map.getHeight(); j++) {
+                if (this.map.getCell(i, j) instanceof RoomCell) {
+                    RoomCell room = (RoomCell) this.map.getCell(i, j);
+                    if (i != 0) {
+                        if (this.map.getCell(i - 1, j) instanceof RoomCell) {
+                            RoomCell topRoom = (RoomCell) this.map.getCell(i - 1, j);
+                            List<Door> doors = topRoom.getDoors();
+                            room.setDoor(doors.get(2), 0);
+                        } else {
+                            room.setDoor(new Door(false, false), 0);
+                        }
+                    }
+                    if (j != 0) {
+                        if (this.map.getCell(i, j - 1) instanceof RoomCell) {
+                            RoomCell leftRoom = (RoomCell) this.map.getCell(i, j - 1);
+                            List<Door> doors = leftRoom.getDoors();
+                            room.setDoor(doors.get(1), 3);
+                        } else {
+                            room.setDoor(new Door(false, false), 3);
+                        }
+                    }
+                }
             }
         }
     }

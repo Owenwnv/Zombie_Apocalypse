@@ -10,7 +10,8 @@ public class Door {
     /**
      * Builds a Door
      * 
-     * @param isOpen if the door is open
+     * @param isOpen   if the door is open
+     * @param isBorder if the door is at the border
      */
     public Door(boolean isOpen, boolean isBorder) {
         this.isOpen = isOpen;
