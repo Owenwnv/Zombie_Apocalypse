@@ -15,11 +15,14 @@ public class RoomCell implements Cell {
     /**
      * Builds a RoomCell
      * 
-     * @param name  name of this RoomCell
+     * @param name name of this RoomCell
      */
     public RoomCell(String name) {
         this.name = name;
         this.doors = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            this.doors.add(new Door(false, true));
+        }
     }
 
     /**

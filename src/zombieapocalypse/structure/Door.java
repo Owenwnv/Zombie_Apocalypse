@@ -4,14 +4,26 @@ package zombieapocalypse.structure;
 public class Door {
     /** whether this Door is open */
     private boolean isOpen;
+    /** whether this Door is at the border */
+    private boolean isBorder;
 
     /**
      * Builds a Door
      * 
      * @param isOpen if the door is open
      */
-    public Door(boolean isOpen) {
+    public Door(boolean isOpen, boolean isBorder) {
         this.isOpen = isOpen;
+        this.isBorder = isBorder;
+    }
+
+    /**
+     * Returns whether the Door is at the border
+     * 
+     * @return true if door is at the border, false otherwise
+     */
+    public boolean getIsBorder() {
+        return this.isBorder;
     }
 
     /**
