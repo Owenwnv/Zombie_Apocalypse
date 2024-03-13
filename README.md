@@ -86,9 +86,11 @@ Pour choisir la taille de la map:
 ## Semaine 6
 
 - Réorganisation des fichiers
+-AddDoors()
 
 ## Semaine 7
-
+-Mise à jour UML pour second livrable
+-Ajout Classes Actors, Items
 ## Semaine 8
 
 ## Semaine 9
