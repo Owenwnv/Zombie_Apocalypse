@@ -1,4 +1,6 @@
-package zombieapocalypse.actor;
+package zombieapocalypse.actor.zombie;
+
+import zombieapocalypse.actor.Actor;
 
 public class Zombie extends Actor {
 
