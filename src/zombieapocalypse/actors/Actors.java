@@ -1,3 +1,5 @@
+package zombieapocalypse.actors;
+
 public class Actors {
     /*
      * Actors's HealhPoints
