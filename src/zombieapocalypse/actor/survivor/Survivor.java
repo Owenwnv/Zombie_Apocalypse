@@ -1,4 +1,6 @@
-package zombieapocalypse.actor;
+package zombieapocalypse.actor.survivor;
+
+import zombieapocalypse.actor.Actor;
 
 public class Survivor extends Actor {
 
@@ -6,9 +8,9 @@ public class Survivor extends Actor {
     /* Survivor's level */
     protected int level;
 
-    public Survivor(int level) {
+    public Survivor() {
         super(5);
-        this.level = level;
+        this.level = 1;
     }
 
     /**

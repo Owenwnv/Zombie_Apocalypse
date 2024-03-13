@@ -19,4 +19,8 @@ public class Actor {
         return this.healthPoints;
     }
 
+    public void alterHealthPoints(int nbHP) {
+        this.healthPoints = healthPoints + nbHP;
+    }
+
 }
