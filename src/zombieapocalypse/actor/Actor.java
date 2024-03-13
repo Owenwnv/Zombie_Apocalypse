@@ -1,12 +1,12 @@
-package zombieapocalypse.actors;
+package zombieapocalypse.actor;
 
-public class Actors {
+public class Actor {
     /*
      * Actors's HealhPoints
      */
     protected int healthPoints;
 
-    public Actors(int healthPoints) {
+    public Actor(int healthPoints) {
         this.healthPoints = healthPoints;
     }
 

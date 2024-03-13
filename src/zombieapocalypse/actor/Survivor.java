@@ -1,12 +1,13 @@
-package zombieapocalypse.actors;
+package zombieapocalypse.actor;
 
-public class Survivors {
+public class Survivor extends Actor {
 
     // public Slots[] backpack;
     /* Survivor's level */
     protected int level;
 
-    public Survivors(int level) {
+    public Survivor(int level) {
+        super(5);
         this.level = level;
     }
 
