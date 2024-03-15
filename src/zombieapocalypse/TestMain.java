@@ -1,8 +1,7 @@
 package zombieapocalypse;
 
-import zombieapocalypse.cell.HotelRoomCell;
-import zombieapocalypse.cell.PharmacyRoomCell;
 import zombieapocalypse.mapcreation.MapGenerator;
+import zombieapocalypse.mapcreation.Map;
 
 public class TestMain {
     public static void main(String[] args) {
@@ -13,12 +12,7 @@ public class TestMain {
             height = Integer.parseInt(args[1]);
         }
         MapGenerator mapg = new MapGenerator(width, height);
-        mapg.addStreets();
-        mapg.addRooms();
-        mapg.addCellRandom(new PharmacyRoomCell());
-        mapg.addCellRandom(new HotelRoomCell());
-        mapg.addMainroads();
-        mapg.addDoors();
-        mapg.getMap().showMap();
+        Map map = mapg.generateMap();
+        map.showMap();
     }
 }

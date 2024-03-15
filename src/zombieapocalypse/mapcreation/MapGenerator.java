@@ -7,6 +7,8 @@ import java.util.Random;
 import zombieapocalypse.structure.*;
 import zombieapocalypse.cell.Cell;
 import zombieapocalypse.cell.EmptyCell;
+import zombieapocalypse.cell.HotelRoomCell;
+import zombieapocalypse.cell.PharmacyRoomCell;
 import zombieapocalypse.cell.RoomCell;
 import zombieapocalypse.cell.StreetCell;
 
@@ -202,5 +204,15 @@ public class MapGenerator {
                 }
             }
         }
+    }
+
+    public Map generateMap() {
+        this.addStreets();
+        this.addRooms();
+        this.addCellRandom(new PharmacyRoomCell());
+        this.addCellRandom(new HotelRoomCell());
+        this.addMainroads();
+        this.addDoors();
+        return this.map;
     }
 }
