@@ -9,7 +9,6 @@ import zombieapocalypse.actor.zombie.Abomination;
 import zombieapocalypse.actor.zombie.Bigboy;
 import zombieapocalypse.actor.zombie.Runner;
 import zombieapocalypse.actor.zombie.Walker;
-import zombieapocalypse.actor.zombie.Zombie;
 import zombieapocalypse.game.Game;
 import zombieapocalypse.mapcreation.Map;
 
