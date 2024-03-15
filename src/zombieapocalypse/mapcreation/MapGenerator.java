@@ -117,7 +117,6 @@ public class MapGenerator {
             if (cell instanceof StreetCell) {
                 mainroads[0] = index;
                 StreetCell c = (StreetCell) cell;
-                c.setHasSewer(true);
                 c.getStreet().setIsMainroads(true);
                 break;
             }
@@ -128,11 +127,12 @@ public class MapGenerator {
             if (cell instanceof StreetCell) {
                 mainroads[1] = index;
                 StreetCell c = (StreetCell) cell;
-                c.setHasSewer(true);
                 c.getStreet().setIsMainroads(true);
                 break;
             }
         }
+        StreetCell cell = (StreetCell) this.map.getCell(mainroads[0], mainroads[1]);
+        cell.setHasSewer(true);
         this.map.setMainroads(mainroads[0], mainroads[1]);
     }
 

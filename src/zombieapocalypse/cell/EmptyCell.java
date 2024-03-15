@@ -1,25 +1,13 @@
 package zombieapocalypse.cell;
 
 /* Class representing an empty cell, implements the Cell interface */
-public class EmptyCell implements Cell {
-    /** name of this EmptyCell */
-    private String name;
+public class EmptyCell extends Cell {
 
     /**
      * Builds an EmptyCell
      */
     public EmptyCell() {
-        this.name = "Empty";
-    }
-
-    /**
-     * Returns this EmptyCell's name
-     * 
-     * @return EmptyCell's name
-     */
-    @Override
-    public String getName() {
-        return this.name;
+        super("Empty");
     }
 
     /**

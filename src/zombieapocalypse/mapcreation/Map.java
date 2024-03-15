@@ -112,6 +112,9 @@ public class Map {
      */
     public String getCellColor(Cell cell) {
         if (cell instanceof StreetCell) {
+            if (((StreetCell) cell).getHasSewer()) {
+                return PimpStyle.YELLOW;
+            }
             return PimpStyle.BLUE;
         } else if (cell instanceof PharmacyRoomCell) {
             return PimpStyle.GREEN;

@@ -6,9 +6,7 @@ import java.util.List;
 import zombieapocalypse.structure.Door;
 
 /* Class representing a room cell, implements the Cell interface */
-public class RoomCell implements Cell {
-    /** name of this RoomCell */
-    protected String name;
+public class RoomCell extends Cell {
     /**
      * doors of this RoomCell
      * 0 -> top Door
@@ -24,7 +22,7 @@ public class RoomCell implements Cell {
      * @param name name of this RoomCell
      */
     public RoomCell(String name) {
-        this.name = name;
+        super(name);
         this.doors = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             this.doors.add(new Door(false, true));
@@ -48,16 +46,6 @@ public class RoomCell implements Cell {
      */
     public List<Door> getDoors() {
         return this.doors;
-    }
-
-    /**
-     * Returns this RoomCell's name
-     * 
-     * @return RoomCell's name
-     */
-    @Override
-    public String getName() {
-        return this.name;
     }
 
     /**

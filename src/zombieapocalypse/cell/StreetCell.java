@@ -3,9 +3,7 @@ package zombieapocalypse.cell;
 import zombieapocalypse.structure.Street;
 
 /* Class representing a street cell, implements the Cell interface */
-public class StreetCell implements Cell {
-    /** name of this StreetCell */
-    private String name;
+public class StreetCell extends Cell {
     /** Street of this StreetCell */
     private Street street;
     private boolean hasSewer;
@@ -17,19 +15,9 @@ public class StreetCell implements Cell {
      * @param street street of this StreetCell
      */
     public StreetCell(String name, Street street) {
-        this.name = name;
+        super(name);
         this.street = street;
         this.hasSewer = false;
-    }
-
-    /**
-     * Returns this StreetCell's name
-     * 
-     * @return StreetCell's name
-     */
-    @Override
-    public String getName() {
-        return this.name;
     }
 
     /**
