@@ -1,6 +1,7 @@
 package zombieapocalypse;
 
 import zombieapocalypse.mapcreation.MapGenerator;
+import zombieapocalypse.actor.survivor.Survivor;
 import zombieapocalypse.actor.survivor.Fighter;
 import zombieapocalypse.actor.survivor.Healer;
 import zombieapocalypse.actor.survivor.Lucky;
@@ -10,9 +11,11 @@ import zombieapocalypse.actor.zombie.Bigboy;
 import zombieapocalypse.actor.zombie.Runner;
 import zombieapocalypse.actor.zombie.Walker;
 import zombieapocalypse.game.Game;
+import zombieapocalypse.item.tool.HandheldMap;
+import zombieapocalypse.item.tool.HealthPotion;
 import zombieapocalypse.mapcreation.Map;
 
-public class TestMain {
+public class Livrable2 {
     public static void main(String[] args) {
         int width = 5;
         int height = 5;
@@ -23,10 +26,22 @@ public class TestMain {
         MapGenerator mapg = new MapGenerator(width, height);
         Map map = mapg.generateMap();
         Game game = new Game(map);
-        game.spawnSurvivor(new Fighter(), 2, 2);
-        game.spawnSurvivor(new Healer(), 2, 2);
-        game.spawnSurvivor(new Lucky(), 2, 2);
-        game.spawnSurvivor(new Searcher(), 2, 2);
+        Survivor fighter = new Fighter();
+        Survivor healer = new Healer();
+        Survivor lucky = new Lucky();
+        Survivor searcher = new Searcher();
+        fighter.addItemToBackpack(new HandheldMap());
+        healer.addItemToBackpack(new HandheldMap());
+        lucky.addItemToBackpack(new HandheldMap());
+        searcher.addItemToBackpack(new HandheldMap());
+        fighter.putItemInHand(new HealthPotion());
+        healer.putItemInHand(new HealthPotion());
+        lucky.putItemInHand(new HealthPotion());
+        searcher.putItemInHand(new HealthPotion());
+        game.spawnSurvivor(fighter, 2, 2);
+        game.spawnSurvivor(healer, 2, 2);
+        game.spawnSurvivor(lucky, 2, 2);
+        game.spawnSurvivor(searcher, 2, 2);
         game.spawnZombie(new Abomination(), 2, 2);
         game.spawnZombie(new Bigboy(), 0, 0);
         game.spawnZombie(new Runner(), 0, 2);

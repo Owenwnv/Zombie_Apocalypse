@@ -29,4 +29,16 @@ public class Survivor extends Actor {
     public int getLevel() {
         return this.level;
     }
+
+    public List<Item> getBackpack() {
+        return this.backpack;
+    }
+
+    public void addItemToBackpack(Item item) {
+        this.backpack.add(item);
+    }
+
+    public void putItemInHand(Item item) {
+        this.inHand = item;
+    }
 }

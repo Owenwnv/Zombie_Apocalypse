@@ -1,6 +1,6 @@
 JAVAC = javac
 Classpath = ./src
-MainClass = zombieapocalypse.TestMain
+MainClass = zombieapocalypse.Livrable2
 ClassesDir = bin/classes
 
 all: run
@@ -46,7 +46,7 @@ compile:
 		./src/zombieapocalypse/item/tool/MedKit.java \
 		./src/zombieapocalypse/item/tool/SkeletonKey.java \
 		./src/zombieapocalypse/game/Game.java \
-		./src/zombieapocalypse/TestMain.java
+		./src/zombieapocalypse/Livrable2.java
 
 exec:
 	cd bin/classes; java $(MainClass) 5 5
