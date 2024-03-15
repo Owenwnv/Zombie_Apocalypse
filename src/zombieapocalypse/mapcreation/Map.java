@@ -16,8 +16,6 @@ public class Map {
     private Cell[][] cells;
     /** main roads of this Map */
     private int[] mainroads;
-    /** crossroad of this Map */
-    private int[] crossroad;
 
     /**
      * Builds a Map
@@ -29,7 +27,6 @@ public class Map {
         this.height = height;
         this.width = width;
         this.mainroads = new int[2];
-        this.crossroad = new int[2];
         this.cells = new Cell[width][height];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -84,15 +81,6 @@ public class Map {
     public void setMainroads(int x, int y) {
         this.mainroads[0] = x;
         this.mainroads[1] = y;
-    }
-
-    public int[] getCrossroad() {
-        return this.crossroad;
-    }
-
-    public void setCrossroad(int i, int j) {
-        this.crossroad[0] = i;
-        this.crossroad[1] = j;
     }
 
     /**
