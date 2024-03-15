@@ -1,26 +1,38 @@
 package zombieapocalypse.actor;
 
+/**
+ * Represents an actor in the game.
+ */
 public class Actor {
-    /*
-     * Actors's HealhPoints
+    /**
+     * Actor's health points.
      */
     protected int healthPoints;
 
+    /**
+     * Constructs an Actor with the specified health points.
+     * 
+     * @param healthPoints The health points of the Actor
+     */
     public Actor(int healthPoints) {
         this.healthPoints = healthPoints;
     }
 
     /**
-     * Returns this Actor's HealthPoints
+     * Returns this Actor's health points.
      * 
-     * @return Atcor's HealthPoints
+     * @return The Actor's health points
      */
     public int getHealthPoints() {
         return this.healthPoints;
     }
 
+    /**
+     * Alters the Actor's health points by the given amount.
+     * 
+     * @param nbHP The amount to alter the health points by
+     */
     public void alterHealthPoints(int nbHP) {
         this.healthPoints = healthPoints + nbHP;
     }
-
 }

@@ -1,9 +1,12 @@
 package zombieapocalypse.actor.survivor;
 
+/**
+ * Represents a searcher, a specialized type of Survivor, in the game.
+ */
 public class Searcher extends Survivor {
-
     /**
-     * Searcher's feature
+     * Constructs a Searcher with default health points, level, and an empty
+     * backpack.
      */
     public Searcher() {
         super();

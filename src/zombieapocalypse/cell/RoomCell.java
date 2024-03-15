@@ -5,10 +5,12 @@ import java.util.List;
 
 import zombieapocalypse.structure.Door;
 
-/* Class representing a room cell, implements the Cell interface */
+/**
+ * Represents a room cell in the game, extending from Cell.
+ */
 public class RoomCell extends Cell {
     /**
-     * doors of this RoomCell
+     * List of doors in this RoomCell.
      * 0 -> top Door
      * 1 -> right Door
      * 2 -> bottom Door
@@ -17,9 +19,10 @@ public class RoomCell extends Cell {
     protected List<Door> doors;
 
     /**
-     * Builds a RoomCell
+     * Constructs a RoomCell with the specified name and initializes doors with
+     * default values.
      * 
-     * @param name name of this RoomCell
+     * @param name The name of the RoomCell
      */
     public RoomCell(String name) {
         super(name);
@@ -30,28 +33,28 @@ public class RoomCell extends Cell {
     }
 
     /**
-     * Sets a Door to this RoomCell at index
+     * Sets a Door to this RoomCell at the specified index.
      * 
-     * @param door  Door to replace with
-     * @param index index to put in
+     * @param door  The Door to replace with
+     * @param index The index to put in
      */
     public void setDoor(Door door, int index) {
         this.doors.set(index, door);
     }
 
     /**
-     * Returns this RoomCell's doors
+     * Returns this RoomCell's doors.
      * 
-     * @return RoomCell's doors
+     * @return The RoomCell's doors
      */
     public List<Door> getDoors() {
         return this.doors;
     }
 
     /**
-     * Returns a description of this RoomCell
+     * Returns a description of this RoomCell.
      * 
-     * @return description of this RoomCell
+     * @return A description of this RoomCell
      */
     @Override
     public String toString() {

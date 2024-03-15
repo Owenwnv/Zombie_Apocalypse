@@ -10,7 +10,7 @@ public class Street {
     /**
      * Builds a Street
      * 
-     * @param name     name of this Street
+     * @param name        name of this Street
      * @param isMainroads if this Street is one of the mainroads
      */
     public Street(String name, boolean isMainroads) {
@@ -27,6 +27,11 @@ public class Street {
         return this.isMainroads;
     }
 
+    /**
+     * Sets the boolean value indicating whether this road is a main road or not.
+     * 
+     * @param isMainroads true if it is a main road, false otherwise
+     */
     public void setIsMainroads(boolean isMainroads) {
         this.isMainroads = isMainroads;
     }

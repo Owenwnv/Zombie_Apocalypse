@@ -1,9 +1,11 @@
 package zombieapocalypse.actor.zombie;
 
+/**
+ * Represents a walker zombie, a specialized type of Zombie, in the game.
+ */
 public class Walker extends Zombie {
-
     /**
-     * Walker's feature
+     * Constructs a Walker with default damage and health points.
      */
     public Walker() {
         super(1, 1);

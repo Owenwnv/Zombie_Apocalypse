@@ -1,22 +1,23 @@
 package zombieapocalypse.cell;
 
-/* Class representing an empty cell, implements the Cell interface */
+/**
+ * Represents an empty cell in the game.
+ */
 public class EmptyCell extends Cell {
-
     /**
-     * Builds an EmptyCell
+     * Constructs an EmptyCell.
      */
     public EmptyCell() {
         super("Empty");
     }
 
     /**
-     * Returns a description of this EmptyCell
+     * Returns a description of this EmptyCell.
      * 
-     * @return description of this EmptyCell
+     * @return A description of this EmptyCell
      */
     @Override
     public String toString() {
-        return "This is a EmptyCell";
+        return "This is an EmptyCell";
     }
 }

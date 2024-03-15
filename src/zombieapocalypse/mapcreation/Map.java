@@ -6,22 +6,35 @@ import zombieapocalypse.cell.*;
 import zombieapocalypse.structure.Door;
 import zombieapocalypse.style.PimpStyle;
 
-/* Class representing a map */
+/**
+ * Represents a map in the game.
+ */
 public class Map {
-    /** height of this Map */
+    /**
+     * The height of this Map.
+     */
     private int height;
-    /** width of this Map */
+
+    /**
+     * The width of this Map.
+     */
     private int width;
-    /** cells of this Map */
+
+    /**
+     * The cells of this Map.
+     */
     private Cell[][] cells;
-    /** main roads of this Map */
+
+    /**
+     * The main roads of this Map.
+     */
     private int[] mainroads;
 
     /**
-     * Builds a Map
+     * Constructs a Map with the specified width and height.
      * 
-     * @param height height of this Map
-     * @param width  width of this Map
+     * @param width  The width of this Map
+     * @param height The height of this Map
      */
     public Map(int width, int height) {
         this.height = height;
@@ -74,10 +87,21 @@ public class Map {
         this.cells[x][y] = cell;
     }
 
+    /**
+     * Returns the main roads of this Map.
+     * 
+     * @return The main roads of this Map
+     */
     public int[] getMainroads() {
         return this.mainroads;
     }
 
+    /**
+     * Sets the main roads of this Map to the specified coordinates.
+     * 
+     * @param x The x-coordinate of the main road
+     * @param y The y-coordinate of the main road
+     */
     public void setMainroads(int x, int y) {
         this.mainroads[0] = x;
         this.mainroads[1] = y;
@@ -126,6 +150,14 @@ public class Map {
         return "";
     }
 
+    /**
+     * Returns the color of the door at the specified position.
+     * 
+     * @param i    The x-coordinate of the Cell
+     * @param j    The y-coordinate of the Cell
+     * @param side The side of the door
+     * @return The color of the door
+     */
     public String getDoorColor(int i, int j, int side) {
         Cell cell = this.cells[i][j];
         if (cell instanceof RoomCell) {
@@ -152,12 +184,26 @@ public class Map {
         return "";
     }
 
+    /**
+     * Returns the number of survivors in the Cell at the specified position.
+     * 
+     * @param i The x-coordinate of the Cell
+     * @param j The y-coordinate of the Cell
+     * @return The number of survivors
+     */
     public String getCellNbSurvivor(int i, int j) {
         Cell cell = this.cells[i][j];
         int nb = cell.getSurvivors().size();
         return nb > 0 ? Integer.toString(nb) : " ";
     }
 
+    /**
+     * Returns the number of zombies in the Cell at the specified position.
+     * 
+     * @param i The x-coordinate of the Cell
+     * @param j The y-coordinate of the Cell
+     * @return The number of zombies
+     */
     public String getCellNbZombie(int i, int j) {
         Cell cell = this.cells[i][j];
         int nb = cell.getZombies().size();
