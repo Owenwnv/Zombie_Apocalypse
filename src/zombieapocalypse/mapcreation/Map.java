@@ -1,6 +1,9 @@
 package zombieapocalypse.mapcreation;
 
+import java.util.List;
+
 import zombieapocalypse.cell.*;
+import zombieapocalypse.structure.Door;
 import zombieapocalypse.style.PimpStyle;
 
 /* Class representing a map */
@@ -105,6 +108,32 @@ public class Map {
         return "";
     }
 
+    public String getDoorColor(int i, int j, int side) {
+        Cell cell = this.cells[i][j];
+        if (cell instanceof RoomCell) {
+            RoomCell room = (RoomCell) cell;
+            List<Door> doors = room.getDoors();
+            if (!doors.get(side).getIsBorder()) {
+                return PimpStyle.RED;
+            }
+        } else if (side == 2) {
+            if (i + 1 != this.width) {
+                Cell c = this.cells[i + 1][j];
+                if (c instanceof RoomCell) {
+                    return PimpStyle.RED;
+                }
+            }
+        } else if (side == 1) {
+            if (j + 1 != this.height) {
+                Cell c = this.cells[i][j + 1];
+                if (c instanceof RoomCell) {
+                    return PimpStyle.RED;
+                }
+            }
+        }
+        return "";
+    }
+
     /**
      * Prints out this Map
      */
@@ -119,14 +148,14 @@ public class Map {
             }
             System.out.print("|");
             System.out.println();
-            for (int j = 0; j < this.height; j++) {
-                System.out.print("|  " + getCellColor(this.cells[i][j]) + getCellSymbol(this.cells[i][j])
-                        + PimpStyle.RESET + "  ");
-            }
             System.out.print("|");
+            for (int j = 0; j < this.height; j++) {
+                System.out.print("  " + getCellColor(this.cells[i][j]) + getCellSymbol(this.cells[i][j])
+                        + PimpStyle.RESET + getDoorColor(i, j, 1) + "  |" + PimpStyle.RESET);
+            }
             System.out.println();
             for (int j = 0; j < this.height; j++) {
-                System.out.print("|_____");
+                System.out.print("|__" + getDoorColor(i, j, 2) + "_" + PimpStyle.RESET + "__");
             }
             System.out.print("|");
             System.out.println();

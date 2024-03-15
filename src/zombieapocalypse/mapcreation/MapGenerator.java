@@ -9,7 +9,6 @@ import zombieapocalypse.cell.Cell;
 import zombieapocalypse.cell.EmptyCell;
 import zombieapocalypse.cell.RoomCell;
 import zombieapocalypse.cell.StreetCell;
-import zombieapocalypse.structure.Street;
 
 public class MapGenerator {
     protected Map map;
@@ -139,22 +138,37 @@ public class MapGenerator {
             for (int j = 0; j < this.map.getHeight(); j++) {
                 if (this.map.getCell(i, j) instanceof RoomCell) {
                     RoomCell room = (RoomCell) this.map.getCell(i, j);
-                    if (i != 0) {
-                        if (this.map.getCell(i - 1, j) instanceof RoomCell) {
-                            RoomCell topRoom = (RoomCell) this.map.getCell(i - 1, j);
-                            List<Door> doors = topRoom.getDoors();
-                            room.setDoor(doors.get(2), 0);
-                        } else {
-                            room.setDoor(new Door(false, false), 0);
+                    if (i + 1 != this.map.getWidth()) {
+                        room.setDoor(new Door(false, false), 2);
+                    }
+                    if (j + 1 != this.map.getHeight()) {
+                        room.setDoor(new Door(false, false), 1);
+                    }
+                    if (i > 0 && this.map.getCell(i - 1, j) instanceof RoomCell) {
+                        RoomCell topRoom = (RoomCell) this.map.getCell(i - 1, j);
+                        List<Door> doors = topRoom.getDoors();
+                        room.setDoor(doors.get(2), 0);
+                    } else {
+                        room.setDoor(new Door(false, false), 0);
+                    }
+                    if (j > 0 && this.map.getCell(i, j - 1) instanceof RoomCell) {
+                        RoomCell leftRoom = (RoomCell) this.map.getCell(i, j - 1);
+                        List<Door> doors = leftRoom.getDoors();
+                        room.setDoor(doors.get(1), 3);
+                    } else {
+                        room.setDoor(new Door(false, false), 3);
+                    }
+                } else {
+                    if (i + 1 != this.map.getWidth()) {
+                        if (this.map.getCell(i + 1, j) instanceof RoomCell) {
+                            RoomCell bottomRoom = (RoomCell) this.map.getCell(i + 1, j);
+                            bottomRoom.setDoor(new Door(false, false), 0);
                         }
                     }
-                    if (j != 0) {
-                        if (this.map.getCell(i, j - 1) instanceof RoomCell) {
-                            RoomCell leftRoom = (RoomCell) this.map.getCell(i, j - 1);
-                            List<Door> doors = leftRoom.getDoors();
-                            room.setDoor(doors.get(1), 3);
-                        } else {
-                            room.setDoor(new Door(false, false), 3);
+                    if (j + 1 != this.map.getHeight()) {
+                        if (this.map.getCell(i, j + 1) instanceof RoomCell) {
+                            RoomCell rightRoom = (RoomCell) this.map.getCell(i, j + 1);
+                            rightRoom.setDoor(new Door(false, false), 3);
                         }
                     }
                 }
