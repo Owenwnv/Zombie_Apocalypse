@@ -23,7 +23,15 @@ compile:
 		./src/zombieapocalypse/cell/StreetCell.java \
 		./src/zombieapocalypse/actor/Actor.java \
 		./src/zombieapocalypse/actor/zombie/Zombie.java \
+		./src/zombieapocalypse/actor/zombie/Abomination.java \
+		./src/zombieapocalypse/actor/zombie/Bigboy.java \
+		./src/zombieapocalypse/actor/zombie/Runner.java \
+		./src/zombieapocalypse/actor/zombie/Walker.java \
 		./src/zombieapocalypse/actor/survivor/Survivor.java \
+		./src/zombieapocalypse/actor/survivor/Fighter.java \
+		./src/zombieapocalypse/actor/survivor/Healer.java \
+		./src/zombieapocalypse/actor/survivor/Lucky.java \
+		./src/zombieapocalypse/actor/survivor/Searcher.java \
 		./src/zombieapocalypse/game/Game.java \
 		./src/zombieapocalypse/TestMain.java
 
