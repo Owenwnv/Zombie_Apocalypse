@@ -32,6 +32,19 @@ compile:
 		./src/zombieapocalypse/actor/survivor/Healer.java \
 		./src/zombieapocalypse/actor/survivor/Lucky.java \
 		./src/zombieapocalypse/actor/survivor/Searcher.java \
+		./src/zombieapocalypse/item/Item.java \
+		./src/zombieapocalypse/item/weapon/Weapon.java \
+		./src/zombieapocalypse/item/weapon/Axe.java \
+		./src/zombieapocalypse/item/weapon/Chainsaw.java \
+		./src/zombieapocalypse/item/weapon/Crowbar.java \
+		./src/zombieapocalypse/item/weapon/Gun.java \
+		./src/zombieapocalypse/item/weapon/Rifle.java \
+		./src/zombieapocalypse/item/tool/Tool.java \
+		./src/zombieapocalypse/item/tool/HandheldMap.java \
+		./src/zombieapocalypse/item/tool/HealthPotion.java \
+		./src/zombieapocalypse/item/tool/InfraredGlasses.java \
+		./src/zombieapocalypse/item/tool/MedKit.java \
+		./src/zombieapocalypse/item/tool/SkeletonKey.java \
 		./src/zombieapocalypse/game/Game.java \
 		./src/zombieapocalypse/TestMain.java
 
