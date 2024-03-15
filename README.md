@@ -91,6 +91,7 @@ Pour choisir la taille de la map:
 ## Semaine 7
 
 - Mise à jour UML pour second livrable
+- Mise à jour UML pour les classes anciennes
 - Ajout Classes Actors, Items
 - Ajout des classes de tous les zombies et survivants
 
