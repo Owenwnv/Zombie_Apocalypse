@@ -71,4 +71,8 @@ public class Survivor extends Actor {
     public void putItemInHand(Item item) {
         this.inHand = item;
     }
+
+    public Item getInHand(){
+        return this.inHand;
+    }
 }
