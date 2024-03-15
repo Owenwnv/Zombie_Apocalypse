@@ -37,7 +37,32 @@ Pour choisir la taille de la map:
 
 ## Livrable 2
 
+Pour compiler et executer le jeu:
+```make```
+
+Pour voir l'ajout des acteurs et de leurs équipements comme demandé dans l'énoncé:
+
+- Dans le code: src>zombieapocalypse>Livrable2.java
+
+- Dans le terminal: 
+
+    - "-" bleu: Door
+    - "S" jaune: Sewer
+    - "S" bleu: Street
+    - "R" rouge: Room
+    - "C" jaune: Continental
+    - "+" vert: Pharmacy
+    - nombre supérieur droit: nombre de survivants dans la case
+    - nombre supérieur gauche: nombre de zombies dans la case
+
+
 ### Atteinte des objectifs
+
+L'UML a été mis à jour, vous pouvez constater l'ajout des classes Item et Actor ainsi que les classes héritières de celles-ci qui modélisent respectivement tous les outils/armes et tous les survivants/acteurs du jeu.
+
+De plus, nous avons terminé les modélisations des égoûts et des portes.
+
+Pour finir, nous avons déplacé tous les survivants de chaque rôle vers le nord d'une case et nous les avons dotés d'une fiole dans la main et d'une carte dans le sac à dos. Les zombies de chaque type ont eux aussi été placés.
 
 ### Difficultés restant à résoudre
 
