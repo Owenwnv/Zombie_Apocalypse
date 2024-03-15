@@ -113,10 +113,10 @@ public class MapGenerator {
         int[] mainroads = {0, 0};
         while (true) {
             int index = random.nextInt(this.map.getWidth());
-            Cell c1 = this.map.getCell(index, 0);
-            if (c1 instanceof StreetCell) {
+            Cell cell = this.map.getCell(index, 0);
+            if (cell instanceof StreetCell) {
                 mainroads[0] = index;
-                StreetCell c = (StreetCell) c1;
+                StreetCell c = (StreetCell) cell;
                 c.setHasSewer(true);
                 c.getStreet().setIsMainroads(true);
                 break;
@@ -124,10 +124,10 @@ public class MapGenerator {
         }
         while (true) {
             int index = random.nextInt(this.map.getHeight());
-            Cell c1 = this.map.getCell(0, index);
-            if (c1 instanceof StreetCell) {
+            Cell cell = this.map.getCell(0, index);
+            if (cell instanceof StreetCell) {
                 mainroads[1] = index;
-                StreetCell c = (StreetCell) c1;
+                StreetCell c = (StreetCell) cell;
                 c.setHasSewer(true);
                 c.getStreet().setIsMainroads(true);
                 break;

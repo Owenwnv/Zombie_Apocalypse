@@ -92,11 +92,14 @@ public class Map {
         if (cell instanceof EmptyCell) {
             return "·";
         } else if (cell instanceof PharmacyRoomCell) {
-            return "🞥";
+            return "+";
         } else if (cell instanceof HotelRoomCell) {
             return "C";
         } else if (cell instanceof StreetCell) {
-            return "S";
+            if (((StreetCell) cell).getStreet().getIsMainroads()) {
+                return "S";
+            }
+            return "s";
         } else {
             return "R";
         }
@@ -126,20 +129,20 @@ public class Map {
             RoomCell room = (RoomCell) cell;
             List<Door> doors = room.getDoors();
             if (!doors.get(side).getIsBorder()) {
-                return PimpStyle.RED;
+                return PimpStyle.CYAN;
             }
         } else if (side == 2) {
             if (i + 1 != this.width) {
                 Cell c = this.cells[i + 1][j];
                 if (c instanceof RoomCell) {
-                    return PimpStyle.RED;
+                    return PimpStyle.CYAN;
                 }
             }
         } else if (side == 1) {
             if (j + 1 != this.height) {
                 Cell c = this.cells[i][j + 1];
                 if (c instanceof RoomCell) {
-                    return PimpStyle.RED;
+                    return PimpStyle.CYAN;
                 }
             }
         }
