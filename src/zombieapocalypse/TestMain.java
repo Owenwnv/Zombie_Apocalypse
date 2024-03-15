@@ -2,9 +2,7 @@ package zombieapocalypse;
 
 import zombieapocalypse.cell.HotelRoomCell;
 import zombieapocalypse.cell.PharmacyRoomCell;
-import zombieapocalypse.cell.RoomCell;
 import zombieapocalypse.mapcreation.MapGenerator;
-import zombieapocalypse.structure.Door;
 
 public class TestMain {
     public static void main(String[] args) {
