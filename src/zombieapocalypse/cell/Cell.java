@@ -26,6 +26,30 @@ public abstract class Cell {
         return this.name;
     }
 
+    public List<Survivor> getSurvivors() {
+        return this.survivors;
+    }
+
+    public List<Zombie> getZombies() {
+        return this.zombies;
+    }
+
+    public void addSurvivor(Survivor survivor) {
+        this.survivors.add(survivor);
+    }
+
+    public void addZombie(Zombie zombie) {
+        this.zombies.add(zombie);
+    }
+
+    public void removeSurvivor(Survivor survivor) {
+        this.survivors.remove(survivor);
+    }
+
+    public void removeZombie(Zombie zombie) {
+        this.zombies.remove(zombie);
+    }
+
     /**
      * Returns a description of this Cell
      * 
