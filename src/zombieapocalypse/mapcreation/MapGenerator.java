@@ -108,6 +108,34 @@ public class MapGenerator {
         }
     }
 
+    public void addMainroads() {
+        Random random = new Random();
+        int[] mainroads = {0, 0};
+        while (true) {
+            int index = random.nextInt(this.map.getWidth());
+            Cell c1 = this.map.getCell(index, 0);
+            if (c1 instanceof StreetCell) {
+                mainroads[0] = index;
+                StreetCell c = (StreetCell) c1;
+                c.setHasSewer(true);
+                c.getStreet().setIsMainroads(true);
+                break;
+            }
+        }
+        while (true) {
+            int index = random.nextInt(this.map.getHeight());
+            Cell c1 = this.map.getCell(0, index);
+            if (c1 instanceof StreetCell) {
+                mainroads[1] = index;
+                StreetCell c = (StreetCell) c1;
+                c.setHasSewer(true);
+                c.getStreet().setIsMainroads(true);
+                break;
+            }
+        }
+        this.map.setMainroads(mainroads[0], mainroads[1]);
+    }
+
     /**
      * Adds the Rooms to this Map
      */

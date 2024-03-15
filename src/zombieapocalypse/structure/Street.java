@@ -4,27 +4,31 @@ package zombieapocalypse.structure;
 public class Street {
     /** name of this Street */
     private String name;
-    /** whether this building has sewers */
-    private boolean hasSewer;
+    /** whether this Street is one of the mainroads */
+    private boolean isMainroads;
 
     /**
      * Builds a Street
      * 
      * @param name     name of this Street
-     * @param hasSewer if this Street has sewers
+     * @param isMainroads if this Street is one of the mainroads
      */
-    public Street(String name, boolean hasSewer) {
+    public Street(String name, boolean isMainroads) {
         this.name = name;
-        this.hasSewer = hasSewer;
+        this.isMainroads = isMainroads;
     }
 
     /**
-     * Returns whether this Street has sewers or not
+     * Returns whether this Street is one of the mainroads
      * 
-     * @return true if street has sewers, false otherwise
+     * @return true if street is one of the mainroads, false otherwise
      */
-    public boolean getHasSewer() {
-        return this.hasSewer;
+    public boolean getIsMainroads() {
+        return this.isMainroads;
+    }
+
+    public void setIsMainroads(boolean isMainroads) {
+        this.isMainroads = isMainroads;
     }
 
     /**

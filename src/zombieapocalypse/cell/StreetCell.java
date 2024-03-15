@@ -8,6 +8,7 @@ public class StreetCell implements Cell {
     private String name;
     /** Street of this StreetCell */
     private Street street;
+    private boolean hasSewer;
 
     /**
      * Builds a StreetCell
@@ -18,6 +19,7 @@ public class StreetCell implements Cell {
     public StreetCell(String name, Street street) {
         this.name = name;
         this.street = street;
+        this.hasSewer = false;
     }
 
     /**
@@ -37,6 +39,14 @@ public class StreetCell implements Cell {
      */
     public Street getStreet() {
         return this.street;
+    }
+
+    public boolean getHasSewer() {
+        return this.hasSewer;
+    }
+
+    public void setHasSewer(boolean hasSewer) {
+        this.hasSewer = hasSewer;
     }
 
     /**

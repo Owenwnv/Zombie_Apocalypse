@@ -2,6 +2,7 @@ package zombieapocalypse;
 
 import zombieapocalypse.cell.HotelRoomCell;
 import zombieapocalypse.cell.PharmacyRoomCell;
+import zombieapocalypse.cell.StreetCell;
 import zombieapocalypse.mapcreation.MapGenerator;
 
 public class TestMain {
@@ -17,6 +18,7 @@ public class TestMain {
         mapg.addRooms();
         mapg.addCellRandom(new PharmacyRoomCell());
         mapg.addCellRandom(new HotelRoomCell());
+        mapg.addMainroads();
         mapg.addDoors();
         mapg.getMap().showMap();
     }
