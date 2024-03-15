@@ -46,7 +46,14 @@ compile:
 		./src/zombieapocalypse/item/tool/MedKit.java \
 		./src/zombieapocalypse/item/tool/SkeletonKey.java \
 		./src/zombieapocalypse/game/Game.java \
-		./src/zombieapocalypse/Livrable2.java
+		./src/zombieapocalypse/Livrable2.java 
+	
+	$(JAVAC) -cp junit-console.jar:$(Classpath) \
+		-d $(ClassesDir) \
+		./Test/ActorTest.java \
+		./Test/DoorTest.java \
+		./Test/MapTest.java \
+		./Test/StreetSewerTest.java \
 
 exec:
 	cd bin/classes; java $(MainClass) 5 5
