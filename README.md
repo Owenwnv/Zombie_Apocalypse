@@ -19,7 +19,7 @@ N'oubliez pas d'ajouter les autres membres de votre équipe aux membres du proje
 
 # UML
 
-https://lucid.app/lucidchart/456a610a-a383-48a7-834a-eb0eaf49c5d9/edit?invitationId=inv_6f89afeb-2641-4162-bb06-7419f331ac1c
+https://lucid.app/lucidchart/456a610a-a383-48a7-834a-eb0eaf49c5d9/edit?invitationId=inv_6f89afeb-2641-4162-bb06-7419f331ac1c&page=0_0#
 
 # Livrable
 
