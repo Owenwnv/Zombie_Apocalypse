@@ -152,6 +152,18 @@ public class Map {
         return "";
     }
 
+    public String getCellNbSurvivor(int i, int j) {
+        Cell cell = this.cells[i][j];
+        int nb = cell.getSurvivors().size();
+        return nb > 0 ? Integer.toString(nb) : " ";
+    }
+
+    public String getCellNbZombie(int i, int j) {
+        Cell cell = this.cells[i][j];
+        int nb = cell.getZombies().size();
+        return nb > 0 ? Integer.toString(nb) : " ";
+    }
+
     /**
      * Prints out this Map
      */
@@ -162,7 +174,7 @@ public class Map {
         System.out.println();
         for (int i = 0; i < this.width; i++) {
             for (int j = 0; j < this.height; j++) {
-                System.out.print("|     ");
+                System.out.print("|" + getCellNbZombie(i, j) + "   " + getCellNbSurvivor(i, j));
             }
             System.out.print("|");
             System.out.println();

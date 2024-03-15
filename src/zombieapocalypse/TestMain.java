@@ -1,6 +1,9 @@
 package zombieapocalypse;
 
 import zombieapocalypse.mapcreation.MapGenerator;
+import zombieapocalypse.actor.survivor.Survivor;
+import zombieapocalypse.actor.zombie.Zombie;
+import zombieapocalypse.game.Game;
 import zombieapocalypse.mapcreation.Map;
 
 public class TestMain {
@@ -13,6 +16,9 @@ public class TestMain {
         }
         MapGenerator mapg = new MapGenerator(width, height);
         Map map = mapg.generateMap();
-        map.showMap();
+        Game game = new Game(map);
+        game.spawnSurvivor(new Survivor(), 2, 2);
+        game.spawnZombie(new Zombie(1, 1), 2, 2);
+        game.getMap().showMap();
     }
 }

@@ -21,6 +21,10 @@ compile:
 		./src/zombieapocalypse/cell/RoomCell.java \
 		./src/zombieapocalypse/structure/Street.java \
 		./src/zombieapocalypse/cell/StreetCell.java \
+		./src/zombieapocalypse/actor/Actor.java \
+		./src/zombieapocalypse/actor/zombie/Zombie.java \
+		./src/zombieapocalypse/actor/survivor/Survivor.java \
+		./src/zombieapocalypse/game/Game.java \
 		./src/zombieapocalypse/TestMain.java
 
 exec:
