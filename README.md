@@ -40,6 +40,9 @@ Pour choisir la taille de la map:
 Pour compiler et executer le jeu:
 ```make```
 
+Pour compiler et générer la documentation:
+```javadoc -sourcepath src -subpackages zombieapocalypse -d docs```
+
 Pour voir l'ajout des acteurs et de leurs équipements comme demandé dans l'énoncé:
 
 - Dans le code: src>zombieapocalypse>Livrable2.java
@@ -58,7 +61,7 @@ Pour voir l'ajout des acteurs et de leurs équipements comme demandé dans l'én
 
 ### Atteinte des objectifs
 
-L'UML a été mis à jour, vous pouvez constater l'ajout des classes Item et Actor ainsi que les classes héritières de celles-ci qui modélisent respectivement tous les outils/armes et tous les survivants/acteurs du jeu.
+L'UML a été mis à jour, vous pouvez constater l'ajout des classes Item et Actor ainsi que les classes héritières de celles-ci qui modélisent respectivement tous les outils/armes et tous les survivants/zombies du jeu.
 
 De plus, nous avons terminé les modélisations des égoûts et des portes.
 
