@@ -39,6 +39,7 @@ Pour choisir la taille de la map:
 
 Pour compiler et executer le jeu:
 ```make```
+
 Pour executer les Tests:
 ```java -jar junit-console.jar -classpath bin/classes:test -select-package test``` 
 
