@@ -115,13 +115,18 @@ public class MapGenerator {
      */
     public void addStreets() {
         Random random = new Random();
+        int i = 0;
         while (canBeSplitX().size() > 0) {
             List<Integer> possibleStreets = canBeSplitX();
-            addStreetX(new Street("Street", false), possibleStreets.get(random.nextInt(possibleStreets.size())));
+            addStreetX(new Street("Street" + Integer.toString(i), false),
+                    possibleStreets.get(random.nextInt(possibleStreets.size())));
+            i++;
         }
         while (canBeSplitY().size() > 0) {
             List<Integer> possibleStreets = canBeSplitY();
-            addStreetY(new Street("Street", false), possibleStreets.get(random.nextInt(possibleStreets.size())));
+            addStreetY(new Street("Street" + Integer.toString(i), false),
+                    possibleStreets.get(random.nextInt(possibleStreets.size())));
+            i++;
         }
     }
 
@@ -232,6 +237,30 @@ public class MapGenerator {
         }
     }
 
+    public void overrideMainroads() {
+        int[] mainroads = this.map.getMainroads();
+        Street mainroadX = ((StreetCell) this.map.getCell(mainroads[0], 0)).getStreet();
+        Street mainroadY = ((StreetCell) this.map.getCell(0, mainroads[1])).getStreet();
+        for (int i = 0; i < this.map.getHeight(); i++) {
+            Cell cell = this.map.getCell(mainroads[0], i);
+            if (cell instanceof StreetCell) {
+                StreetCell streetcell = (StreetCell) cell;
+                if (!streetcell.getStreet().equals(mainroadX)) {
+                    streetcell.setStreet(mainroadX);
+                }
+            }
+        }
+        for (int i = 0; i < this.map.getWidth(); i++) {
+            Cell cell = this.map.getCell(i, mainroads[1]);
+            if (cell instanceof StreetCell) {
+                StreetCell streetcell = (StreetCell) cell;
+                if (!streetcell.getStreet().equals(mainroadY)) {
+                    streetcell.setStreet(mainroadY);
+                }
+            }
+        }
+    }
+
     /**
      * Generates a map by adding streets, rooms, main roads, doors, and random cells
      * like pharmacies and hotel rooms.
@@ -245,6 +274,7 @@ public class MapGenerator {
         this.addCellRandom(new HotelRoomCell());
         this.addMainroads();
         this.addDoors();
+        this.overrideMainroads();
         return this.map;
     }
 }

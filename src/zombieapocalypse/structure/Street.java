@@ -36,6 +36,16 @@ public class Street {
         this.isMainroads = isMainroads;
     }
 
+    public boolean equals(Object object) {
+        if (object instanceof Street) {
+            Street street = (Street) object;
+            if (this.name == street.getName()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Returns this Street's name
      * 

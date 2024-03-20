@@ -116,12 +116,12 @@ public class Map {
         if (cell instanceof EmptyCell) {
             return "·";
         } else if (cell instanceof PharmacyRoomCell) {
-            return "+";
+            return PimpStyle.BOLD + "+";
         } else if (cell instanceof HotelRoomCell) {
-            return "C";
+            return PimpStyle.BOLD + "C";
         } else if (cell instanceof StreetCell) {
             if (((StreetCell) cell).getStreet().getIsMainroads()) {
-                return "S";
+                return PimpStyle.BOLD + "S";
             }
             return "s";
         } else {

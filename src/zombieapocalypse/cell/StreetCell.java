@@ -38,6 +38,10 @@ public class StreetCell extends Cell {
         return this.street;
     }
 
+    public void setStreet(Street street) {
+        this.street = street;
+    }
+
     /**
      * Returns whether this StreetCell has a sewer.
      * 
