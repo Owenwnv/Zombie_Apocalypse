@@ -40,9 +40,9 @@ Pour choisir la taille de la map:
 Pour compiler et executer le jeu:
 ```make```
 Pour executer les Tests:
-```java -jar junit-console.jar -classpath bin/classes:test -select-class Test.(Le class du Test comme ActorTest)(MUST HAVE junit-console.jar in the l2s4-projet-2024 FOLDER)``` 
+```java -jar junit-console.jar -classpath bin/classes:test -select-class Test.(Le class du Test comme ActorTest)``` 
 
-Pour compiler et générer la documentation:
+Pour générer la documentation:
 ```javadoc -sourcepath src -subpackages zombieapocalypse -d docs```
 
 Pour voir l'ajout des acteurs et de leurs équipements comme demandé dans l'énoncé:
