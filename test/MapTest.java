@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -8,8 +8,8 @@ import zombieapocalypse.mapcreation.*;
 import zombieapocalypse.structure.Street;
 
 public class MapTest {
-    
-    //Tests map creation, and if the cells at creation are EmptyCell 
+
+    // Tests map creation, and if the cells at creation are EmptyCell
     @Test
     public void testMapCreation() {
         Map map = new Map(10, 10);
@@ -23,7 +23,7 @@ public class MapTest {
         }
     }
 
-    //Tests getWidth, getHeight, setCell, and setMainroads
+    // Tests getWidth, getHeight, setCell, and setMainroads
     @Test
     public void testMapGettersAndSetters() {
         Map map = new Map(5, 5);
@@ -47,7 +47,7 @@ public class MapTest {
         assertEquals("\u001B[34m", map.getCellColor(cell));
     }
 
-    //ensures that mapgenerator is functionning correctly. 
+    // ensures that mapgenerator is functionning correctly.
     @Test
     public void testMapGenerator() {
         MapGenerator mapGenerator = new MapGenerator(20, 20);

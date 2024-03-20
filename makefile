@@ -50,10 +50,10 @@ compile:
 	
 	$(JAVAC) -cp junit-console.jar:$(Classpath) \
 		-d $(ClassesDir) \
-		./Test/ActorTest.java \
-		./Test/DoorTest.java \
-		./Test/MapTest.java \
-		./Test/StreetSewerTest.java \
+		./test/ActorTest.java \
+		./test/DoorTest.java \
+		./test/MapTest.java \
+		./test/StreetSewerTest.java \
 
 exec:
 	cd bin/classes; java $(MainClass) 5 5

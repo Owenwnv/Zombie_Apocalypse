@@ -1,8 +1,7 @@
-package Test;
+package test;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-
 
 import zombieapocalypse.actor.survivor.Fighter;
 import zombieapocalypse.actor.survivor.Healer;

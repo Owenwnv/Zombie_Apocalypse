@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -30,4 +30,3 @@ public class DoorTest {
         assertFalse(door.getIsBorder());
     }
 }
-
