@@ -128,6 +128,10 @@ Pour finir, nous avons déplacé tous les survivants de chaque rôle vers le nor
 
 ## Semaine 8
 
+- Mise à jour des commmandes de test
+- Mise à jour du makefile
+- Brainstorming sur les actions pour le livrable 3
+
 ## Semaine 9
 
 ## Semaine 10
