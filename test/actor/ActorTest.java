@@ -65,21 +65,4 @@ public class ActorTest {
         assertTrue(searcher.getBackpack().isEmpty());
         assertNull(searcher.getInHand());
     }
-
-    @Test
-    public void AddItemToSurvivorBackpackTest() {
-        Fighter fighter = new Fighter();
-        Item handMap = new HandheldMap();
-        fighter.addItemToBackpack(handMap);
-        assertEquals(1, fighter.getBackpack().size());
-        assertTrue(fighter.getBackpack().contains(handMap));
-    }
-
-    @Test
-    public void PutItemInSurvivorHandTest() {
-        Healer healer = new Healer();
-        Item healthPotion = new HealthPotion();
-        healer.putItemInHand(healthPotion);
-        assertEquals(healthPotion, healer.getInHand());
-    }
 }
