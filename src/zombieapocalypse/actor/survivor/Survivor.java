@@ -60,7 +60,9 @@ public class Survivor extends Actor {
      * @param item The item to be added
      */
     public void addItemToBackpack(Item item) {
-        this.backpack.add(item);
+        if (this.backpack.size() < 5) {
+            this.backpack.add(item);
+        }
     }
 
     /**
@@ -72,7 +74,7 @@ public class Survivor extends Actor {
         this.inHand = item;
     }
 
-    public Item getInHand(){
+    public Item getInHand() {
         return this.inHand;
     }
 }
