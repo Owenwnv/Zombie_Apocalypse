@@ -42,8 +42,8 @@ public class MapTest {
     @Test
     public void testMapSymbolAndColor() {
         Map map = new Map(5, 5);
-        Cell cell = new StreetCell("street", new Street("MainStreet", true));
-        assertEquals("S", map.getCellSymbol(cell));
+        Cell cell = new StreetCell("street", new Street("MainStreet", false));
+        assertEquals("s", map.getCellSymbol(cell));
         assertEquals("\u001B[34m", map.getCellColor(cell));
     }
 

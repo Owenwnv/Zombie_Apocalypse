@@ -16,7 +16,9 @@ compile:
 	
 	$(JAVAC) -cp junit-console.jar:$(Classpath) \
 		-d $(ClassesDir) \
-		./test/*.java
+		./test/*.java \
+		./test/**/*.java \
+		./test/**/**/*.java
 
 exec:
 	cd bin/classes; java $(MainClass) 5 5
