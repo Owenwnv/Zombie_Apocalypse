@@ -16,7 +16,6 @@ compile:
 	
 	$(JAVAC) -cp junit-console.jar:$(Classpath) \
 		-d $(ClassesDir) \
-		./test/*.java \
 		./test/**/*.java \
 		./test/**/**/*.java
 

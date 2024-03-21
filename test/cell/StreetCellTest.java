@@ -1,10 +1,10 @@
-package test;
+package test.structure;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 import zombieapocalypse.cell.StreetCell;
 
-public class StreetSewerTest {
+public class StreetCellTest {
 
     @Test
     public void StreetCellHasSewerTest() {

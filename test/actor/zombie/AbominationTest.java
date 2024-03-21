@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import zombieapocalypse.actor.zombie.Abomination;
-import zombieapocalypse.actor.zombie.Zombie;
 
 public class AbominationTest {
 
