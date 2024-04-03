@@ -1,4 +1,4 @@
-package test.structure;
+package test.cell;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
