@@ -26,6 +26,11 @@ public abstract class Cell {
     protected List<Zombie> zombies;
 
     /**
+     * The Noise Level
+     */
+    protected int noiseLevel;
+
+    /**
      * Constructs a Cell with the specified name and initializes lists for survivors
      * and zombies.
      * 
@@ -35,6 +40,7 @@ public abstract class Cell {
         this.name = name;
         this.survivors = new ArrayList<>();
         this.zombies = new ArrayList<>();
+        this.noiseLevel = 0;
     }
 
     /**
@@ -62,6 +68,22 @@ public abstract class Cell {
      */
     public List<Zombie> getZombies() {
         return this.zombies;
+    }
+
+    /**
+     * 
+     * @return noise level
+     */
+    public int getNoiseLevel(){
+        return this.noiseLevel;
+    }
+
+    /**
+     * Sets noiseLevel to x Noise Level
+     * @param noiseLevel
+     */
+    public void setNoiseLevel(int noiseLevel){
+        this.noiseLevel = noiseLevel;
     }
 
     /**
@@ -98,6 +120,22 @@ public abstract class Cell {
      */
     public void removeZombie(Zombie zombie) {
         this.zombies.remove(zombie);
+    }
+
+    /**
+     * increases noiseLevel by 1 noiseLevel
+     */
+    public void increaseNoiseLevel(){
+        this.noiseLevel = noiseLevel + 1;
+    }
+
+    /**
+     * decreseases noiseLevel by 1 noiseLevel
+     */
+    public void decreaseNoiseLevel(){
+        if(this.noiseLevel > 0){
+            this.noiseLevel = noiseLevel - 1;
+        }
     }
 
     /**
