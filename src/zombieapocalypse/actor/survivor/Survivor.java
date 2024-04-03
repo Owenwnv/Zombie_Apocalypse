@@ -40,7 +40,7 @@ public class Survivor extends Actor {
      * backpack.
      */
     public Survivor() {
-        super(100);
+        super(5);
         this.level = 1;
         this.backpack = new ArrayList<>();
         this.inHand = null;

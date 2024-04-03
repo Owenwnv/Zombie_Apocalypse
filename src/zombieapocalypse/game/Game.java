@@ -11,6 +11,9 @@ import zombieapocalypse.cell.Cell;
  * Represents the game engine.
  */
 public class Game {
+    /**
+     * the map
+     */
     private Map map;
 
     /**
