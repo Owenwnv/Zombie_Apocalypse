@@ -139,6 +139,12 @@ public abstract class Cell {
     }
 
     /**
+     * resets noiseLevel to 0 noise level
+     */
+    public void resetNoiseLevel(){
+        this.noiseLevel = 0;
+    }
+    /**
      * Returns a description of this Cell.
      * 
      * @return A description of this Cell
