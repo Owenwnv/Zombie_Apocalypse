@@ -53,7 +53,7 @@ public class Survivor extends Actor {
     public List<Item> getBackpack() {
         return this.backpack;
     }
-
+    
     /**
      * Adds an item to the Survivor's backpack.
      * 
