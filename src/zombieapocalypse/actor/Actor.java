@@ -28,11 +28,19 @@ public class Actor {
     }
 
     /**
-     * Alters the Actor's health points by the given amount.
+     * 
+     * Decreases Actor's health points by the given ammoutn 
+     * @param nbHP 
+     */
+    public void decreaseHealthPoints(int nbHP){
+        this.healthPoints = healthPoints - nbHP;
+    }
+    /**
+     * Increases the Actor's health points by the given amount.
      * 
      * @param nbHP The amount to alter the health points by
      */
-    public void alterHealthPoints(int nbHP) {
+    public void increaseHealthPoints(int nbHP) {
         this.healthPoints = healthPoints + nbHP;
     }
 }

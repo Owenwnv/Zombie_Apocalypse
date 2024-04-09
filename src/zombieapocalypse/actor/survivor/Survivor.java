@@ -26,7 +26,17 @@ public class Survivor extends Actor {
     protected Item inHand;
 
     /**
-     * Constructs a Survivor with default health points and level, and an empty
+     * Action Points to execute an action.
+     */
+    protected int actionPoints;
+    
+    /**
+     * Experience points to determine the global experience points and the number of zombies to spawn. 
+     */
+    protected int experiencePoints;
+
+    /**
+     * Constructs a Survivor with default health points, level, action points and experience points, and an empty
      * backpack.
      */
     public Survivor() {
@@ -34,6 +44,8 @@ public class Survivor extends Actor {
         this.level = 1;
         this.backpack = new ArrayList<>();
         this.inHand = null;
+        this.actionPoints = 100;
+        this.experiencePoints = 0;
     }
 
     /**
@@ -55,6 +67,60 @@ public class Survivor extends Actor {
     }
     
     /**
+     * 
+     * @return Item that is currenctly in hand
+     */
+    public Item getItemInHand() {
+        return this.inHand;
+    }
+
+    /**
+     * 
+     * @return Experience Points
+     */
+    public int getExperiencePoints(){
+        return this.experiencePoints;
+    }
+
+    /**
+     * 
+     * @return Action Points
+     */
+    public int getActionPoints(){
+        return this.actionPoints;
+    }
+
+    /**
+     * Sets Action Points to x Action Points
+     */
+    public void setActionPoints(int actionPoints){
+        this.actionPoints = actionPoints;
+    }
+
+    /**
+     * Sets experience points to x XP
+     */
+    public void setExperiencePoints(int experiencePoints){
+        this.experiencePoints = experiencePoints;
+    }
+
+    /**
+     * increases experience points by 1 XP
+     */
+    public void increaseExperiencePoints(){
+        this.experiencePoints = this.experiencePoints + 1;
+    }
+
+    /**
+     * decreases experience points by 1 XP;
+     */
+    public void decreaseExperiencePoints(){
+        if (this.experiencePoints > 0){
+            this.experiencePoints = this.experiencePoints - 1;
+        }
+    }
+
+    /**
      * Adds an item to the Survivor's backpack.
      * 
      * @param item The item to be added
@@ -74,7 +140,7 @@ public class Survivor extends Actor {
         this.inHand = item;
     }
 
-    public Item getInHand() {
-        return this.inHand;
-    }
+    
+
+
 }

@@ -17,9 +17,9 @@ public class ActorTest {
     @Test
     public void canAlterHealthPoints() {
         Actor actor = new Actor(5);
-        actor.alterHealthPoints(2);
+        actor.increaseHealthPoints(2);
         assertEquals(7, actor.getHealthPoints());
-        actor.alterHealthPoints(-2);
+        actor.decreaseHealthPoints(2);
         assertEquals(5, actor.getHealthPoints());
     }
 }

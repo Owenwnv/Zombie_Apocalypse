@@ -128,12 +128,15 @@ Pour finir, nous avons déplacé tous les survivants de chaque rôle vers le nor
 
 ## Semaine 8
 
-- Mise à jour des commmandes de test
+- Mise à jour des commandes de test
 - Mise à jour du makefile
 - Brainstorming sur les actions pour le livrable 3
 
 ## Semaine 9
-
+- Ajout des methods et des parametre dans les classe map, cell, game, actors et survivors
+- Mise a jour des commamdes de test
+- Modification de quelque methode increase/decrease et ajour des setters
+- Mise a jour de l'UML
 ## Semaine 10
 
 ## Semaine 11

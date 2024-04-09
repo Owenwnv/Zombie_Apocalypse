@@ -15,6 +15,11 @@ public abstract class Item {
     protected String description;
 
     /**
+     * is the item noisy or not
+     */
+    protected boolean noisy;
+
+    /**
      * Constructs an Item with the specified name and description.
      * 
      * @param name        The name of the item
@@ -41,5 +46,9 @@ public abstract class Item {
      */
     public String toString() {
         return this.description;
+    }
+
+    public boolean isNoisy(){
+        return this.noisy;
     }
 }

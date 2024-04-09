@@ -18,6 +18,6 @@ public class Healer extends Survivor {
      * @param survivor The survivor to be healed
      */
     public void heal(Survivor survivor) {
-        survivor.alterHealthPoints(1);
+        survivor.increaseHealthPoints(1);
     }
 }

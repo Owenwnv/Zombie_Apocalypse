@@ -237,4 +237,15 @@ public class Map {
             System.out.println();
         }
     }
+
+    /**
+     * resets noiseLevel for every Cell in the map
+     */
+    public void resetMapNoiseLevel(){
+        for(int i = 0; i < this.height; i++){
+            for(int j = 0; j < this.width; j++){
+                getCell(i, j).resetNoiseLevel();
+            }
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package zombieapocalypse.actor.zombie;
 
 import zombieapocalypse.actor.Actor;
+import zombieapocalypse.actor.survivor.Survivor;
 
 /**
  * Represents a zombie in the game, inheriting from Actor.
@@ -29,5 +30,9 @@ public class Zombie extends Actor {
      */
     public int getDamage() {
         return this.damage;
+    }
+
+    public void attack(Survivor survivor){
+        survivor.decreaseHealthPoints(damage);
     }
 }
