@@ -85,6 +85,8 @@ Pour générer la documentation:
 
 ### Atteinte des objectifs
 
+L'UML a été mis à jour, vous pouvez constater l'ajout des méthodes d'action, les survivants sont une case au nord le second a une hache en main et le troisième une fiole.
+
 ### Difficultés restant à résoudre
 
 ## Livrable 4
