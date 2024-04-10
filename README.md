@@ -74,6 +74,15 @@ Pour finir, nous avons déplacé tous les survivants de chaque rôle vers le nor
 
 ## Livrable 3
 
+Pour compiler et executer le jeu:
+```make```
+
+Pour executer les tests:
+```java -jar junit-console.jar -classpath bin/classes:test -select-package test``` 
+
+Pour générer la documentation:
+```javadoc -sourcepath src -subpackages zombieapocalypse -d docs```
+
 ### Atteinte des objectifs
 
 ### Difficultés restant à résoudre
