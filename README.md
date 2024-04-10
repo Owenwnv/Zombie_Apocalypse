@@ -123,7 +123,7 @@ Pour finir, nous avons déplacé tous les survivants de chaque rôle vers le nor
 
 - Mise à jour UML pour second livrable
 - Mise à jour UML pour les classes anciennes
-- Ajout Classes Actors, Items
+- Ajout classes Actors, Items
 - Ajout des classes de tous les zombies et survivants
 
 ## Semaine 8
@@ -133,11 +133,16 @@ Pour finir, nous avons déplacé tous les survivants de chaque rôle vers le nor
 - Brainstorming sur les actions pour le livrable 3
 
 ## Semaine 9
-- Ajout des methods et des parametre dans les classe map, cell, game, actors et survivors
-- Mise a jour des commamdes de test
-- Modification de quelque methode increase/decrease et ajour des setters
-- Mise a jour de l'UML
+
+- Ajout des méthodes et des paramètres dans les classes map, cell, game, actors et survivors
+- Mise à jour des commandes de test
+- Modification de quelques méthodes increase/decrease et ajout des setters
+- Mise à jour de l'UML
+
 ## Semaine 10
+
+-Ajout de la classe ConcreteItem
+-Ajout de la méthode search
 
 ## Semaine 11
 
