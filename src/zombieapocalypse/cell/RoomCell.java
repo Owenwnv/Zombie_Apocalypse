@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import zombieapocalypse.structure.Door;
+import java.util.Random;
+
+import zombieapocalypse.item.ConcreteItem;
+import zombieapocalypse.item.Item;
+import zombieapocalypse.actor.survivor.Survivor;
 
 /**
  * Represents a room cell in the game, extending from Cell.
@@ -59,5 +64,39 @@ public class RoomCell extends Cell {
     @Override
     public String toString() {
         return "This is a RoomCell";
+    }
+
+    /**
+     * Method for the survivor to search the room.
+     *
+     * @param survivor The survivor who is searching the room
+     */
+    public void search(Survivor survivor) {
+        if (!(this instanceof RoomCell)) {
+            System.out.println("You can only search in a room.");
+            return;
+        }
+
+        if (survivor.getBackpack().size() >= 5) {
+            System.out.println("Your backpack is full. You can't take more items.");
+            return;
+        }
+
+        List<Item> itemsFound = new ArrayList<>();
+        Random rand = new Random();
+        int numberOfItems = rand.nextInt(3) + 1;
+        for (int i = 0; i < numberOfItems; i++) {
+            Item item = new ConcreteItem("Item " + (i + 1), "Description of Item " + (i + 1));
+            itemsFound.add(item);
+        }
+
+        System.out.println("You have found the following items:");
+        for (Item item : itemsFound) {
+            System.out.println("- " + item.getName());
+        }
+
+        for (Item item : itemsFound) {
+            survivor.addItemToBackpack(item);
+        }
     }
 }
