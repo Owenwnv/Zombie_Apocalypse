@@ -93,33 +93,36 @@ public class RoomCell extends Cell {
         Random rand = new Random();
         int numberOfItems = rand.nextInt(3);
 
-        for (int i = 0; i < numberOfItems; i++) {
-            Item item;
-            int itemType = rand.nextInt(6);
-            if (itemType == 0) {
-                item = new HealthPotion();
-            } else if (itemType == 1) {
-                item = new MedKit();
-            } else if (itemType == 2) {
-                item = new SkeletonKey();
-            } else if (itemType == 3) {
-                item = new Axe();
-            } else if (itemType == 4) {
-                item = new Gun();
-            } else {
-                item = new Rifle();
+        if (numberOfItems != 0) {
+            for (int i = 0; i < numberOfItems; i++) {
+                Item item;
+                int itemType = rand.nextInt(6);
+                if (itemType == 0) {
+                    item = new HealthPotion();
+                } else if (itemType == 1) {
+                    item = new MedKit();
+                } else if (itemType == 2) {
+                    item = new SkeletonKey();
+                } else if (itemType == 3) {
+                    item = new Axe();
+                } else if (itemType == 4) {
+                    item = new Gun();
+                } else {
+                    item = new Rifle();
+                }
+                itemsFound.add(item);
             }
-            itemsFound.add(item);
-        }
 
-        System.out.println("You have found the following items:");
-        for (Item item : itemsFound) {
-            System.out.println("- " + item.getName());
-        }
+            System.out.println("You have found the following items:");
+            for (Item item : itemsFound) {
+                System.out.println("- " + item.getName());
+            }
 
-        for (Item item : itemsFound) {
-            survivor.addItemToBackpack(item);
+            for (Item item : itemsFound) {
+                survivor.addItemToBackpack(item);
+            }
+        } else {
+            System.out.println("There is no item in this room.");
         }
-
     }
 }

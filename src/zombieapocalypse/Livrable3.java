@@ -3,6 +3,8 @@ package zombieapocalypse;
 import zombieapocalypse.mapcreation.MapGenerator;
 import zombieapocalypse.actor.survivor.*;
 import zombieapocalypse.actor.zombie.*;
+import zombieapocalypse.cell.Cell;
+import zombieapocalypse.cell.RoomCell;
 import zombieapocalypse.game.Game;
 import zombieapocalypse.item.tool.HandheldMap;
 import zombieapocalypse.item.tool.HealthPotion;
@@ -32,7 +34,7 @@ public class Livrable3 {
 
         // Place un survivant de chaque rôle sur la zone au nord du carrefour principal
         Survivor fighter = new Fighter("Pierre");
-        Survivor healer = new Healer("Jean");
+        Healer healer = new Healer("Jean");
         Survivor lucky = new Lucky("Zebi");
         Survivor searcher = new Searcher("Double monstre");
 
@@ -41,9 +43,9 @@ public class Livrable3 {
         lucky.addItemToBackpack(new HandheldMap());
         searcher.addItemToBackpack(new HandheldMap());
 
-        game.spawnSurvivor(fighter, 1, 2);
+        game.spawnSurvivor(fighter, 1, 1);
         game.spawnSurvivor(healer, 1, 2);
-        game.spawnSurvivor(lucky, 1, 2);
+        game.spawnSurvivor(lucky, 1, 3);
         game.spawnSurvivor(searcher, 1, 2);
 
         // Affiche une représentation de la ville
@@ -56,7 +58,13 @@ public class Livrable3 {
         lucky.putItemInHand(new HealthPotion());
 
         // Exécute une action par survivant
-
+        RoomCell room = (RoomCell) game.getMap().getCell(1, 1);
+        room.search(fighter);
+        healer.heal(fighter);
+        room = (RoomCell) game.getMap().getCell(1, 3);
+        room.search(lucky);
+        Cell cell = game.getMap().getCell(1, 2);
+        System.out.println(cell.lookAround());
         // Exécute l'action d’attaquer et de se déplacer pour l'ensemble des zombies
 
         // Affiche une représentation de la ville
@@ -64,5 +72,8 @@ public class Livrable3 {
 
         // Affiche l'état des survivants
         System.out.println(fighter);
+        System.out.println(healer);
+        System.out.println(lucky);
+        System.out.println(searcher);
     }
 }

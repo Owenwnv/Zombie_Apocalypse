@@ -74,15 +74,16 @@ public abstract class Cell {
      * 
      * @return noise level
      */
-    public int getNoiseLevel(){
+    public int getNoiseLevel() {
         return this.noiseLevel;
     }
 
     /**
      * Sets noiseLevel to x Noise Level
+     * 
      * @param noiseLevel
      */
-    public void setNoiseLevel(int noiseLevel){
+    public void setNoiseLevel(int noiseLevel) {
         this.noiseLevel = noiseLevel;
     }
 
@@ -125,15 +126,15 @@ public abstract class Cell {
     /**
      * increases noiseLevel by 1 noiseLevel
      */
-    public void increaseNoiseLevel(){
+    public void increaseNoiseLevel() {
         this.noiseLevel = noiseLevel + 1;
     }
 
     /**
      * decreseases noiseLevel by 1 noiseLevel
      */
-    public void decreaseNoiseLevel(){
-        if(this.noiseLevel > 0){
+    public void decreaseNoiseLevel() {
+        if (this.noiseLevel > 0) {
             this.noiseLevel = noiseLevel - 1;
         }
     }
@@ -141,9 +142,19 @@ public abstract class Cell {
     /**
      * resets noiseLevel to 0 noise level
      */
-    public void resetNoiseLevel(){
+    public void resetNoiseLevel() {
         this.noiseLevel = 0;
     }
+
+    /**
+     * Gives summury of this Cell
+     * 
+     * @return a String describing this Cell
+     */
+    public String lookAround() {
+        return "There are " + this.survivors.size() + " survivors in this room.";
+    }
+
     /**
      * Returns a description of this Cell.
      * 
