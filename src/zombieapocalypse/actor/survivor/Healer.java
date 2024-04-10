@@ -8,8 +8,8 @@ public class Healer extends Survivor {
      * Constructs a Healer survivor with default health points, level, and an empty
      * backpack.
      */
-    public Healer() {
-        super();
+    public Healer(String name) {
+        super(name);
     }
 
     /**

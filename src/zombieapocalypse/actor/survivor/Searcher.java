@@ -8,7 +8,7 @@ public class Searcher extends Survivor {
      * Constructs a Searcher with default health points, level, and an empty
      * backpack.
      */
-    public Searcher() {
-        super();
+    public Searcher(String name) {
+        super(name);
     }
 }

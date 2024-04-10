@@ -8,7 +8,7 @@ public class Fighter extends Survivor {
      * Constructs a Fighter survivor with default health points, level, and an empty
      * backpack.
      */
-    public Fighter() {
-        super();
+    public Fighter(String name) {
+        super(name);
     }
 }

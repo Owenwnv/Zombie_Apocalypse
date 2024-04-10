@@ -11,7 +11,7 @@ public class SurvivorTest {
 
     @Test
     public void initSurvivor() {
-        Survivor survivor = new Survivor();
+        Survivor survivor = new Survivor("");
         assertEquals(5, survivor.getHealthPoints());
         assertEquals(1, survivor.getLevel());
         assertEquals(0, survivor.getBackpack().size());
@@ -20,7 +20,7 @@ public class SurvivorTest {
 
     @Test
     public void canPutItemInBackpack() {
-        Survivor survivor = new Survivor();
+        Survivor survivor = new Survivor("");
         HealthPotion item = new HealthPotion();
         assertEquals(0, survivor.getBackpack().size());
         survivor.addItemToBackpack(item);
@@ -30,7 +30,7 @@ public class SurvivorTest {
 
     @Test
     public void canPutItemInHand() {
-        Survivor survivor = new Survivor();
+        Survivor survivor = new Survivor("");
         HealthPotion item = new HealthPotion();
         assertEquals(null, survivor.getItemInHand());
         survivor.putItemInHand(item);

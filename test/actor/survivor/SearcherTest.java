@@ -10,7 +10,7 @@ public class SearcherTest {
 
     @Test
     public void initSearcher() {
-        Searcher searcher = new Searcher();
+        Searcher searcher = new Searcher("");
         assertEquals(5, searcher.getHealthPoints());
         assertEquals(1, searcher.getLevel());
     }

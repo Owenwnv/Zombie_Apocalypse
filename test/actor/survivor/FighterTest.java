@@ -10,7 +10,7 @@ public class FighterTest {
 
     @Test
     public void initFighter() {
-        Fighter fighter = new Fighter();
+        Fighter fighter = new Fighter("");
         assertEquals(5, fighter.getHealthPoints());
         assertEquals(1, fighter.getLevel());
     }

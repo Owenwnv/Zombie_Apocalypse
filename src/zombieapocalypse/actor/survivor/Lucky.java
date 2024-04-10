@@ -8,7 +8,7 @@ public class Lucky extends Survivor {
      * Constructs a Lucky survivor with default health points, level, and an empty
      * backpack.
      */
-    public Lucky() {
-        super();
+    public Lucky(String name) {
+        super(name);
     }
 }
