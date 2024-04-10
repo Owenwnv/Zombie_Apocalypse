@@ -82,6 +82,13 @@ public class RoomCell extends Cell {
             return;
         }
 
+        if (survivor.getActionPoints() <= 0) {
+            System.out.println("You don't have enough action points to search.");
+            return;
+        }
+
+        survivor.setActionPoints(survivor.getActionPoints() - 1);
+
         List<Item> itemsFound = new ArrayList<>();
         Random rand = new Random();
         int numberOfItems = rand.nextInt(3) + 1;
@@ -98,5 +105,6 @@ public class RoomCell extends Cell {
         for (Item item : itemsFound) {
             survivor.addItemToBackpack(item);
         }
+
     }
 }
