@@ -6,8 +6,13 @@ import java.util.List;
 import zombieapocalypse.structure.Door;
 import java.util.Random;
 
-import zombieapocalypse.item.ConcreteItem;
 import zombieapocalypse.item.Item;
+import zombieapocalypse.item.tool.HealthPotion;
+import zombieapocalypse.item.tool.MedKit;
+import zombieapocalypse.item.tool.SkeletonKey;
+import zombieapocalypse.item.weapon.Axe;
+import zombieapocalypse.item.weapon.Gun;
+import zombieapocalypse.item.weapon.Rifle;
 import zombieapocalypse.actor.survivor.Survivor;
 
 /**
@@ -72,8 +77,8 @@ public class RoomCell extends Cell {
      * @param survivor The survivor who is searching the room
      */
     public void search(Survivor survivor) {
-        if (!(this instanceof RoomCell)) {
-            System.out.println("You can only search in a room.");
+        if (survivor.getActionPoints() <= 0) {
+            System.out.println("You don't have enough action points to search.");
             return;
         }
 
@@ -82,18 +87,28 @@ public class RoomCell extends Cell {
             return;
         }
 
-        if (survivor.getActionPoints() <= 0) {
-            System.out.println("You don't have enough action points to search.");
-            return;
-        }
-
         survivor.setActionPoints(survivor.getActionPoints() - 1);
 
         List<Item> itemsFound = new ArrayList<>();
         Random rand = new Random();
-        int numberOfItems = rand.nextInt(3) + 1;
+        int numberOfItems = rand.nextInt(3);
+
         for (int i = 0; i < numberOfItems; i++) {
-            Item item = new ConcreteItem("Item " + (i + 1), "Description of Item " + (i + 1));
+            Item item;
+            int itemType = rand.nextInt(6);
+            if (itemType == 0) {
+                item = new HealthPotion();
+            } else if (itemType == 1) {
+                item = new MedKit();
+            } else if (itemType == 2) {
+                item = new SkeletonKey();
+            } else if (itemType == 3) {
+                item = new Axe();
+            } else if (itemType == 4) {
+                item = new Gun();
+            } else {
+                item = new Rifle();
+            }
             itemsFound.add(item);
         }
 

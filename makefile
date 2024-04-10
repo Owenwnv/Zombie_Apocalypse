@@ -24,3 +24,5 @@ exec:
 
 clean:
 	rm -rf bin
+	rm -rf docs
+	rm -rf classes
