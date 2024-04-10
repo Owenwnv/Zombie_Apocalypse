@@ -1,6 +1,6 @@
 JAVAC = javac
 Classpath = ./src
-MainClass = zombieapocalypse.Livrable2
+MainClass = zombieapocalypse.Livrable3
 ClassesDir = bin/classes
 
 all: run
@@ -12,7 +12,7 @@ compile:
 	$(JAVAC) -cp $(Classpath) \
 		-d $(ClassesDir) \
 		./src/zombieapocalypse/**/*.java \
-		./src/zombieapocalypse/Livrable2.java 
+		./src/zombieapocalypse/Livrable3.java 
 	
 	$(JAVAC) -cp junit-console.jar:$(Classpath) \
 		-d $(ClassesDir) \

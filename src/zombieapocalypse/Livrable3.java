@@ -1,21 +1,14 @@
 package zombieapocalypse;
 
 import zombieapocalypse.mapcreation.MapGenerator;
-import zombieapocalypse.actor.survivor.Survivor;
-import zombieapocalypse.actor.survivor.Fighter;
-import zombieapocalypse.actor.survivor.Healer;
-import zombieapocalypse.actor.survivor.Lucky;
-import zombieapocalypse.actor.survivor.Searcher;
-import zombieapocalypse.actor.zombie.Abomination;
-import zombieapocalypse.actor.zombie.Bigboy;
-import zombieapocalypse.actor.zombie.Runner;
-import zombieapocalypse.actor.zombie.Walker;
+import zombieapocalypse.actor.survivor.*;
+import zombieapocalypse.actor.zombie.*;
 import zombieapocalypse.game.Game;
 import zombieapocalypse.item.tool.HandheldMap;
 import zombieapocalypse.item.tool.HealthPotion;
 import zombieapocalypse.mapcreation.Map;
 
-public class Livrable2 {
+public class Livrable3 {
     public static void main(String[] args) {
         int width = 5;
         int height = 5;

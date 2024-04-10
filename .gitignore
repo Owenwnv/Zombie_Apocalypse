@@ -42,4 +42,5 @@ replay_pid*
 .nfs*
 bin/
 docs/
+lib/
 # End of https://www.toptal.com/developers/gitignore/api/java,linux
