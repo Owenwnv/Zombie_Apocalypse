@@ -43,4 +43,5 @@ replay_pid*
 bin/
 docs/
 lib/
+Livrable3.jar
 # End of https://www.toptal.com/developers/gitignore/api/java,linux

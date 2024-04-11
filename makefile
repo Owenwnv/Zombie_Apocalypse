@@ -26,3 +26,4 @@ clean:
 	rm -rf bin
 	rm -rf docs
 	rm -rf classes
+	rm -rf Livrable3.jar

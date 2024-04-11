@@ -83,6 +83,12 @@ Pour executer les tests:
 Pour générer la documentation:
 ```javadoc -sourcepath src -subpackages zombieapocalypse -d docs```
 
+Pour générer Livrable3.jar:
+```jar cfm Livrable3.jar manifest.txt -C bin/classes .```
+
+Pour exécuter Livrable3.jar:
+```java -jar Livrable3.jar```
+
 ### Atteinte des objectifs
 
 L'UML a été mis à jour, vous pouvez constater l'ajout des méthodes d'action, les survivants sont une case au nord le second a une hache en main et le troisième une fiole.
