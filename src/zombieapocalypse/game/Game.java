@@ -1,6 +1,8 @@
 package zombieapocalypse.game;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import zombieapocalypse.actor.survivor.Survivor;
 import zombieapocalypse.actor.zombie.Zombie;
@@ -17,12 +19,24 @@ public class Game {
     private Map map;
 
     /**
+     * List of survivors in the cell.
+     */
+    protected List<Survivor> survivors;
+
+    /**
+     * List of zombies in the cell.
+     */
+    protected List<Zombie> zombies;
+
+    /**
      * Constructs a Game with the specified map.
      * 
      * @param map The map of the game
      */
     public Game(Map map) {
         this.map = map;
+        this.survivors = new ArrayList<>();
+        this.zombies = new ArrayList<>();
     }
 
     /**
@@ -33,6 +47,7 @@ public class Game {
      * @param j        The y-coordinate
      */
     public void spawnSurvivor(Survivor survivor, int i, int j) {
+        this.survivors.add(survivor);
         this.map.getCell(i, j).addSurvivor(survivor);
     }
 
@@ -44,6 +59,7 @@ public class Game {
      * @param j      The y-coordinate
      */
     public void spawnZombie(Zombie zombie, int i, int j) {
+        this.zombies.add(zombie);
         this.map.getCell(i, j).addZombie(zombie);
     }
 
