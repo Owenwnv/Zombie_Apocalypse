@@ -158,8 +158,7 @@ L'UML a été mis à jour, vous pouvez constater l'ajout des méthodes d'action,
 
 ## Semaine 10
 
--Ajout de la classe ConcreteItem
--Ajout de la méthode search
+- Ajout de la méthode search
 
 ## Semaine 11
 
