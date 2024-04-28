@@ -19,12 +19,12 @@ public class Game {
     private Map map;
 
     /**
-     * List of survivors in the cell.
+     * List of survivors in the Game.
      */
     protected List<Survivor> survivors;
 
     /**
-     * List of zombies in the cell.
+     * List of zombies in the Game.
      */
     protected List<Zombie> zombies;
 
@@ -61,6 +61,10 @@ public class Game {
     public void spawnZombie(Zombie zombie, int i, int j) {
         this.zombies.add(zombie);
         this.map.getCell(i, j).addZombie(zombie);
+    }
+
+    public void zombieTurn(Zombie zombie) {
+
     }
 
     /**

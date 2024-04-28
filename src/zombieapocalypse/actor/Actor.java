@@ -9,6 +9,8 @@ public class Actor {
      */
     protected int healthPoints;
 
+    protected int[] coordinates;
+
     /**
      * Constructs an Actor with the specified health points.
      * 
@@ -16,6 +18,16 @@ public class Actor {
      */
     public Actor(int healthPoints) {
         this.healthPoints = healthPoints;
+        this.coordinates = new int[2];
+    }
+
+    public int[] getCoordinates() {
+        return this.coordinates;
+    }
+
+    public void setCoordinates(int x, int y) {
+        this.coordinates[0] = x;
+        this.coordinates[1] = y;
     }
 
     /**
@@ -29,12 +41,14 @@ public class Actor {
 
     /**
      * 
-     * Decreases Actor's health points by the given ammoutn 
-     * @param nbHP 
+     * Decreases Actor's health points by the given ammoutn
+     * 
+     * @param nbHP
      */
-    public void decreaseHealthPoints(int nbHP){
+    public void decreaseHealthPoints(int nbHP) {
         this.healthPoints = healthPoints - nbHP;
     }
+
     /**
      * Increases the Actor's health points by the given amount.
      * 
