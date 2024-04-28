@@ -25,9 +25,9 @@ public class Actor {
         return this.coordinates;
     }
 
-    public void setCoordinates(int x, int y) {
-        this.coordinates[0] = x;
-        this.coordinates[1] = y;
+    public void setCoordinates(int i, int j) {
+        this.coordinates[0] = i;
+        this.coordinates[1] = j;
     }
 
     /**
