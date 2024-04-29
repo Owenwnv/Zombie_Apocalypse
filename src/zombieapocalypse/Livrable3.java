@@ -26,54 +26,68 @@ public class Livrable3 {
         Map map = mapg.generateMap();
         Game game = new Game(map);
 
-        // Place des zombies sur chaque zone
-        game.spawnZombie(new Abomination(), 2, 2);
-        game.spawnZombie(new Bigboy(), 0, 0);
-        game.spawnZombie(new Runner(), 0, 2);
-        game.spawnZombie(new Walker(), 3, 3);
+        Zombie z = new Abomination();
+        game.spawnZombie(z, 2, 2);
 
-        // Place un survivant de chaque rôle sur la zone au nord du carrefour principal
-        Survivor fighter = new Fighter("Pierre");
-        Healer healer = new Healer("Jean");
-        Survivor lucky = new Lucky("Zebi");
-        Survivor searcher = new Searcher("Double monstre");
-
-        fighter.addItemToBackpack(new HandheldMap());
-        healer.addItemToBackpack(new HandheldMap());
-        lucky.addItemToBackpack(new HandheldMap());
-        searcher.addItemToBackpack(new HandheldMap());
-
-        game.spawnSurvivor(fighter, 1, 1);
-        game.spawnSurvivor(healer, 1, 2);
-        game.spawnSurvivor(lucky, 1, 3);
-        game.spawnSurvivor(searcher, 1, 2);
-
-        // Affiche une représentation de la ville
         game.getMap().showMap();
 
-        // Place une hache dans la main du second survivant
-        healer.putItemInHand(new Axe());
+        for (int i = 0; i < 5; i++) {
+            game.zombieTurn(z);
+            game.getMap().showMap();
+        }
 
-        // Place une fiole dans la main du troisième survivant
-        lucky.putItemInHand(new HealthPotion());
-
-        // Exécute une action par survivant
-        RoomCell room = (RoomCell) game.getMap().getCell(1, 1);
-        room.search(fighter);
-        healer.heal(fighter);
-        room = (RoomCell) game.getMap().getCell(1, 3);
-        room.search(lucky);
-        Cell cell = game.getMap().getCell(1, 2);
-        System.out.println(cell.lookAround());
-        // Exécute l'action d’attaquer et de se déplacer pour l'ensemble des zombies
-
-        // Affiche une représentation de la ville
-        game.getMap().showMap();
-
-        // Affiche l'état des survivants
-        System.out.println(fighter);
-        System.out.println(healer);
-        System.out.println(lucky);
-        System.out.println(searcher);
+        /*
+         * 
+         * // Place des zombies sur chaque zone
+         * game.spawnZombie(new Abomination(), 2, 2);
+         * game.spawnZombie(new Bigboy(), 0, 0);
+         * game.spawnZombie(new Runner(), 0, 2);
+         * game.spawnZombie(new Walker(), 3, 3);
+         * 
+         * // Place un survivant de chaque rôle sur la zone au nord du carrefour
+         * principal
+         * Survivor fighter = new Fighter("Pierre");
+         * Healer healer = new Healer("Jean");
+         * Survivor lucky = new Lucky("Zebi");
+         * Survivor searcher = new Searcher("Double monstre");
+         * 
+         * fighter.addItemToBackpack(new HandheldMap());
+         * healer.addItemToBackpack(new HandheldMap());
+         * lucky.addItemToBackpack(new HandheldMap());
+         * searcher.addItemToBackpack(new HandheldMap());
+         * 
+         * game.spawnSurvivor(fighter, 1, 1);
+         * game.spawnSurvivor(healer, 1, 2);
+         * game.spawnSurvivor(lucky, 1, 3);
+         * game.spawnSurvivor(searcher, 1, 2);
+         * 
+         * // Affiche une représentation de la ville
+         * game.getMap().showMap();
+         * 
+         * // Place une hache dans la main du second survivant
+         * healer.putItemInHand(new Axe());
+         * 
+         * // Place une fiole dans la main du troisième survivant
+         * lucky.putItemInHand(new HealthPotion());
+         * 
+         * // Exécute une action par survivant
+         * RoomCell room = (RoomCell) game.getMap().getCell(1, 1);
+         * room.search(fighter);
+         * healer.heal(fighter);
+         * room = (RoomCell) game.getMap().getCell(1, 3);
+         * room.search(lucky);
+         * Cell cell = game.getMap().getCell(1, 2);
+         * System.out.println(cell.lookAround());
+         * // Exécute l'action d’attaquer et de se déplacer pour l'ensemble des zombies
+         * 
+         * // Affiche une représentation de la ville
+         * game.getMap().showMap();
+         * 
+         * // Affiche l'état des survivants
+         * System.out.println(fighter);
+         * System.out.println(healer);
+         * System.out.println(lucky);
+         * System.out.println(searcher);
+         */
     }
 }

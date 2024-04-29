@@ -3,6 +3,7 @@ package zombieapocalypse.game;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import zombieapocalypse.actor.survivor.Survivor;
 import zombieapocalypse.actor.zombie.Zombie;
@@ -76,10 +77,10 @@ public class Game {
         if (direction == 0 && i > 0) {
             cell = this.map.getCell(i - 1, j);
             doorIndex = 2;
-        } else if (direction == 1 && j < this.map.getHeight()) {
+        } else if (direction == 1 && (j + 1) < this.map.getHeight()) {
             cell = this.map.getCell(i, j + 1);
             doorIndex = 3;
-        } else if (direction == 2 && i < this.map.getWidth()) {
+        } else if (direction == 2 && (i + 1) < this.map.getWidth()) {
             cell = this.map.getCell(i + 1, j);
             doorIndex = 0;
         } else if (direction == 3 && j > 0) {
@@ -102,11 +103,52 @@ public class Game {
         }
     }
 
+    public void moveZombie(Zombie zombie, int[] coordinates, int direction) {
+        int i = 0;
+        int j = 0;
+
+        if (direction == 0) {
+            i = coordinates[0] - 1;
+            j = coordinates[1];
+        } else if (direction == 1) {
+            i = coordinates[0];
+            j = coordinates[1] + 1;
+        } else if (direction == 2) {
+            i = coordinates[0] + 1;
+            j = coordinates[1];
+        } else if (direction == 3) {
+            i = coordinates[0];
+            j = coordinates[1] - 1;
+        }
+
+        Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
+        cell.removeZombie(zombie);
+        cell = this.map.getCell(i, j);
+        cell.addZombie(zombie);
+        zombie.setCoordinates(i, j);
+    }
+
+    public void moveSurvivor(Survivor survivor, int[] coordinates, int i, int j) {
+        Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
+        cell.removeSurvivor(survivor);
+        cell = this.map.getCell(i, j);
+        cell.addSurvivor(survivor);
+        survivor.setCoordinates(i, j);
+    }
+
     public void zombieTurn(Zombie zombie) {
         int[] coordinates = zombie.getCoordinates();
         Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
         if (cell.getSurvivors().size() == 0) {
-            // move
+            Random rand = new Random();
+            int direction = rand.nextInt(3);
+            while (true) {
+                if (canMove(coordinates[0], coordinates[1], direction)) {
+                    moveZombie(zombie, coordinates, direction);
+                    break;
+                }
+                direction = rand.nextInt(3);
+            }
         } else {
             // attack
         }
