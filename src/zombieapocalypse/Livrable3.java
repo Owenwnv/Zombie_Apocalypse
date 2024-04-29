@@ -27,7 +27,9 @@ public class Livrable3 {
         Game game = new Game(map);
 
         Zombie z = new Abomination();
+        Survivor fighter = new Fighter("Pierre");
         game.spawnZombie(z, 2, 2);
+        game.spawnSurvivor(fighter, 3, 2);
 
         game.getMap().showMap();
 

@@ -148,6 +148,10 @@ public class Survivor extends Actor {
         this.inHand = item;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     /**
      * Describes this Survivor
      * 

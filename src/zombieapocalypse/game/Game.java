@@ -139,18 +139,21 @@ public class Game {
     public void zombieTurn(Zombie zombie) {
         int[] coordinates = zombie.getCoordinates();
         Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
+        Random rand = new Random();
         if (cell.getSurvivors().size() == 0) {
-            Random rand = new Random();
-            int direction = rand.nextInt(3);
+            int direction = rand.nextInt(4);
             while (true) {
                 if (canMove(coordinates[0], coordinates[1], direction)) {
                     moveZombie(zombie, coordinates, direction);
                     break;
                 }
-                direction = rand.nextInt(3);
+                direction = rand.nextInt(4);
             }
         } else {
-            // attack
+            List<Survivor> survivors = cell.getSurvivors();
+            Survivor survivor = survivors.get(rand.nextInt(survivors.size()));
+            survivor.decreaseHealthPoints(zombie.getDamage());
+            System.out.println("Zombie deals " + zombie.getDamage() + " damages to " + survivor.getName() + ".");
         }
     }
 
