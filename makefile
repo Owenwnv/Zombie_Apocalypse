@@ -5,7 +5,7 @@ ClassesDir = bin/classes
 
 all: run
 
-run: clean compile exec
+run: clean compile test exec
 
 compile:
 	mkdir -p $(ClassesDir)
@@ -13,7 +13,8 @@ compile:
 		-d $(ClassesDir) \
 		./src/zombieapocalypse/**/*.java \
 		./src/zombieapocalypse/Livrable3.java 
-	
+
+test:
 	$(JAVAC) -cp junit-console.jar:$(Classpath) \
 		-d $(ClassesDir) \
 		./test/**/*.java \

@@ -7,7 +7,7 @@ public class Runner extends Zombie {
     /**
      * Constructs a Runner with default damage and health points.
      */
-    public Runner() {
-        super(1, 2);
+    public Runner(int zombieID) {
+        super(1, 2, "Runner#" + zombieID);
     }
 }

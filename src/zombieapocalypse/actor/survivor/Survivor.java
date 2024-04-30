@@ -37,18 +37,12 @@ public class Survivor extends Actor {
     protected int experiencePoints;
 
     /**
-     * Name of this Survivor.
-     */
-    protected String name;
-
-    /**
      * Constructs a Survivor with default health points, level, action points and
      * experience points, and an empty
      * backpack.
      */
     public Survivor(String name) {
-        super(5);
-        this.name = name;
+        super(5, name);
         this.level = 1;
         this.backpack = new ArrayList<>();
         this.inHand = null;
@@ -146,10 +140,6 @@ public class Survivor extends Actor {
      */
     public void putItemInHand(Item item) {
         this.inHand = item;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     /**

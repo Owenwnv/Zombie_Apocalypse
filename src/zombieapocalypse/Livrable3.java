@@ -26,7 +26,7 @@ public class Livrable3 {
         Map map = mapg.generateMap();
         Game game = new Game(map);
 
-        Zombie z = new Abomination();
+        Zombie z = new Abomination(0);
         Survivor fighter = new Fighter("Pierre");
         game.spawnZombie(z, 2, 2);
         game.spawnSurvivor(fighter, 3, 2);

@@ -7,7 +7,7 @@ public class Abomination extends Zombie {
     /**
      * Constructs an Abomination with default damage and health points.
      */
-    public Abomination() {
-        super(3, 6);
+    public Abomination(int zombieID) {
+        super(3, 6, "Abomination#" + zombieID);
     }
 }

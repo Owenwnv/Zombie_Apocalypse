@@ -7,7 +7,7 @@ public class Bigboy extends Zombie {
     /**
      * Constructs a Bigboy with default damage and health points.
      */
-    public Bigboy() {
-        super(2, 4);
+    public Bigboy(int zombieID) {
+        super(2, 4, "Bigboy#" + zombieID);
     }
 }

@@ -18,8 +18,8 @@ public class Zombie extends Actor {
      * @param damage       The damage of the Zombie
      * @param healthPoints The health points of the Zombie
      */
-    public Zombie(int damage, int healthPoints) {
-        super(healthPoints);
+    public Zombie(int damage, int healthPoints, String name) {
+        super(healthPoints, name);
         this.damage = damage;
     }
 
@@ -32,7 +32,7 @@ public class Zombie extends Actor {
         return this.damage;
     }
 
-    public void attack(Survivor survivor){
+    public void attack(Survivor survivor) {
         survivor.decreaseHealthPoints(damage);
     }
 }

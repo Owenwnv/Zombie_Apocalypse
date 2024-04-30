@@ -153,7 +153,8 @@ public class Game {
             List<Survivor> survivors = cell.getSurvivors();
             Survivor survivor = survivors.get(rand.nextInt(survivors.size()));
             survivor.decreaseHealthPoints(zombie.getDamage());
-            System.out.println("Zombie deals " + zombie.getDamage() + " damages to " + survivor.getName() + ".");
+            System.out.println(
+                    zombie.getName() + " deals " + zombie.getDamage() + " damages to " + survivor.getName() + ".");
         }
     }
 

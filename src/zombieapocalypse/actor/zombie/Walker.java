@@ -7,7 +7,7 @@ public class Walker extends Zombie {
     /**
      * Constructs a Walker with default damage and health points.
      */
-    public Walker() {
-        super(1, 1);
+    public Walker(int zombieID) {
+        super(1, 1, "Walker#" + zombieID);
     }
 }

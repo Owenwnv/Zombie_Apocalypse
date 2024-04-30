@@ -9,6 +9,8 @@ public class Actor {
      */
     protected int healthPoints;
 
+    protected String name;
+
     protected int[] coordinates;
 
     /**
@@ -16,9 +18,14 @@ public class Actor {
      * 
      * @param healthPoints The health points of the Actor
      */
-    public Actor(int healthPoints) {
+    public Actor(int healthPoints, String name) {
         this.healthPoints = healthPoints;
+        this.name = name;
         this.coordinates = new int[2];
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public int[] getCoordinates() {
