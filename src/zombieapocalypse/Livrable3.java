@@ -33,10 +33,7 @@ public class Livrable3 {
 
         game.getMap().showMap();
 
-        for (int i = 0; i < 5; i++) {
-            game.zombieTurn(z);
-            game.getMap().showMap();
-        }
+        game.lookAround(map.getCell(3, 2), 3, 2);
 
         /*
          * 

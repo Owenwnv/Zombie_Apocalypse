@@ -11,6 +11,7 @@ import zombieapocalypse.mapcreation.Map;
 import zombieapocalypse.structure.Door;
 import zombieapocalypse.cell.Cell;
 import zombieapocalypse.cell.EmptyCell;
+import zombieapocalypse.cell.HotelRoomCell;
 import zombieapocalypse.cell.RoomCell;
 import zombieapocalypse.cell.StreetCell;
 
@@ -70,22 +71,27 @@ public class Game {
         zombie.setCoordinates(i, j);
     }
 
-    public boolean canMove(int i, int j, int direction) {
+    public boolean canMove(int i, int j, int direction, boolean lookAround) {
         Cell cell = new EmptyCell();
         int doorIndex = -1;
+        String doorDirection = "";
 
         if (direction == 0 && i > 0) {
             cell = this.map.getCell(i - 1, j);
             doorIndex = 2;
+            doorDirection = "on top of you.";
         } else if (direction == 1 && (j + 1) < this.map.getHeight()) {
             cell = this.map.getCell(i, j + 1);
             doorIndex = 3;
+            doorDirection = "to your right";
         } else if (direction == 2 && (i + 1) < this.map.getWidth()) {
             cell = this.map.getCell(i + 1, j);
             doorIndex = 0;
+            doorDirection = "under you";
         } else if (direction == 3 && j > 0) {
             cell = this.map.getCell(i, j - 1);
             doorIndex = 1;
+            doorDirection = "to your left";
         }
 
         if (cell instanceof EmptyCell) {
@@ -96,8 +102,14 @@ public class Game {
             RoomCell room = (RoomCell) cell;
             Door door = room.getDoors().get(doorIndex);
             if (door.getIsOpen()) {
+                if (lookAround) {
+                    System.out.println("There is an open door " + doorDirection);
+                }
                 return true;
             } else {
+                if (lookAround) {
+                    System.out.println("There is a closed door " + doorDirection);
+                }
                 return false;
             }
         }
@@ -143,7 +155,7 @@ public class Game {
         if (cell.getSurvivors().size() == 0) {
             int direction = rand.nextInt(4);
             while (true) {
-                if (canMove(coordinates[0], coordinates[1], direction)) {
+                if (canMove(coordinates[0], coordinates[1], direction, false)) {
                     moveZombie(zombie, coordinates, direction);
                     break;
                 }
@@ -156,6 +168,27 @@ public class Game {
             System.out.println(
                     zombie.getName() + " deals " + zombie.getDamage() + " damages to " + survivor.getName() + ".");
         }
+    }
+
+    public void lookAround(Cell cell, int i, int j) {
+        if (cell instanceof StreetCell) {
+            System.out.println("You are in the streets.");
+
+        } else if (cell instanceof RoomCell) {
+            System.out.println("You are in a room.");
+        } else if (cell instanceof HotelRoomCell) {
+            System.out.println("You are at the Hotel.");
+        } else {
+            System.out.println("You are at the Pharmacy.");
+        }
+
+        canMove(i, j, 0, true);
+        canMove(i, j, 1, true);
+        canMove(i, j, 2, true);
+        canMove(i, j, 3, true);
+
+        System.out.println("There are " + cell.getSurvivors().size() + " survivors in this cell including you.");
+        System.out.println("There are " + cell.getZombies().size() + " zombies in this cell.");
     }
 
     /**
