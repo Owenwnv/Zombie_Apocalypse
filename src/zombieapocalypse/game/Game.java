@@ -193,7 +193,7 @@ public class Game {
         System.out.println("There are " + cell.getZombies().size() + " zombies in this cell.");
     }
 
-    public void searchRoom(RoomCell room) {
+    public void searchRoom(RoomCell room, Survivor survivor) {
         List<Item> roomItems = room.getItems();
 
         if (roomItems.isEmpty()) {
@@ -207,6 +207,7 @@ public class Game {
                 Item item = iterator.next();
                 System.out.println(i + ". " + item.getName());
             }
+
         }
     }
 

@@ -6,6 +6,7 @@ import zombieapocalypse.actor.zombie.*;
 import zombieapocalypse.cell.Cell;
 import zombieapocalypse.cell.RoomCell;
 import zombieapocalypse.game.Game;
+import zombieapocalypse.game.Input;
 import zombieapocalypse.item.tool.HandheldMap;
 import zombieapocalypse.item.tool.HealthPotion;
 import zombieapocalypse.item.weapon.Axe;
@@ -33,8 +34,15 @@ public class Livrable3 {
 
         game.getMap().showMap();
 
+        Input input = new Input();
+
+        int i = input.readInt("entre int:");
+        System.out.println(i);
+        String st = input.readString("entre string:");
+        System.out.println(st);
+
         // game.lookAround(map.getCell(3, 2), 3, 2);
-        game.searchRoom((RoomCell) map.getCell(0, 0));
+        // game.searchRoom((RoomCell) map.getCell(0, 0));
 
         /*
          * 
