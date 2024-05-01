@@ -33,7 +33,8 @@ public class Livrable3 {
 
         game.getMap().showMap();
 
-        game.lookAround(map.getCell(3, 2), 3, 2);
+        // game.lookAround(map.getCell(3, 2), 3, 2);
+        game.searchRoom((RoomCell) map.getCell(0, 0));
 
         /*
          * 

@@ -13,12 +13,14 @@ import zombieapocalypse.item.tool.SkeletonKey;
 import zombieapocalypse.item.weapon.Axe;
 import zombieapocalypse.item.weapon.Gun;
 import zombieapocalypse.item.weapon.Rifle;
-import zombieapocalypse.actor.survivor.Survivor;
 
 /**
  * Represents a room cell in the game, extending from Cell.
  */
 public class RoomCell extends Cell {
+
+    protected List<Item> items;
+
     /**
      * List of doors in this RoomCell.
      * 0 -> top Door
@@ -36,10 +38,23 @@ public class RoomCell extends Cell {
      */
     public RoomCell(String name) {
         super(name);
+        this.items = generateItems();
         this.doors = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             this.doors.add(new Door(false, true));
         }
+    }
+
+    public void addItem(Item item) {
+        this.items.add(item);
+    }
+
+    public List<Item> getItems() {
+        return this.items;
+    }
+
+    public void removeItem(Item item) {
+        this.items.remove(item);
     }
 
     /**
@@ -72,24 +87,10 @@ public class RoomCell extends Cell {
     }
 
     /**
-     * Method for the survivor to search the room.
-     *
-     * @param survivor The survivor who is searching the room
+     * Randomly generates items for this RoomCell
      */
-    public void search(Survivor survivor) {
-        if (survivor.getActionPoints() <= 0) {
-            System.out.println("You don't have enough action points to search.");
-            return;
-        }
-
-        if (survivor.getBackpack().size() >= 5) {
-            System.out.println("Your backpack is full. You can't take more items.");
-            return;
-        }
-
-        survivor.setActionPoints(survivor.getActionPoints() - 1);
-
-        List<Item> itemsFound = new ArrayList<>();
+    private List<Item> generateItems() {
+        List<Item> items = new ArrayList<>();
         Random rand = new Random();
         int numberOfItems = rand.nextInt(3);
 
@@ -97,6 +98,7 @@ public class RoomCell extends Cell {
             for (int i = 0; i < numberOfItems; i++) {
                 Item item;
                 int itemType = rand.nextInt(6);
+
                 if (itemType == 0) {
                     item = new HealthPotion();
                 } else if (itemType == 1) {
@@ -110,19 +112,10 @@ public class RoomCell extends Cell {
                 } else {
                     item = new Rifle();
                 }
-                itemsFound.add(item);
-            }
 
-            System.out.println("You have found the following items:");
-            for (Item item : itemsFound) {
-                System.out.println("- " + item.getName());
+                items.add(item);
             }
-
-            for (Item item : itemsFound) {
-                survivor.addItemToBackpack(item);
-            }
-        } else {
-            System.out.println("There is no item in this room.");
         }
+        return items;
     }
 }

@@ -147,15 +147,6 @@ public abstract class Cell {
     }
 
     /**
-     * Gives summury of this Cell
-     * 
-     * @return a String describing this Cell
-     */
-    public String lookAround() {
-        return "There are " + this.survivors.size() + " survivors in this room.";
-    }
-
-    /**
      * Returns a description of this Cell.
      * 
      * @return A description of this Cell
