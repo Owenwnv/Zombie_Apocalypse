@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import zombieapocalypse.actor.Actor;
 import zombieapocalypse.actor.survivor.Survivor;
 import zombieapocalypse.actor.zombie.Zombie;
 import zombieapocalypse.mapcreation.Map;
@@ -17,6 +18,11 @@ import zombieapocalypse.cell.RoomCell;
 import zombieapocalypse.cell.StreetCell;
 
 import zombieapocalypse.item.Item;
+import zombieapocalypse.item.tool.HandheldMap;
+import zombieapocalypse.item.tool.HealthPotion;
+import zombieapocalypse.item.tool.InfraredGlasses;
+import zombieapocalypse.item.tool.MedKit;
+import zombieapocalypse.item.weapon.Weapon;
 
 /**
  * Represents the game engine.
@@ -205,7 +211,16 @@ public class Game {
         System.out.println("");
     }
 
-    public void searchRoom(RoomCell room, Survivor survivor) {
+    private void printSurvivorList(List<Survivor> survivors) {
+        Iterator<Survivor> iterator = survivors.iterator();
+        for (int i = 0; iterator.hasNext(); i++) {
+            Survivor survivor = iterator.next();
+            System.out.println(i + ". " + survivor.getName());
+        }
+        System.out.println("");
+    }
+
+    public void searchRoom(Survivor survivor, RoomCell room) {
         List<Item> roomItems = room.getItems();
 
         if (roomItems.isEmpty()) {
@@ -291,6 +306,40 @@ public class Game {
                 survivor.removeItemFromBackpack(itemToPutInHand);
                 survivor.addItemToBackpack(itemInHand);
                 System.out.println("You now have " + itemToPutInHand.getName() + " in your hand.");
+            }
+        }
+    }
+
+    public void useToolInHand(Survivor survivor, Cell cell) {
+        Item itemInHand = survivor.getItemInHand();
+
+        if (itemInHand == null) {
+            System.out.println("You have nothing in your hand.");
+        } else if (itemInHand instanceof Weapon) {
+            System.out.println("You have no tool in your hand.");
+        } else {
+            if (itemInHand instanceof HealthPotion) {
+                survivor.increaseHealthPoints(1);
+            } else if (itemInHand instanceof MedKit) {
+                List<Survivor> survivors = cell.getSurvivors();
+                survivors.remove(survivor);
+
+                if (survivors.isEmpty()) {
+                    System.out.println("You are the only survivor in this cell.");
+                } else {
+                    System.out.println("Here are the survivors in this cell:");
+                    printSurvivorList(survivors);
+
+                    int survivorToHealIndex = this.input.readIntPrompt("Who do you want to heal ?\n", 0,
+                            survivors.size() - 1);
+                    Survivor survivorToHeal = survivors.get(survivorToHealIndex);
+                    survivorToHeal.increaseHealthPoints(1);
+                    System.out.println("You have healed 1 hp to " + survivorToHeal.getName() + ".");
+                }
+            } else if (itemInHand instanceof HandheldMap) {
+                this.map.showMap();
+            } else if (itemInHand instanceof InfraredGlasses) {
+
             }
         }
     }
