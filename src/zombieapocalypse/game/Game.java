@@ -293,7 +293,10 @@ public class Game {
                 System.out.println("You now have " + itemToPutInHand.getName() + " in your hand.");
             }
         }
+    }
 
+    public void makeNoise(Cell cell) {
+        cell.increaseNoiseLevel();
     }
 
     /**

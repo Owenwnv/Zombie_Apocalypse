@@ -79,15 +79,6 @@ public abstract class Cell {
     }
 
     /**
-     * Sets noiseLevel to x Noise Level
-     * 
-     * @param noiseLevel
-     */
-    public void setNoiseLevel(int noiseLevel) {
-        this.noiseLevel = noiseLevel;
-    }
-
-    /**
      * Adds a survivor to this Cell.
      * 
      * @param survivor The survivor to be added
@@ -128,15 +119,6 @@ public abstract class Cell {
      */
     public void increaseNoiseLevel() {
         this.noiseLevel = noiseLevel + 1;
-    }
-
-    /**
-     * decreseases noiseLevel by 1 noiseLevel
-     */
-    public void decreaseNoiseLevel() {
-        if (this.noiseLevel > 0) {
-            this.noiseLevel = noiseLevel - 1;
-        }
     }
 
     /**
