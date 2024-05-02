@@ -259,6 +259,43 @@ public class Game {
         }
     }
 
+    public void putItemInHand(Survivor survivor) {
+        List<Item> survivorBackpack = survivor.getBackpack();
+        Item itemInHand = survivor.getItemInHand();
+
+        if (itemInHand == null) {
+            System.out.println("Here are the items in your backpack:");
+            printItemList(survivorBackpack);
+
+            int itemToPutInHandIndex = this.input.readIntPrompt("What item do you want to put in your hand ?\n", 0,
+                    survivorBackpack.size() - 1);
+            Item itemToPutInHand = survivorBackpack.get(itemToPutInHandIndex);
+
+            survivor.removeItemFromBackpack(itemToPutInHand);
+            survivor.putItemInHand(itemToPutInHand);
+            System.out.println("You now have " + itemToPutInHand.getName() + " in your hand.");
+        } else {
+            int yesNoSwitch = this.input.readYesNo(
+                    "You already have " + itemInHand.getName()
+                            + " in your hand. Do you want to switch the item in your hand for another one ?\n");
+
+            if (yesNoSwitch == 1) {
+                System.out.println("Here are the items in your backpack:");
+                printItemList(survivorBackpack);
+
+                int itemToPutInHandIndex = this.input.readIntPrompt("What item do you want to put in your hand ?\n", 0,
+                        survivorBackpack.size() - 1);
+                Item itemToPutInHand = survivorBackpack.get(itemToPutInHandIndex);
+
+                survivor.putItemInHand(itemToPutInHand);
+                survivor.removeItemFromBackpack(itemToPutInHand);
+                survivor.addItemToBackpack(itemInHand);
+                System.out.println("You now have " + itemToPutInHand.getName() + " in your hand.");
+            }
+        }
+
+    }
+
     /**
      * Returns the map of the game.
      * 

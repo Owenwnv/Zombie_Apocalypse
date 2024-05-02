@@ -41,7 +41,9 @@ public class Livrable3 {
         fighter.addItemToBackpack(new HandheldMap());
         fighter.addItemToBackpack(new HandheldMap());
 
-        game.searchRoom((RoomCell) map.getCell(3, 3), fighter);
+        fighter.putItemInHand(new Axe());
+
+        game.putItemInHand(fighter);
 
         // game.lookAround(map.getCell(3, 2), 3, 2);
 
