@@ -217,12 +217,14 @@ public class Game {
             int yesNo = this.input.readYesNo("Do you want to pick up an item ?\n");
 
             if (yesNo == 1) {
-                if (survivor.getBackpack().size() < 5) {
+                List<Item> survivorBackpack = survivor.getBackpack();
+
+                if (survivorBackpack.size() < 5) {
                     int itemIndex = this.input.readIntPrompt("What item do you want to pick up ?\n", 0,
                             roomItems.size() - 1);
+
                     if (itemIndex != -1) {
                         Item item = roomItems.get(itemIndex);
-                        roomItems.remove(item);
                         room.removeItem(item);
                         survivor.addItemToBackpack(item);
                         System.out.println(item.getName() + " has been added to your backpack.");
@@ -230,8 +232,27 @@ public class Game {
                 } else {
                     int yesNoSwitch = this.input.readYesNo(
                             "Your backpack is full. Do you want to switch one of your items for another one ?\n");
-                    if (yesNoSwitch == 1) {
 
+                    if (yesNoSwitch == 1) {
+                        System.out.println("Here are the items in your backpack:");
+                        printItemList(survivorBackpack);
+
+                        int itemToThrowIndex = this.input.readIntPrompt("What item do you want to throw away ?\n", 0,
+                                survivorBackpack.size() - 1);
+                        Item itemToThrow = survivorBackpack.get(itemToThrowIndex);
+
+                        System.out.println("Here are the items in this room:");
+                        printItemList(roomItems);
+
+                        int itemToPickUpIndex = this.input.readIntPrompt("What item do you want to pick up ?\n", 0,
+                                roomItems.size() - 1);
+                        Item itemToPickUp = roomItems.get(itemToPickUpIndex);
+
+                        survivor.removeItemFromBackpack(itemToThrow);
+                        room.addItem(itemToThrow);
+                        room.removeItem(itemToPickUp);
+                        survivor.addItemToBackpack(itemToPickUp);
+                        System.out.println(itemToPickUp.getName() + " has been added to your backpack.");
                     }
                 }
             }

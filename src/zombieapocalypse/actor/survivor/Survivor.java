@@ -133,6 +133,10 @@ public class Survivor extends Actor {
         }
     }
 
+    public void removeItemFromBackpack(Item item) {
+        this.backpack.remove(item);
+    }
+
     /**
      * Puts an item in the Survivor's hand.
      * 
