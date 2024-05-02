@@ -25,7 +25,7 @@ public class Game {
     /**
      * the map
      */
-    private Map map;
+    protected Map map;
 
     /**
      * List of survivors in the Game.
@@ -37,6 +37,8 @@ public class Game {
      */
     protected List<Zombie> zombies;
 
+    protected Input input;
+
     /**
      * Constructs a Game with the specified map.
      * 
@@ -46,6 +48,7 @@ public class Game {
         this.map = map;
         this.survivors = new ArrayList<>();
         this.zombies = new ArrayList<>();
+        this.input = new Input();
     }
 
     /**
@@ -193,6 +196,15 @@ public class Game {
         System.out.println("There are " + cell.getZombies().size() + " zombies in this cell.");
     }
 
+    private void printItemList(List<Item> items) {
+        Iterator<Item> iterator = items.iterator();
+        for (int i = 0; iterator.hasNext(); i++) {
+            Item item = iterator.next();
+            System.out.println(i + ". " + item.getName());
+        }
+        System.out.println("");
+    }
+
     public void searchRoom(RoomCell room, Survivor survivor) {
         List<Item> roomItems = room.getItems();
 
@@ -200,14 +212,29 @@ public class Game {
             System.out.println("There is no item in this room.");
         } else {
             System.out.println("You found:");
+            printItemList(roomItems);
 
-            Iterator<Item> iterator = roomItems.iterator();
+            int yesNo = this.input.readYesNo("Do you want to pick up an item ?\n");
 
-            for (int i = 0; iterator.hasNext(); i++) {
-                Item item = iterator.next();
-                System.out.println(i + ". " + item.getName());
+            if (yesNo == 1) {
+                if (survivor.getBackpack().size() < 5) {
+                    int itemIndex = this.input.readIntPrompt("What item do you want to pick up ?\n", 0,
+                            roomItems.size() - 1);
+                    if (itemIndex != -1) {
+                        Item item = roomItems.get(itemIndex);
+                        roomItems.remove(item);
+                        room.removeItem(item);
+                        survivor.addItemToBackpack(item);
+                        System.out.println(item.getName() + " has been added to your backpack.");
+                    }
+                } else {
+                    int yesNoSwitch = this.input.readYesNo(
+                            "Your backpack is full. Do you want to switch one of your items for another one ?\n");
+                    if (yesNoSwitch == 1) {
+
+                    }
+                }
             }
-
         }
     }
 

@@ -29,20 +29,20 @@ public class Livrable3 {
 
         Zombie z = new Abomination(0);
         Survivor fighter = new Fighter("Pierre");
+
         game.spawnZombie(z, 2, 2);
         game.spawnSurvivor(fighter, 3, 2);
 
         game.getMap().showMap();
 
-        Input input = new Input();
+        fighter.addItemToBackpack(new HandheldMap());
+        fighter.addItemToBackpack(new HandheldMap());
+        fighter.addItemToBackpack(new HandheldMap());
+        fighter.addItemToBackpack(new HandheldMap());
 
-        int i = input.readInt("entre int:");
-        System.out.println(i);
-        String st = input.readString("entre string:");
-        System.out.println(st);
+        game.searchRoom((RoomCell) map.getCell(3, 3), fighter);
 
         // game.lookAround(map.getCell(3, 2), 3, 2);
-        // game.searchRoom((RoomCell) map.getCell(0, 0));
 
         /*
          * 
