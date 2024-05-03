@@ -98,19 +98,26 @@ public class RoomCell extends Cell {
             for (int i = 0; i < numberOfItems; i++) {
                 Item item;
                 int itemType = rand.nextInt(6);
-
-                if (itemType == 0) {
-                    item = new HealthPotion();
-                } else if (itemType == 1) {
-                    item = new MedKit();
-                } else if (itemType == 2) {
-                    item = new SkeletonKey();
-                } else if (itemType == 3) {
-                    item = new Axe();
-                } else if (itemType == 4) {
-                    item = new Gun();
-                } else {
-                    item = new Rifle();
+                
+                switch (itemType) {
+                    case 0:
+                        item = new HealthPotion();
+                        break;
+                    case 1:
+                        item = new MedKit();
+                        break;
+                    case 2:
+                        item = new SkeletonKey();
+                        break;
+                    case 3: 
+                        item = new Axe();
+                        break;
+                    case 4: 
+                        item = new Gun();
+                        break;
+                    case 5:
+                        item = new Rifle();
+                        break;
                 }
 
                 items.add(item);
