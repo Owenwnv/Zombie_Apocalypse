@@ -10,6 +10,8 @@ import zombieapocalypse.game.Input;
 import zombieapocalypse.item.tool.HandheldMap;
 import zombieapocalypse.item.tool.HealthPotion;
 import zombieapocalypse.item.weapon.Axe;
+import zombieapocalypse.item.weapon.Chainsaw;
+import zombieapocalypse.item.weapon.Gun;
 import zombieapocalypse.mapcreation.Map;
 
 public class Livrable3 {
@@ -35,15 +37,30 @@ public class Livrable3 {
 
         game.getMap().showMap();
 
-        fighter.addItemToBackpack(new HandheldMap());
-        fighter.addItemToBackpack(new HandheldMap());
-        fighter.addItemToBackpack(new HandheldMap());
+        fighter.addItemToBackpack(new Gun());
+        fighter.addItemToBackpack(new Axe());
+        fighter.addItemToBackpack(new Chainsaw());
         fighter.addItemToBackpack(new HandheldMap());
         fighter.addItemToBackpack(new HandheldMap());
 
         fighter.putItemInHand(new Axe());
 
         game.putItemInHand(fighter);
+
+        boolean a = fighter.attackZombie(z);
+        boolean b = fighter.attackZombie(z);
+        boolean c = fighter.attackZombie(z);
+        boolean d = fighter.attackZombie(z);
+        boolean e = fighter.attackZombie(z);
+        boolean f = fighter.attackZombie(z);
+
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
+        System.out.println(e);
+        System.out.println(f);
+    
 
         // game.lookAround(map.getCell(3, 2), 3, 2);
 

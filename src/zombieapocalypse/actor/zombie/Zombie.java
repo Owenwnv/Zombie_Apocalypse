@@ -32,7 +32,7 @@ public class Zombie extends Actor {
         return this.damage;
     }
 
-    public void attack(Survivor survivor) {
+    public void attackSurvivor(Survivor survivor) {
         survivor.decreaseHealthPoints(damage);
     }
 }
