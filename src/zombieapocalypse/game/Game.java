@@ -83,28 +83,28 @@ public class Game {
         zombie.setCoordinates(i, j);
     }
 
+    public String getDirectionString(int direction) {
+        if (direction == 0) {
+            return "on top of you";
+        } else if (direction == 1) {
+            return "to your right";
+        } else if (direction == 2) {
+            return "under you";
+        } else {
+            return "to your left";
+        }
+    }
+
     public boolean canMove(int i, int j, int direction, boolean lookAround) {
         Cell cell = new EmptyCell();
-        int doorIndex = -1;
-        String doorDirection = "";
+        int[] coordinates = this.map.getCoordinatesFromDirection(i, j, direction);
 
-        if (direction == 0 && i > 0) {
-            cell = this.map.getCell(i - 1, j);
-            doorIndex = 2;
-            doorDirection = "on top of you.";
-        } else if (direction == 1 && (j + 1) < this.map.getHeight()) {
-            cell = this.map.getCell(i, j + 1);
-            doorIndex = 3;
-            doorDirection = "to your right.";
-        } else if (direction == 2 && (i + 1) < this.map.getWidth()) {
-            cell = this.map.getCell(i + 1, j);
-            doorIndex = 0;
-            doorDirection = "under you.";
-        } else if (direction == 3 && j > 0) {
-            cell = this.map.getCell(i, j - 1);
-            doorIndex = 1;
-            doorDirection = "to your left.";
+        if (this.map.cellExists(coordinates[0], coordinates[1])) {
+            cell = this.map.getCell(coordinates[0], coordinates[1]);
         }
+
+        String doorDirection = getDirectionString(direction);
+        int doorIndex = (direction + 2) % 4;
 
         if (cell instanceof EmptyCell) {
             return false;
@@ -115,12 +115,12 @@ public class Game {
             Door door = room.getDoors().get(doorIndex);
             if (door.getIsOpen()) {
                 if (lookAround) {
-                    System.out.println("There is an open door " + doorDirection);
+                    System.out.println("There is an open door " + doorDirection + ".");
                 }
                 return true;
             } else {
                 if (lookAround) {
-                    System.out.println("There is a closed door " + doorDirection);
+                    System.out.println("There is a closed door " + doorDirection + ".");
                 }
                 return false;
             }
@@ -128,28 +128,13 @@ public class Game {
     }
 
     public void moveZombie(Zombie zombie, int[] coordinates, int direction) {
-        int i = 0;
-        int j = 0;
-
-        if (direction == 0) {
-            i = coordinates[0] - 1;
-            j = coordinates[1];
-        } else if (direction == 1) {
-            i = coordinates[0];
-            j = coordinates[1] + 1;
-        } else if (direction == 2) {
-            i = coordinates[0] + 1;
-            j = coordinates[1];
-        } else if (direction == 3) {
-            i = coordinates[0];
-            j = coordinates[1] - 1;
-        }
-
+        int[] newCoordinates = this.map.getCoordinatesFromDirection(coordinates[0], coordinates[1], direction);
         Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
+
         cell.removeZombie(zombie);
-        cell = this.map.getCell(i, j);
+        cell = this.map.getCell(newCoordinates[0], newCoordinates[1]);
         cell.addZombie(zombie);
-        zombie.setCoordinates(i, j);
+        zombie.setCoordinates(newCoordinates[0], newCoordinates[1]);
     }
 
     public void moveSurvivor(Survivor survivor, int[] coordinates, int i, int j) {
@@ -320,6 +305,7 @@ public class Game {
         } else {
             if (itemInHand instanceof HealthPotion) {
                 survivor.increaseHealthPoints(1);
+                survivor.putItemInHand(null);
             } else if (itemInHand instanceof MedKit) {
                 List<Survivor> survivors = cell.getSurvivors();
                 survivors.remove(survivor);
@@ -336,10 +322,26 @@ public class Game {
                     survivorToHeal.increaseHealthPoints(1);
                     System.out.println("You have healed 1 hp to " + survivorToHeal.getName() + ".");
                 }
+                survivor.putItemInHand(null);
             } else if (itemInHand instanceof HandheldMap) {
                 this.map.showMap();
+                survivor.putItemInHand(null);
             } else if (itemInHand instanceof InfraredGlasses) {
+                int[] coordinates = survivor.getCoordinates();
+                infraredGlasses(coordinates[0], coordinates[1]);
+            }
+        }
+    }
 
+    public void infraredGlasses(int i, int j) {
+        for (int direction = 0; i < 4; i++) {
+            int[] coordinates = this.map.getCoordinatesFromDirection(i, j, direction);
+            if (this.map.cellExists(coordinates[0], coordinates[1])) {
+                Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
+                System.out.println("The cell " + getDirectionString(direction) + " has " + cell.getSurvivors().size()
+                        + " survivors and " + cell.getZombies().size() + " zombies.");
+            } else {
+                System.out.println("There is no cell " + getDirectionString(direction) + ".");
             }
         }
     }

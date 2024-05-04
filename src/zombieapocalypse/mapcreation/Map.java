@@ -238,12 +238,32 @@ public class Map {
         }
     }
 
+    public boolean cellExists(int i, int j) {
+        if (i >= 0 && i < this.width && j >= 0 && j < this.height) {
+            return true;
+        }
+        return false;
+    }
+
+    public int[] getCoordinatesFromDirection(int i, int j, int direction) {
+        if (direction == 0) {
+            i -= 1;
+        } else if (direction == 1) {
+            j += 1;
+        } else if (direction == 2) {
+            i += 1;
+        } else if (direction == 3) {
+            j -= 1;
+        }
+        return new int[] { i, j };
+    }
+
     /**
      * resets noiseLevel for every Cell in the map
      */
-    public void resetMapNoiseLevel(){
-        for(int i = 0; i < this.height; i++){
-            for(int j = 0; j < this.width; j++){
+    public void resetMapNoiseLevel() {
+        for (int i = 0; i < this.height; i++) {
+            for (int j = 0; j < this.width; j++) {
                 getCell(i, j).resetNoiseLevel();
             }
         }
