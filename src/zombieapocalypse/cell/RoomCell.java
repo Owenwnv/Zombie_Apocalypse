@@ -96,9 +96,9 @@ public class RoomCell extends Cell {
 
         if (numberOfItems != 0) {
             for (int i = 0; i < numberOfItems; i++) {
-                Item item;
+                Item item = null;
                 int itemType = rand.nextInt(6);
-                
+
                 switch (itemType) {
                     case 0:
                         item = new HealthPotion();
@@ -109,10 +109,10 @@ public class RoomCell extends Cell {
                     case 2:
                         item = new SkeletonKey();
                         break;
-                    case 3: 
+                    case 3:
                         item = new Axe();
                         break;
-                    case 4: 
+                    case 4:
                         item = new Gun();
                         break;
                     case 5:

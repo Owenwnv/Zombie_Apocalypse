@@ -10,7 +10,7 @@ public class AbominationTest {
 
     @Test
     public void initAbomination() {
-        Abomination abomination = new Abomination();
+        Abomination abomination = new Abomination(0);
         assertEquals(3, abomination.getDamage());
         assertEquals(6, abomination.getHealthPoints());
     }

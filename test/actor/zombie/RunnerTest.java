@@ -10,7 +10,7 @@ public class RunnerTest {
 
     @Test
     public void initRunner() {
-        Runner runner = new Runner();
+        Runner runner = new Runner(0);
         assertEquals(1, runner.getDamage());
         assertEquals(2, runner.getHealthPoints());
     }

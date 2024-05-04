@@ -10,7 +10,7 @@ public class WalkerTest {
 
     @Test
     public void initWalker() {
-        Walker walker = new Walker();
+        Walker walker = new Walker(0);
         assertEquals(1, walker.getDamage());
         assertEquals(1, walker.getHealthPoints());
     }

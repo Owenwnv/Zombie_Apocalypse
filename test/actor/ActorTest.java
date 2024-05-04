@@ -10,13 +10,13 @@ public class ActorTest {
 
     @Test
     public void initActor() {
-        Actor actor = new Actor(5);
+        Actor actor = new Actor(5, "");
         assertEquals(5, actor.getHealthPoints());
     }
 
     @Test
     public void canAlterHealthPoints() {
-        Actor actor = new Actor(5);
+        Actor actor = new Actor(5, "");
         actor.increaseHealthPoints(2);
         assertEquals(7, actor.getHealthPoints());
         actor.decreaseHealthPoints(2);

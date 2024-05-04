@@ -10,7 +10,7 @@ public class ZombieTest {
 
     @Test
     public void initZombie() {
-        Zombie zombie = new Zombie(3, 5);
+        Zombie zombie = new Zombie(3, 5, "");
         assertEquals(5, zombie.getHealthPoints());
         assertEquals(3, zombie.getDamage());
     }

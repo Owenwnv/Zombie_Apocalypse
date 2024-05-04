@@ -10,7 +10,7 @@ public class BigboyTest {
 
     @Test
     public void initBigboy() {
-        Bigboy bigboy = new Bigboy();
+        Bigboy bigboy = new Bigboy(0);
         assertEquals(2, bigboy.getDamage());
         assertEquals(4, bigboy.getHealthPoints());
     }
