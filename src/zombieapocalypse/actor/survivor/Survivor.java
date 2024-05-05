@@ -182,6 +182,14 @@ public class Survivor extends Actor {
         return false;
     }
 
+    /**
+     * Attack the zombie based on the dice rolls and the weapon
+     * 
+     * @param zombie the zombie that we are attacking
+     * 
+     * @return boolean
+     */
+
     public boolean attackZombie(Zombie zombie){
         boolean result = false;
     
