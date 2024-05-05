@@ -155,6 +155,13 @@ public class Survivor extends Actor {
         this.inHand = item;
     }
 
+    /**
+     * Check if the attack is valid.
+     * 
+     * @param zombie the zombie that we want to attack
+     * 
+     * @return boolean
+     */
     public boolean checkAttackValidity(Zombie zombie){
        
         int range;
