@@ -8,6 +8,7 @@ import org.junit.Test;
 
 
 import zombieapocalypse.mapcreation.*;
+import zombieapocalypse.cell.*;;
 
 public class MapTest {
 
@@ -59,7 +60,7 @@ public class MapTest {
         Map map = new Map(5, 5);
         Cell cell = new EmptyCell();
         map.setCell(2, 2, cell);
-        cell.setNoiseLevel(5);
+        cell.increaseNoiseLevel();
         map.resetMapNoiseLevel();
         assertEquals(0, cell.getNoiseLevel());
     }
