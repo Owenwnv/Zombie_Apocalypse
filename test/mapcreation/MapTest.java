@@ -1,3 +1,5 @@
+package test.mapcreation;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -46,7 +48,7 @@ public class MapTest {
     }
 
     @Test
-    public void SetAndGetMainRoadsTest() {
+    public void SetAndGetMainroadsTest() {
         Map map = new Map(5, 5);
         map.setMainroads(2, 3);
         assertEquals(2, map.getMainroads()[0]);
