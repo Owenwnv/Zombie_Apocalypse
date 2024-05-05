@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.Test;
 
 
-import zombieapocalypse.*;
+import zombieapocalypse.mapcreation.*;
 
 public class MapTest {
 
