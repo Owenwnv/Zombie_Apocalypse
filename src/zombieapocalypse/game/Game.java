@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import zombieapocalypse.actor.Actor;
+import zombieapocalypse.actor.survivor.Healer;
 import zombieapocalypse.actor.survivor.Survivor;
 import zombieapocalypse.actor.zombie.Zombie;
 import zombieapocalypse.mapcreation.Map;
@@ -173,7 +174,9 @@ public class Game {
         int actionPoints = survivor.getActionPoints();
 
         // lookAround
+        System.out.println(survivor.getName() + " looks around himself.");
         lookAround(cell, coordinates[0], coordinates[1]);
+
         List<Survivor> survivorsInCell = cell.getSurvivors();
         List<Zombie> zombiesInCell = cell.getZombies();
 
@@ -187,8 +190,32 @@ public class Game {
 
         // if low hp
         if (survivor.getHealthPoints() < 3) {
-            // heal self
-            actionPoints--;
+            if (survivor instanceof Healer) {
+                Healer healer = (Healer) survivor;
+
+                System.out.println(survivor.getName() + " heals himself.");
+                healer.heal(healer);
+                actionPoints--;
+            } else {
+                Item item = survivor.getItemInHand();
+                List<Item> backpack = survivor.getBackpack();
+
+                if (item != null && item instanceof HealthPotion) {
+                    useToolInHand(survivor, cell);
+                } else if (!backpack.isEmpty() && actionPoints > 1) {
+                    Iterator<Item> iterator = backpack.iterator();
+
+                    while (iterator.hasNext()) {
+                        Item itemInBackpack = iterator.next();
+                        if (itemInBackpack instanceof HealthPotion) {
+                            putItemInHand(survivor, itemInBackpack);
+                            useToolInHand(survivor, cell);
+                            actionPoints -= 2;
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         // if survivor in cell and survivor low hp
@@ -310,39 +337,18 @@ public class Game {
         }
     }
 
-    public void putItemInHand(Survivor survivor) {
-        List<Item> survivorBackpack = survivor.getBackpack();
+    public void putItemInHand(Survivor survivor, Item itemToPutInHand) {
         Item itemInHand = survivor.getItemInHand();
 
         if (itemInHand == null) {
-            System.out.println("Here are the items in your backpack:");
-            printItemList(survivorBackpack);
-
-            int itemToPutInHandIndex = this.input.readIntPrompt("What item do you want to put in your hand ?\n", 0,
-                    survivorBackpack.size() - 1);
-            Item itemToPutInHand = survivorBackpack.get(itemToPutInHandIndex);
-
             survivor.removeItemFromBackpack(itemToPutInHand);
             survivor.putItemInHand(itemToPutInHand);
             System.out.println("You now have " + itemToPutInHand.getName() + " in your hand.");
         } else {
-            int yesNoSwitch = this.input.readYesNo(
-                    "You already have " + itemInHand.getName()
-                            + " in your hand. Do you want to switch the item in your hand for another one ?\n");
-
-            if (yesNoSwitch == 1) {
-                System.out.println("Here are the items in your backpack:");
-                printItemList(survivorBackpack);
-
-                int itemToPutInHandIndex = this.input.readIntPrompt("What item do you want to put in your hand ?\n", 0,
-                        survivorBackpack.size() - 1);
-                Item itemToPutInHand = survivorBackpack.get(itemToPutInHandIndex);
-
-                survivor.putItemInHand(itemToPutInHand);
-                survivor.removeItemFromBackpack(itemToPutInHand);
-                survivor.addItemToBackpack(itemInHand);
-                System.out.println("You now have " + itemToPutInHand.getName() + " in your hand.");
-            }
+            survivor.putItemInHand(itemToPutInHand);
+            survivor.removeItemFromBackpack(itemToPutInHand);
+            survivor.addItemToBackpack(itemInHand);
+            System.out.println("You now have " + itemToPutInHand.getName() + " in your hand.");
         }
     }
 
