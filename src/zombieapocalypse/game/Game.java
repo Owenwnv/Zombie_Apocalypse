@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import zombieapocalypse.actor.Actor;
 import zombieapocalypse.actor.survivor.Survivor;
 import zombieapocalypse.actor.zombie.Zombie;
 import zombieapocalypse.mapcreation.Map;

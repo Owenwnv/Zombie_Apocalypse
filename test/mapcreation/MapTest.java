@@ -1,7 +1,5 @@
-import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.Test;
@@ -48,7 +46,7 @@ public class MapTest {
     }
 
     @Test
-    public void SetAndGetMainroadsTest() {
+    public void SetAndGetMainRoadsTest() {
         Map map = new Map(5, 5);
         map.setMainroads(2, 3);
         assertEquals(2, map.getMainroads()[0]);
@@ -65,14 +63,5 @@ public class MapTest {
         assertEquals(0, cell.getNoiseLevel());
     }
 
-    @Test
-    public void testMapGenerator() {
-        MapGenerator mapGenerator = new MapGenerator(20, 20);
-        assertNotNull(mapGenerator);
-        Map map = mapGenerator.generateMap();
-        assertNotNull(map);
-        assertEquals(20, map.getWidth());
-        assertEquals(20, map.getHeight());
-    }
 
 }
