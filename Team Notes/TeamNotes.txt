@@ -1,0 +1,27 @@
+gestion des niveau et XP 
+gestion du bruit 1/2
+roles des survivants 0.75/1
+gameloop 0/1
+les tests 1/2
+
+ADD TO UML:
+Attack mehtod
+
+
+Tests
+
+useSpecialAbility()
+useTool()
+useWeapon()
+use()
+
+later on: survivorTurn() method
+
+TO TEST:
+checkAttackValidity()
+attackZombie()
+attackSurvivor()
+heal()
+map.java en general
+Cell folder en general
+
