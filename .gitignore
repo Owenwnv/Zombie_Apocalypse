@@ -45,4 +45,6 @@ docs/
 lib/
 Livrable3.jar
 .DS_Store
+.idea
+.vscode
 # End of https://www.toptal.com/developers/gitignore/api/java,linux
