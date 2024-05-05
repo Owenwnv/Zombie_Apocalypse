@@ -167,6 +167,57 @@ public class Game {
         }
     }
 
+    public void survivorTurn(Survivor survivor) {
+        int[] coordinates = survivor.getCoordinates();
+        Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
+        int actionPoints = survivor.getActionPoints();
+
+        // lookAround
+        lookAround(cell, coordinates[0], coordinates[1]);
+        List<Survivor> survivorsInCell = cell.getSurvivors();
+        List<Zombie> zombiesInCell = cell.getZombies();
+
+        survivorsInCell.remove(survivor);
+
+        // if zombie in cell
+        if (!zombiesInCell.isEmpty()) {
+            // attack zombie
+            actionPoints--;
+        }
+
+        // if low hp
+        if (survivor.getHealthPoints() < 3) {
+            // heal self
+            actionPoints--;
+        }
+
+        // if survivor in cell and survivor low hp
+        if (!survivorsInCell.isEmpty()) {
+            Iterator<Survivor> iterator = survivorsInCell.iterator();
+
+            while (iterator.hasNext()) {
+                Survivor survivorInCell = iterator.next();
+                if (survivorInCell.getHealthPoints() < 3) {
+                    // heal survivor
+                    actionPoints--;
+                    // break
+                }
+            }
+        }
+
+        // if no zombie
+        if (zombiesInCell.isEmpty() && actionPoints > 0) {
+            // move/open door or search room
+            actionPoints--;
+        }
+
+        // if ap left
+        if (actionPoints > 0) {
+            makeNoise(cell);
+            actionPoints--;
+        }
+    }
+
     public void lookAround(Cell cell, int i, int j) {
         if (cell instanceof StreetCell) {
             System.out.println("You are in the streets.");
