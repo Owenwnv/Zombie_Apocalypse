@@ -1,5 +1,13 @@
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.Test;
+
+
+import zombieapocalypse.*;
 
 public class MapTest {
 
@@ -54,6 +62,16 @@ public class MapTest {
         cell.setNoiseLevel(5);
         map.resetMapNoiseLevel();
         assertEquals(0, cell.getNoiseLevel());
+    }
+
+    @Test
+    public void testMapGenerator() {
+        MapGenerator mapGenerator = new MapGenerator(20, 20);
+        assertNotNull(mapGenerator);
+        Map map = mapGenerator.generateMap();
+        assertNotNull(map);
+        assertEquals(20, map.getWidth());
+        assertEquals(20, map.getHeight());
     }
 
 }
