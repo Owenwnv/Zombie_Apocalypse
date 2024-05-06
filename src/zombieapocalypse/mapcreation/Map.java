@@ -1,6 +1,7 @@
 package zombieapocalypse.mapcreation;
 
 import java.util.List;
+import java.util.Random;
 
 import zombieapocalypse.cell.*;
 import zombieapocalypse.structure.Door;
@@ -255,6 +256,13 @@ public class Map {
         } else if (direction == 3) {
             j -= 1;
         }
+        return new int[] { i, j };
+    }
+
+    public int[] getRandomCellCoordinates() {
+        Random random = new Random();
+        int i = random.nextInt(this.width);
+        int j = random.nextInt(this.height);
         return new int[] { i, j };
     }
 

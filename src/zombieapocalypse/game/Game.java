@@ -7,6 +7,10 @@ import java.util.Random;
 
 import zombieapocalypse.actor.survivor.Healer;
 import zombieapocalypse.actor.survivor.Survivor;
+import zombieapocalypse.actor.zombie.Abomination;
+import zombieapocalypse.actor.zombie.Bigboy;
+import zombieapocalypse.actor.zombie.Runner;
+import zombieapocalypse.actor.zombie.Walker;
 import zombieapocalypse.actor.zombie.Zombie;
 import zombieapocalypse.mapcreation.Map;
 import zombieapocalypse.structure.Door;
@@ -42,6 +46,8 @@ public class Game {
      * List of zombies in the Game.
      */
     protected List<Zombie> zombies;
+
+    protected int zombieID;
 
     /**
      * Constructs a Game with the specified map.
@@ -356,6 +362,55 @@ public class Game {
 
     public void makeNoise(Cell cell) {
         cell.increaseNoiseLevel();
+    }
+
+    public int getGlobalExperiencePoints() {
+        int globalExperiencePoints = 0;
+        Iterator<Survivor> iterator = this.survivors.iterator();
+
+        while (iterator.hasNext()) {
+            Survivor survivor = iterator.next();
+            globalExperiencePoints += survivor.getExperiencePoints();
+        }
+        return globalExperiencePoints;
+    }
+
+    public int getInitialZombieSpawnRate() {
+        return this.map.getHeight() + this.map.getWidth();
+    }
+
+    public int getZombieSpawnRate() {
+        return (int) Math.ceil((double) (getGlobalExperiencePoints() / this.survivors.size()) / 3);
+    }
+
+    public Zombie createZombie(int zombieID) {
+        int id = zombieID % 4;
+
+        if (id == 0) {
+            return new Abomination(zombieID);
+        } else if (id == 1) {
+            return new Bigboy(zombieID);
+        } else if (id == 2) {
+            return new Runner(zombieID);
+        } else {
+            return new Walker(zombieID);
+        }
+    }
+
+    public void spawnInitialZombies() {
+        int spawnRate = getInitialZombieSpawnRate();
+
+        while (spawnRate != 0) {
+            int[] coordinates = this.map.getRandomCellCoordinates();
+            Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
+
+            if (cell instanceof StreetCell) {
+                Zombie zombie = createZombie(this.zombieID);
+                spawnZombie(zombie, coordinates[0], coordinates[1]);
+                this.zombieID += 1;
+                spawnRate -= 1;
+            }
+        }
     }
 
     /**

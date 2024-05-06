@@ -102,32 +102,13 @@ public class Survivor extends Actor {
     }
 
     /**
-     * Sets Action Points to x Action Points
-     */
-    public void setActionPoints(int actionPoints) {
-        this.actionPoints = actionPoints;
-    }
-
-    /**
-     * Sets experience points to x XP
-     */
-    public void setExperiencePoints(int experiencePoints) {
-        this.experiencePoints = experiencePoints;
-    }
-
-    /**
      * increases experience points by 1 XP
      */
     public void increaseExperiencePoints() {
         this.experiencePoints = this.experiencePoints + 1;
-    }
-
-    /**
-     * decreases experience points by 1 XP;
-     */
-    public void decreaseExperiencePoints() {
-        if (this.experiencePoints > 0) {
-            this.experiencePoints = this.experiencePoints - 1;
+        if (this.experiencePoints == 3 || this.experiencePoints == 7 || this.experiencePoints == 11) {
+            this.level += 1;
+            this.actionPoints += 1;
         }
     }
 
@@ -162,20 +143,21 @@ public class Survivor extends Actor {
      * 
      * @return boolean
      */
-    public boolean checkAttackValidity(Zombie zombie){
-       
+    public boolean checkAttackValidity(Zombie zombie) {
+
         int range;
-        if(this.horizontalCoordinates == zombie.getHorizontalCoordinates()){
+        if (this.horizontalCoordinates == zombie.getHorizontalCoordinates()) {
             range = Math.abs(this.verticalCoordinates - zombie.getVerticalCoordinates());
-        } else if(this.verticalCoordinates == zombie.getVerticalCoordinates()){
+        } else if (this.verticalCoordinates == zombie.getVerticalCoordinates()) {
             range = Math.abs(this.horizontalCoordinates - zombie.getHorizontalCoordinates());
         } else {
             range = -1;
         }
-        if(range != -1 && inHand instanceof Weapon){
+        if (range != -1 && inHand instanceof Weapon) {
             if ((inHand instanceof Rifle && range > 0 && range < 4) ||
-                (inHand instanceof Gun && range <= 1 && range >= 0) ||
-                ((inHand instanceof Axe || inHand instanceof Chainsaw || inHand instanceof Crowbar) && range == 0)) {
+                    (inHand instanceof Gun && range <= 1 && range >= 0) ||
+                    ((inHand instanceof Axe || inHand instanceof Chainsaw || inHand instanceof Crowbar)
+                            && range == 0)) {
                 return true;
             }
         }
@@ -190,42 +172,42 @@ public class Survivor extends Actor {
      * @return boolean
      */
 
-    public boolean attackZombie(Zombie zombie){
+    public boolean attackZombie(Zombie zombie) {
         boolean result = false;
-    
-        if(checkAttackValidity(zombie)){
+
+        if (checkAttackValidity(zombie)) {
             Random random = new Random();
             int randDice1 = random.nextInt(6) + 1;
             int randDice2 = random.nextInt(6) + 1;
-            if(this.inHand instanceof Crowbar){
-                if(randDice1 >= 4){
+            if (this.inHand instanceof Crowbar) {
+                if (randDice1 >= 4) {
                     zombie.decreaseHealthPoints(1);
                     result = true;
                 }
-            } else if(this.inHand instanceof Axe){
-                if(randDice1 >= 4){
+            } else if (this.inHand instanceof Axe) {
+                if (randDice1 >= 4) {
                     zombie.decreaseHealthPoints(2);
                     result = true;
                 }
-            } else if(this.inHand instanceof Chainsaw){
-                if(randDice1 >= 5){
+            } else if (this.inHand instanceof Chainsaw) {
+                if (randDice1 >= 5) {
                     zombie.decreaseHealthPoints(3);
                     result = true;
-                } else if(randDice2 >= 5){
+                } else if (randDice2 >= 5) {
                     zombie.decreaseHealthPoints(3);
                     result = true;
                 }
-            } else if(this.inHand instanceof Gun){
-                if(randDice1 >= 4){
+            } else if (this.inHand instanceof Gun) {
+                if (randDice1 >= 4) {
                     zombie.decreaseHealthPoints(1);
                     result = true;
                 }
-            } else if(this.inHand instanceof Rifle){
-                if(randDice1 >= 4){
+            } else if (this.inHand instanceof Rifle) {
+                if (randDice1 >= 4) {
                     zombie.decreaseHealthPoints(1);
                     result = true;
-                }else{
-                    if(randDice2 >= 4){
+                } else {
+                    if (randDice2 >= 4) {
                         zombie.decreaseHealthPoints(1);
                         result = true;
                     }
@@ -234,7 +216,6 @@ public class Survivor extends Actor {
         }
         return result;
     }
-    
 
     /**
      * Describes this Survivor
