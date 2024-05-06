@@ -134,12 +134,14 @@ public class Game {
         zombie.setCoordinates(newCoordinates[0], newCoordinates[1]);
     }
 
-    public void moveSurvivor(Survivor survivor, int[] coordinates, int i, int j) {
+    public void moveSurvivor(Survivor survivor, int[] coordinates, int direction) {
+        int[] newCoordinates = this.map.getCoordinatesFromDirection(coordinates[0], coordinates[1], direction);
         Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
+
         cell.removeSurvivor(survivor);
-        cell = this.map.getCell(i, j);
+        cell = this.map.getCell(newCoordinates[0], newCoordinates[1]);
         cell.addSurvivor(survivor);
-        survivor.setCoordinates(i, j);
+        survivor.setCoordinates(newCoordinates[0], newCoordinates[1]);
     }
 
     public void zombieTurn(Zombie zombie) {

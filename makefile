@@ -14,7 +14,6 @@ compile:
 		./src/zombieapocalypse/**/*.java \
 		./src/zombieapocalypse/Livrable3.java 
 
-test:
 	$(JAVAC) -cp junit-console.jar:$(Classpath) \
 		-d $(ClassesDir) \
 		./test/**/*.java \

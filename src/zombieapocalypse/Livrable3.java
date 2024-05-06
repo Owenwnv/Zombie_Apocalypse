@@ -3,15 +3,7 @@ package zombieapocalypse;
 import zombieapocalypse.mapcreation.MapGenerator;
 import zombieapocalypse.actor.survivor.*;
 import zombieapocalypse.actor.zombie.*;
-import zombieapocalypse.cell.Cell;
-import zombieapocalypse.cell.RoomCell;
 import zombieapocalypse.game.Game;
-import zombieapocalypse.game.Input;
-import zombieapocalypse.item.tool.HandheldMap;
-import zombieapocalypse.item.tool.HealthPotion;
-import zombieapocalypse.item.weapon.Axe;
-import zombieapocalypse.item.weapon.Chainsaw;
-import zombieapocalypse.item.weapon.Gun;
 import zombieapocalypse.mapcreation.Map;
 
 public class Livrable3 {
