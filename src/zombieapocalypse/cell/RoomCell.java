@@ -92,37 +92,36 @@ public class RoomCell extends Cell {
     private List<Item> generateItems() {
         List<Item> items = new ArrayList<>();
         Random rand = new Random();
-        int numberOfItems = rand.nextInt(3);
+        int numberOfItems = rand.nextInt(3) + 1;
 
-        if (numberOfItems != 0) {
-            for (int i = 0; i < numberOfItems; i++) {
-                Item item = null;
-                int itemType = rand.nextInt(6);
+        for (int i = 0; i < numberOfItems; i++) {
+            Item item = null;
+            int itemType = rand.nextInt(6);
 
-                switch (itemType) {
-                    case 0:
-                        item = new HealthPotion();
-                        break;
-                    case 1:
-                        item = new MedKit();
-                        break;
-                    case 2:
-                        item = new SkeletonKey();
-                        break;
-                    case 3:
-                        item = new Axe();
-                        break;
-                    case 4:
-                        item = new Gun();
-                        break;
-                    case 5:
-                        item = new Rifle();
-                        break;
-                }
-
-                items.add(item);
+            switch (itemType) {
+                case 0:
+                    item = new HealthPotion();
+                    break;
+                case 1:
+                    item = new MedKit();
+                    break;
+                case 2:
+                    item = new SkeletonKey();
+                    break;
+                case 3:
+                    item = new Axe();
+                    break;
+                case 4:
+                    item = new Gun();
+                    break;
+                case 5:
+                    item = new Rifle();
+                    break;
             }
+
+            items.add(item);
         }
+
         return items;
     }
 }

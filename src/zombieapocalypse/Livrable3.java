@@ -32,90 +32,11 @@ public class Livrable3 {
         Zombie z = new Abomination(0);
         Survivor fighter = new Fighter("Pierre");
 
-        game.spawnZombie(z, 2, 2);
+        game.spawnZombie(z, 3, 2);
         game.spawnSurvivor(fighter, 3, 2);
 
         game.getMap().showMap();
 
-        fighter.addItemToBackpack(new Gun());
-        fighter.addItemToBackpack(new Axe());
-        fighter.addItemToBackpack(new Chainsaw());
-        fighter.addItemToBackpack(new HandheldMap());
-        fighter.addItemToBackpack(new HandheldMap());
-
-        fighter.putItemInHand(new Axe());
-
-        game.putItemInHand(fighter);
-
-        boolean a = fighter.attackZombie(z);
-        boolean b = fighter.attackZombie(z);
-        boolean c = fighter.attackZombie(z);
-        boolean d = fighter.attackZombie(z);
-        boolean e = fighter.attackZombie(z);
-        boolean f = fighter.attackZombie(z);
-
-        System.out.println(a);
-        System.out.println(b);
-        System.out.println(c);
-        System.out.println(d);
-        System.out.println(e);
-        System.out.println(f);
-    
-
-        // game.lookAround(map.getCell(3, 2), 3, 2);
-
-        /*
-         * 
-         * // Place des zombies sur chaque zone
-         * game.spawnZombie(new Abomination(), 2, 2);
-         * game.spawnZombie(new Bigboy(), 0, 0);
-         * game.spawnZombie(new Runner(), 0, 2);
-         * game.spawnZombie(new Walker(), 3, 3);
-         * 
-         * // Place un survivant de chaque rôle sur la zone au nord du carrefour
-         * principal
-         * Survivor fighter = new Fighter("Pierre");
-         * Healer healer = new Healer("Jean");
-         * Survivor lucky = new Lucky("Zebi");
-         * Survivor searcher = new Searcher("Double monstre");
-         * 
-         * fighter.addItemToBackpack(new HandheldMap());
-         * healer.addItemToBackpack(new HandheldMap());
-         * lucky.addItemToBackpack(new HandheldMap());
-         * searcher.addItemToBackpack(new HandheldMap());
-         * 
-         * game.spawnSurvivor(fighter, 1, 1);
-         * game.spawnSurvivor(healer, 1, 2);
-         * game.spawnSurvivor(lucky, 1, 3);
-         * game.spawnSurvivor(searcher, 1, 2);
-         * 
-         * // Affiche une représentation de la ville
-         * game.getMap().showMap();
-         * 
-         * // Place une hache dans la main du second survivant
-         * healer.putItemInHand(new Axe());
-         * 
-         * // Place une fiole dans la main du troisième survivant
-         * lucky.putItemInHand(new HealthPotion());
-         * 
-         * // Exécute une action par survivant
-         * RoomCell room = (RoomCell) game.getMap().getCell(1, 1);
-         * room.search(fighter);
-         * healer.heal(fighter);
-         * room = (RoomCell) game.getMap().getCell(1, 3);
-         * room.search(lucky);
-         * Cell cell = game.getMap().getCell(1, 2);
-         * System.out.println(cell.lookAround());
-         * // Exécute l'action d’attaquer et de se déplacer pour l'ensemble des zombies
-         * 
-         * // Affiche une représentation de la ville
-         * game.getMap().showMap();
-         * 
-         * // Affiche l'état des survivants
-         * System.out.println(fighter);
-         * System.out.println(healer);
-         * System.out.println(lucky);
-         * System.out.println(searcher);
-         */
+        game.survivorTurn(fighter);
     }
 }

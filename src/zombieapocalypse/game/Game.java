@@ -5,11 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-<<<<<<< HEAD
-=======
-import zombieapocalypse.actor.Actor;
 import zombieapocalypse.actor.survivor.Healer;
->>>>>>> d7f24414ed4ce9026cb1d6f635c7bfc452640879
 import zombieapocalypse.actor.survivor.Survivor;
 import zombieapocalypse.actor.zombie.Zombie;
 import zombieapocalypse.mapcreation.Map;
@@ -47,8 +43,6 @@ public class Game {
      */
     protected List<Zombie> zombies;
 
-    protected Input input;
-
     /**
      * Constructs a Game with the specified map.
      * 
@@ -58,7 +52,6 @@ public class Game {
         this.map = map;
         this.survivors = new ArrayList<>();
         this.zombies = new ArrayList<>();
-        this.input = new Input();
     }
 
     /**
@@ -188,6 +181,7 @@ public class Game {
         // if zombie in cell
         if (!zombiesInCell.isEmpty()) {
             // attack zombie
+            System.out.println(survivor.getName() + " attacks zombie.");
             actionPoints--;
         }
 
@@ -204,6 +198,7 @@ public class Game {
                 List<Item> backpack = survivor.getBackpack();
 
                 if (item != null && item instanceof HealthPotion) {
+                    System.out.println(survivor.getName() + " heals himself with health potion.");
                     useToolInHand(survivor, cell);
                 } else if (!backpack.isEmpty() && actionPoints > 1) {
                     Iterator<Item> iterator = backpack.iterator();
@@ -212,6 +207,7 @@ public class Game {
                         Item itemInBackpack = iterator.next();
                         if (itemInBackpack instanceof HealthPotion) {
                             putItemInHand(survivor, itemInBackpack);
+                            System.out.println(survivor.getName() + " heals himself with health potion.");
                             useToolInHand(survivor, cell);
                             actionPoints -= 2;
                             break;
@@ -229,20 +225,30 @@ public class Game {
                 Survivor survivorInCell = iterator.next();
                 if (survivorInCell.getHealthPoints() < 3) {
                     // heal survivor
+                    System.out.println(
+                            survivor.getName() + " heals " + survivorInCell.getName() + " with health potion.");
                     actionPoints--;
-                    // break
+                    break;
                 }
             }
         }
 
-        // if no zombie
+        // if no zombie, if room
         if (zombiesInCell.isEmpty() && actionPoints > 0) {
             // move/open door or search room
+            if (cell instanceof RoomCell) {
+                // search
+                System.out.println(survivor.getName() + " searches the room");
+            } else {
+                // move
+                System.out.println(survivor.getName() + " moves.");
+            }
             actionPoints--;
         }
 
         // if ap left
         if (actionPoints > 0) {
+            System.out.println(survivor.getName() + " makes noise");
             makeNoise(cell);
             actionPoints--;
         }
@@ -268,74 +274,28 @@ public class Game {
         System.out.println("There are " + cell.getZombies().size() + " zombies in this cell.");
     }
 
-    private void printItemList(List<Item> items) {
-        Iterator<Item> iterator = items.iterator();
-        for (int i = 0; iterator.hasNext(); i++) {
-            Item item = iterator.next();
-            System.out.println(i + ". " + item.getName());
-        }
-        System.out.println("");
-    }
-
-    private void printSurvivorList(List<Survivor> survivors) {
-        Iterator<Survivor> iterator = survivors.iterator();
-        for (int i = 0; iterator.hasNext(); i++) {
-            Survivor survivor = iterator.next();
-            System.out.println(i + ". " + survivor.getName());
-        }
-        System.out.println("");
-    }
-
     public void searchRoom(Survivor survivor, RoomCell room) {
         List<Item> roomItems = room.getItems();
 
         if (roomItems.isEmpty()) {
             System.out.println("There is no item in this room.");
         } else {
-            System.out.println("You found:");
-            printItemList(roomItems);
+            List<Item> survivorBackpack = survivor.getBackpack();
 
-            int yesNo = this.input.readYesNo("Do you want to pick up an item ?\n");
+            if (survivorBackpack.size() < 5) {
+                Item item = roomItems.get(0);
+                room.removeItem(item);
+                survivor.addItemToBackpack(item);
+                System.out.println(item.getName() + " has been added to your backpack.");
+            } else {
+                Item itemToThrow = survivorBackpack.get(0);
+                Item itemToPickUp = roomItems.get(0);
 
-            if (yesNo == 1) {
-                List<Item> survivorBackpack = survivor.getBackpack();
-
-                if (survivorBackpack.size() < 5) {
-                    int itemIndex = this.input.readIntPrompt("What item do you want to pick up ?\n", 0,
-                            roomItems.size() - 1);
-
-                    if (itemIndex != -1) {
-                        Item item = roomItems.get(itemIndex);
-                        room.removeItem(item);
-                        survivor.addItemToBackpack(item);
-                        System.out.println(item.getName() + " has been added to your backpack.");
-                    }
-                } else {
-                    int yesNoSwitch = this.input.readYesNo(
-                            "Your backpack is full. Do you want to switch one of your items for another one ?\n");
-
-                    if (yesNoSwitch == 1) {
-                        System.out.println("Here are the items in your backpack:");
-                        printItemList(survivorBackpack);
-
-                        int itemToThrowIndex = this.input.readIntPrompt("What item do you want to throw away ?\n", 0,
-                                survivorBackpack.size() - 1);
-                        Item itemToThrow = survivorBackpack.get(itemToThrowIndex);
-
-                        System.out.println("Here are the items in this room:");
-                        printItemList(roomItems);
-
-                        int itemToPickUpIndex = this.input.readIntPrompt("What item do you want to pick up ?\n", 0,
-                                roomItems.size() - 1);
-                        Item itemToPickUp = roomItems.get(itemToPickUpIndex);
-
-                        survivor.removeItemFromBackpack(itemToThrow);
-                        room.addItem(itemToThrow);
-                        room.removeItem(itemToPickUp);
-                        survivor.addItemToBackpack(itemToPickUp);
-                        System.out.println(itemToPickUp.getName() + " has been added to your backpack.");
-                    }
-                }
+                survivor.removeItemFromBackpack(itemToThrow);
+                room.addItem(itemToThrow);
+                room.removeItem(itemToPickUp);
+                survivor.addItemToBackpack(itemToPickUp);
+                System.out.println(itemToPickUp.getName() + " has been added to your backpack.");
             }
         }
     }
@@ -346,50 +306,36 @@ public class Game {
         if (itemInHand == null) {
             survivor.removeItemFromBackpack(itemToPutInHand);
             survivor.putItemInHand(itemToPutInHand);
-            System.out.println("You now have " + itemToPutInHand.getName() + " in your hand.");
+            System.out.println(survivor.getName() + " puts " + itemToPutInHand.getName() + " in his hand.");
         } else {
             survivor.putItemInHand(itemToPutInHand);
             survivor.removeItemFromBackpack(itemToPutInHand);
             survivor.addItemToBackpack(itemInHand);
-            System.out.println("You now have " + itemToPutInHand.getName() + " in your hand.");
+            System.out.println(survivor.getName() + " puts " + itemToPutInHand.getName() + " in his hand and puts "
+                    + itemInHand.getName() + " in his backpack.");
         }
     }
 
     public void useToolInHand(Survivor survivor, Cell cell) {
         Item itemInHand = survivor.getItemInHand();
 
-        if (itemInHand == null) {
-            System.out.println("You have nothing in your hand.");
-        } else if (itemInHand instanceof Weapon) {
-            System.out.println("You have no tool in your hand.");
-        } else {
-            if (itemInHand instanceof HealthPotion) {
-                survivor.increaseHealthPoints(1);
-                survivor.putItemInHand(null);
-            } else if (itemInHand instanceof MedKit) {
-                List<Survivor> survivors = cell.getSurvivors();
-                survivors.remove(survivor);
+        if (itemInHand instanceof HealthPotion) {
+            survivor.increaseHealthPoints(1);
+            survivor.putItemInHand(null);
+        } else if (itemInHand instanceof MedKit) {
+            List<Survivor> survivors = cell.getSurvivors();
+            survivors.remove(survivor);
 
-                if (survivors.isEmpty()) {
-                    System.out.println("You are the only survivor in this cell.");
-                } else {
-                    System.out.println("Here are the survivors in this cell:");
-                    printSurvivorList(survivors);
-
-                    int survivorToHealIndex = this.input.readIntPrompt("Who do you want to heal ?\n", 0,
-                            survivors.size() - 1);
-                    Survivor survivorToHeal = survivors.get(survivorToHealIndex);
-                    survivorToHeal.increaseHealthPoints(1);
-                    System.out.println("You have healed 1 hp to " + survivorToHeal.getName() + ".");
-                }
-                survivor.putItemInHand(null);
-            } else if (itemInHand instanceof HandheldMap) {
-                this.map.showMap();
-                survivor.putItemInHand(null);
-            } else if (itemInHand instanceof InfraredGlasses) {
-                int[] coordinates = survivor.getCoordinates();
-                infraredGlasses(coordinates[0], coordinates[1]);
-            }
+            Survivor survivorToHeal = survivors.get(0);
+            survivorToHeal.increaseHealthPoints(1);
+            System.out.println("You have healed 1 hp to " + survivorToHeal.getName() + ".");
+            survivor.putItemInHand(null);
+        } else if (itemInHand instanceof HandheldMap) {
+            this.map.showMap();
+            survivor.putItemInHand(null);
+        } else if (itemInHand instanceof InfraredGlasses) {
+            int[] coordinates = survivor.getCoordinates();
+            infraredGlasses(coordinates[0], coordinates[1]);
         }
     }
 
