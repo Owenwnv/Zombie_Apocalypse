@@ -19,5 +19,21 @@ public class Healer extends Survivor {
      */
     public void heal(Survivor survivor) {
         survivor.increaseHealthPoints(1);
+        System.out.println(this.name + " heals " + survivor.getName() + ".");
     }
+
+    @Override
+    public int healSelf(int actionPoints) {
+        heal(this);
+        actionPoints--;
+        return actionPoints;
+    }
+
+    @Override
+    public int healSurvivor(Survivor survivor, int actionPoints) {
+        heal(survivor);
+        actionPoints--;
+        return actionPoints;
+    }
+
 }

@@ -1,13 +1,17 @@
 package zombieapocalypse.actor.survivor;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import java.util.Random;
 
 import zombieapocalypse.actor.Actor;
 import zombieapocalypse.actor.zombie.Zombie;
+import zombieapocalypse.cell.Cell;
 import zombieapocalypse.item.Item;
+import zombieapocalypse.item.tool.HealthPotion;
+import zombieapocalypse.item.tool.MedKit;
 import zombieapocalypse.item.weapon.Axe;
 import zombieapocalypse.item.weapon.Chainsaw;
 import zombieapocalypse.item.weapon.Crowbar;
@@ -132,8 +136,76 @@ public class Survivor extends Actor {
      * 
      * @param item The item to be put in hand
      */
-    public void putItemInHand(Item item) {
-        this.inHand = item;
+    public void putItemInHand(Item itemToPutInHand) {
+        Item itemInHand = this.inHand;
+
+        if (itemToPutInHand == null) {
+            this.inHand = null;
+        } else if (itemInHand == null) {
+            removeItemFromBackpack(itemToPutInHand);
+            this.inHand = itemToPutInHand;
+            System.out.println(this.name + " puts " + itemToPutInHand.getName() + " in his hand.");
+        } else {
+            this.inHand = itemToPutInHand;
+            removeItemFromBackpack(itemToPutInHand);
+            addItemToBackpack(itemInHand);
+            System.out.println(this.name + " puts " + itemToPutInHand.getName() + " in his hand and puts "
+                    + itemInHand.getName() + " in his backpack.");
+        }
+    }
+
+    public int healSelf(int actionPoints) {
+        Item item = this.inHand;
+        List<Item> backpack = this.backpack;
+
+        if (item != null && item instanceof HealthPotion) {
+            HealthPotion healthPotion = (HealthPotion) item;
+            healthPotion.heal(this);
+            actionPoints--;
+        } else if (!backpack.isEmpty() && actionPoints > 1) {
+            Iterator<Item> iterator = backpack.iterator();
+
+            while (iterator.hasNext()) {
+                Item itemInBackpack = iterator.next();
+                if (itemInBackpack instanceof HealthPotion) {
+                    HealthPotion healthPotion = (HealthPotion) item;
+                    putItemInHand(itemInBackpack);
+                    healthPotion.heal(this);
+                    actionPoints -= 2;
+                    break;
+                }
+            }
+        }
+        return actionPoints;
+    }
+
+    public int healSurvivor(Survivor survivorToHeal, int actionPoints) {
+        Item item = this.inHand;
+        List<Item> backpack = this.backpack;
+
+        if (item != null && item instanceof MedKit) {
+            MedKit medkit = (MedKit) item;
+            medkit.heal(this, survivorToHeal);
+        } else if (!backpack.isEmpty() && actionPoints > 1) {
+            Iterator<Item> backpackIterator = backpack.iterator();
+
+            while (backpackIterator.hasNext()) {
+                Item itemInBackpack = backpackIterator.next();
+                if (itemInBackpack instanceof MedKit) {
+                    MedKit medkit = (MedKit) item;
+                    putItemInHand(itemInBackpack);
+                    medkit.heal(this, survivorToHeal);
+                    actionPoints -= 2;
+                    break;
+                }
+            }
+        }
+        return actionPoints;
+    }
+
+    public void makeNoise(Cell cell) {
+        cell.increaseNoiseLevel();
+        System.out.println(this.name + " makes noise.");
     }
 
     /**

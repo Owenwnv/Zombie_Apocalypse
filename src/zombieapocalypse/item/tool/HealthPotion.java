@@ -10,7 +10,7 @@ public class HealthPotion extends Tool {
      * Constructs a HealthPotion with the specified name and an empty description.
      */
     public HealthPotion() {
-        super("Health potion", "The heal potion allows a survivor to heal himself 1 health points.");
+        super("Health potion", "The heal potion allows a survivor to heal himself 1 health point.");
     }
 
     public void heal(Survivor survivor) {

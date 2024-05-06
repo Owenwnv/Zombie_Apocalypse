@@ -8,6 +8,6 @@ public class InfraredGlasses extends Tool {
      * Constructs InfraredGlasses with the specified name and an empty description.
      */
     public InfraredGlasses() {
-        super("InfraredGlasses", "");
+        super("InfraredGlasses", "The infrared glasses allows a survivor to see through doors.");
     }
 }

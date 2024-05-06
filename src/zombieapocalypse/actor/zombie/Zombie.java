@@ -34,5 +34,6 @@ public class Zombie extends Actor {
 
     public void attackSurvivor(Survivor survivor) {
         survivor.decreaseHealthPoints(damage);
+        System.out.println(this.name + " deals " + this.damage + " damages to " + survivor.getName() + ".");
     }
 }

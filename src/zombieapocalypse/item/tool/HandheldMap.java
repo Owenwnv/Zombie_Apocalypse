@@ -8,6 +8,6 @@ public class HandheldMap extends Tool {
      * Constructs a HandheldMap with the specified name and an empty description.
      */
     public HandheldMap() {
-        super("Handheld map", "");
+        super("Handheld map", "The handheld map allows a survivor to show the map of the game.");
     }
 }

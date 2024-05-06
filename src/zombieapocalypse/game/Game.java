@@ -173,9 +173,7 @@ public class Game {
         } else {
             List<Survivor> survivors = cell.getSurvivors();
             Survivor survivor = survivors.get(rand.nextInt(survivors.size()));
-            survivor.decreaseHealthPoints(zombie.getDamage());
-            System.out.println(
-                    zombie.getName() + " deals " + zombie.getDamage() + " damages to " + survivor.getName() + ".");
+            zombie.attackSurvivor(survivor);
         }
     }
 
@@ -202,34 +200,7 @@ public class Game {
 
         // if low hp
         if (survivor.getHealthPoints() < 3) {
-            if (survivor instanceof Healer) {
-                Healer healer = (Healer) survivor;
-
-                System.out.println(survivor.getName() + " heals himself.");
-                healer.heal(healer);
-                actionPoints--;
-            } else {
-                Item item = survivor.getItemInHand();
-                List<Item> backpack = survivor.getBackpack();
-
-                if (item != null && item instanceof HealthPotion) {
-                    System.out.println(survivor.getName() + " heals himself with health potion.");
-                    useToolInHand(survivor, cell);
-                } else if (!backpack.isEmpty() && actionPoints > 1) {
-                    Iterator<Item> iterator = backpack.iterator();
-
-                    while (iterator.hasNext()) {
-                        Item itemInBackpack = iterator.next();
-                        if (itemInBackpack instanceof HealthPotion) {
-                            putItemInHand(survivor, itemInBackpack);
-                            System.out.println(survivor.getName() + " heals himself with health potion.");
-                            useToolInHand(survivor, cell);
-                            actionPoints -= 2;
-                            break;
-                        }
-                    }
-                }
-            }
+            actionPoints = survivor.healSelf(actionPoints);
         }
 
         // if survivor in cell and survivor low hp
@@ -239,36 +210,7 @@ public class Game {
             while (iterator.hasNext()) {
                 Survivor survivorInCell = iterator.next();
                 if (survivorInCell.getHealthPoints() < 3) {
-                    if (survivor instanceof Healer) {
-                        Healer healer = (Healer) survivor;
-
-                        System.out.println(survivor.getName() + " heals " + survivorInCell.getName() + ".");
-                        healer.heal(survivorInCell);
-                        actionPoints--;
-                    } else {
-                        Item item = survivor.getItemInHand();
-                        List<Item> backpack = survivor.getBackpack();
-
-                        if (item != null && item instanceof MedKit) {
-                            System.out.println(
-                                    survivor.getName() + " heals " + survivorInCell.getName() + " with medkit.");
-                            useToolInHand(survivor);
-                        } else if (!backpack.isEmpty() && actionPoints > 1) {
-                            Iterator<Item> backpackIterator = backpack.iterator();
-
-                            while (backpackIterator.hasNext()) {
-                                Item itemInBackpack = backpackIterator.next();
-                                if (itemInBackpack instanceof MedKit) {
-                                    putItemInHand(survivor, itemInBackpack);
-                                    System.out.println(survivor.getName() + " heals himself with health potion.");
-                                    useToolInHand(survivor);
-                                    actionPoints -= 2;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    actionPoints--;
+                    actionPoints = survivor.healSurvivor(survivorInCell, actionPoints);
                     break;
                 }
             }
@@ -289,8 +231,7 @@ public class Game {
 
         // if ap left
         if (actionPoints > 0) {
-            System.out.println(survivor.getName() + " makes noise");
-            makeNoise(cell);
+            survivor.makeNoise(cell);
             actionPoints--;
         }
     }
@@ -341,38 +282,16 @@ public class Game {
         }
     }
 
-    public void putItemInHand(Survivor survivor, Item itemToPutInHand) {
-        Item itemInHand = survivor.getItemInHand();
-
-        if (itemInHand == null) {
-            survivor.removeItemFromBackpack(itemToPutInHand);
-            survivor.putItemInHand(itemToPutInHand);
-            System.out.println(survivor.getName() + " puts " + itemToPutInHand.getName() + " in his hand.");
-        } else {
-            survivor.putItemInHand(itemToPutInHand);
-            survivor.removeItemFromBackpack(itemToPutInHand);
-            survivor.addItemToBackpack(itemInHand);
-            System.out.println(survivor.getName() + " puts " + itemToPutInHand.getName() + " in his hand and puts "
-                    + itemInHand.getName() + " in his backpack.");
-        }
-    }
-
     public void useToolInHand(Survivor survivor) {
         Item itemInHand = survivor.getItemInHand();
 
-        if (itemInHand instanceof HealthPotion) {
-            survivor.increaseHealthPoints(1);
-            survivor.putItemInHand(null);
-        } else if (itemInHand instanceof MedKit) {
-            Survivor survivorToHeal = survivors.get(0);
-            survivorToHeal.increaseHealthPoints(1);
-            System.out.println("You have healed 1 hp to " + survivorToHeal.getName() + ".");
-            survivor.putItemInHand(null);
-        } else if (itemInHand instanceof HandheldMap) {
+        if (itemInHand instanceof HandheldMap) {
+            System.out.println(survivor.getName() + " uses handheld map.");
             this.map.showMap();
             survivor.putItemInHand(null);
         } else if (itemInHand instanceof InfraredGlasses) {
             int[] coordinates = survivor.getCoordinates();
+            System.out.println(survivor.getName() + " uses infrared glasses.");
             infraredGlasses(coordinates[0], coordinates[1]);
         }
     }
@@ -388,10 +307,6 @@ public class Game {
                 System.out.println("There is no cell " + getDirectionString(direction) + ".");
             }
         }
-    }
-
-    public void makeNoise(Cell cell) {
-        cell.increaseNoiseLevel();
     }
 
     public int getGlobalExperiencePoints() {
