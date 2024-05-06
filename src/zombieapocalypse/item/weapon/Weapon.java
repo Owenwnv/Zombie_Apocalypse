@@ -27,6 +27,11 @@ public class Weapon extends Item {
     protected int range;
 
     /**
+     * is the item noisy or not
+     */
+    protected boolean noisy;
+
+    /**
      * Constructs a Weapon with the specified attributes.
      * 
      * @param name        The name of the weapon
@@ -36,11 +41,17 @@ public class Weapon extends Item {
      * @param damage      The damage inflicted by the weapon
      * @param range       The range of the weapon
      */
-    public Weapon(String name, String description, int nbDiceRoll, int threshold, int damage, int range) {
+    public Weapon(String name, String description, int nbDiceRoll, int threshold, int damage, int range,
+            boolean noisy) {
         super(name, description);
         this.nbDiceRoll = nbDiceRoll;
         this.threshold = threshold;
         this.damage = damage;
         this.range = range;
+        this.noisy = noisy;
+    }
+
+    public boolean getNoisy() {
+        return this.noisy;
     }
 }

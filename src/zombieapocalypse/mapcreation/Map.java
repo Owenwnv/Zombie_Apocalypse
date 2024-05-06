@@ -266,6 +266,12 @@ public class Map {
         return new int[] { i, j };
     }
 
+    public static double distanceBetweenPoints(int x1, int y1, int x2, int y2) {
+        int deltaX = x2 - x1;
+        int deltaY = y2 - y1;
+        return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    }
+
     /**
      * resets noiseLevel for every Cell in the map
      */

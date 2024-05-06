@@ -8,6 +8,6 @@ public class Gun extends Weapon {
      * Constructs a Gun with the specified attributes.
      */
     public Gun() {
-        super("Gun", "", 1, 2, 1, 1);
+        super("Gun", "", 1, 2, 1, 1, true);
     }
 }

@@ -92,16 +92,24 @@ public class Game {
         zombie.setCoordinates(i, j);
     }
 
-    public String getDirectionString(int direction) {
-        if (direction == 0) {
-            return "on top of you";
-        } else if (direction == 1) {
-            return "to your right";
-        } else if (direction == 2) {
-            return "under you";
-        } else {
-            return "to your left";
-        }
+    public void moveZombie(Zombie zombie, int[] coordinates, int direction) {
+        int[] newCoordinates = this.map.getCoordinatesFromDirection(coordinates[0], coordinates[1], direction);
+        Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
+
+        cell.removeZombie(zombie);
+        cell = this.map.getCell(newCoordinates[0], newCoordinates[1]);
+        cell.addZombie(zombie);
+        zombie.setCoordinates(newCoordinates[0], newCoordinates[1]);
+    }
+
+    public void moveSurvivor(Survivor survivor, int[] coordinates, int direction) {
+        int[] newCoordinates = this.map.getCoordinatesFromDirection(coordinates[0], coordinates[1], direction);
+        Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
+
+        cell.removeSurvivor(survivor);
+        cell = this.map.getCell(newCoordinates[0], newCoordinates[1]);
+        cell.addSurvivor(survivor);
+        survivor.setCoordinates(newCoordinates[0], newCoordinates[1]);
     }
 
     public boolean canMove(int i, int j, int direction, boolean lookAround) {
@@ -134,26 +142,6 @@ public class Game {
                 return false;
             }
         }
-    }
-
-    public void moveZombie(Zombie zombie, int[] coordinates, int direction) {
-        int[] newCoordinates = this.map.getCoordinatesFromDirection(coordinates[0], coordinates[1], direction);
-        Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
-
-        cell.removeZombie(zombie);
-        cell = this.map.getCell(newCoordinates[0], newCoordinates[1]);
-        cell.addZombie(zombie);
-        zombie.setCoordinates(newCoordinates[0], newCoordinates[1]);
-    }
-
-    public void moveSurvivor(Survivor survivor, int[] coordinates, int direction) {
-        int[] newCoordinates = this.map.getCoordinatesFromDirection(coordinates[0], coordinates[1], direction);
-        Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
-
-        cell.removeSurvivor(survivor);
-        cell = this.map.getCell(newCoordinates[0], newCoordinates[1]);
-        cell.addSurvivor(survivor);
-        survivor.setCoordinates(newCoordinates[0], newCoordinates[1]);
     }
 
     public void zombieTurn(Zombie zombie) {
@@ -189,7 +177,8 @@ public class Game {
         List<Survivor> survivorsInCell = cell.getSurvivors();
         List<Zombie> zombiesInCell = cell.getZombies();
 
-        // survivorsInCell.remove(survivor);
+        List<Survivor> survivorsInCellCopy = new ArrayList<>(survivorsInCell);
+        survivorsInCellCopy.remove(survivor);
 
         // if zombie in cell
         if (!zombiesInCell.isEmpty()) {
@@ -205,7 +194,7 @@ public class Game {
 
         // if survivor in cell and survivor low hp
         if (!survivorsInCell.isEmpty()) {
-            Iterator<Survivor> iterator = survivorsInCell.iterator();
+            Iterator<Survivor> iterator = survivorsInCellCopy.iterator();
 
             while (iterator.hasNext()) {
                 Survivor survivorInCell = iterator.next();
@@ -218,8 +207,10 @@ public class Game {
 
         // if no zombie, if room
         if (zombiesInCell.isEmpty() && actionPoints > 0) {
+            Random rand = new Random();
+            int decision = rand.nextInt(2);
             // move/open door or search room
-            if (cell instanceof RoomCell) {
+            if (cell instanceof RoomCell && decision == 0) {
                 // search
                 System.out.println(survivor.getName() + " searches the room");
             } else {
@@ -282,12 +273,13 @@ public class Game {
         }
     }
 
-    public void useToolInHand(Survivor survivor) {
+    public void useToolInHand(Survivor survivor, Cell cell) {
         Item itemInHand = survivor.getItemInHand();
 
         if (itemInHand instanceof HandheldMap) {
             System.out.println(survivor.getName() + " uses handheld map.");
             this.map.showMap();
+            cell.increaseNoiseLevel();
             survivor.putItemInHand(null);
         } else if (itemInHand instanceof InfraredGlasses) {
             int[] coordinates = survivor.getCoordinates();
@@ -326,6 +318,18 @@ public class Game {
 
     public int getZombieSpawnRate() {
         return (int) Math.ceil((double) (getGlobalExperiencePoints() / this.survivors.size()) / 3);
+    }
+
+    public String getDirectionString(int direction) {
+        if (direction == 0) {
+            return "on top of you";
+        } else if (direction == 1) {
+            return "to your right";
+        } else if (direction == 2) {
+            return "under you";
+        } else {
+            return "to your left";
+        }
     }
 
     public Zombie createZombie(int zombieID) {

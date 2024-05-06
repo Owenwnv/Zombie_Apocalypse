@@ -10,4 +10,11 @@ public class Abomination extends Zombie {
     public Abomination(int zombieID) {
         super(3, 6, "Abomination#" + zombieID);
     }
+
+    @Override
+    public void decreaseHealthPoints(int nbHP) {
+        if (nbHP > 1) {
+            this.healthPoints = healthPoints - nbHP;
+        }
+    }
 }

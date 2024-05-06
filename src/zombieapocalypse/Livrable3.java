@@ -15,12 +15,9 @@ public class Livrable3 {
             height = Integer.parseInt(args[1]);
         }
 
-        // Génére la ville d'entraînement
         MapGenerator mapg = new MapGenerator(width, height);
         Map map = mapg.generateMap();
         Game game = new Game(map, 1);
-        game.spawnSurvivor(new Fighter("null"), 2, 2);
-        game.getMap().showMap();
 
         game.gameLoop(1);
     }
