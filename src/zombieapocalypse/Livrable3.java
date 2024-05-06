@@ -1,7 +1,6 @@
 package zombieapocalypse;
 
 import zombieapocalypse.mapcreation.MapGenerator;
-import zombieapocalypse.actor.survivor.Fighter;
 import zombieapocalypse.game.Game;
 import zombieapocalypse.mapcreation.Map;
 

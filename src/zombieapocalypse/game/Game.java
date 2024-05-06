@@ -185,6 +185,9 @@ public class Game {
             // attack zombie
             System.out.println(survivor.getName() + " attacks zombie.");
             actionPoints--;
+        } else {
+            survivor.makeNoise(cell);
+            actionPoints--;
         }
 
         // if low hp
@@ -211,18 +214,20 @@ public class Game {
             int decision = rand.nextInt(2);
             // move/open door or search room
             if (cell instanceof RoomCell && decision == 0) {
-                // search
-                System.out.println(survivor.getName() + " searches the room");
+                RoomCell room = (RoomCell) cell;
+                System.out.println(survivor.getName() + " searches the room.");
+                survivor.searchRoom(room);
             } else {
-                // move
+                int direction = rand.nextInt(4);
+                while (true) {
+                    if (canMove(coordinates[0], coordinates[1], direction, false)) {
+                        moveSurvivor(survivor, coordinates, direction);
+                        break;
+                    }
+                    direction = rand.nextInt(4);
+                }
                 System.out.println(survivor.getName() + " moves.");
             }
-            actionPoints--;
-        }
-
-        // if ap left
-        if (actionPoints > 0) {
-            survivor.makeNoise(cell);
             actionPoints--;
         }
     }
@@ -245,32 +250,6 @@ public class Game {
 
         System.out.println("There are " + cell.getSurvivors().size() + " survivors in this cell including you.");
         System.out.println("There are " + cell.getZombies().size() + " zombies in this cell.");
-    }
-
-    public void searchRoom(Survivor survivor, RoomCell room) {
-        List<Item> roomItems = room.getItems();
-
-        if (roomItems.isEmpty()) {
-            System.out.println("There is no item in this room.");
-        } else {
-            List<Item> survivorBackpack = survivor.getBackpack();
-
-            if (survivorBackpack.size() < 5) {
-                Item item = roomItems.get(0);
-                room.removeItem(item);
-                survivor.addItemToBackpack(item);
-                System.out.println(item.getName() + " has been added to your backpack.");
-            } else {
-                Item itemToThrow = survivorBackpack.get(0);
-                Item itemToPickUp = roomItems.get(0);
-
-                survivor.removeItemFromBackpack(itemToThrow);
-                room.addItem(itemToThrow);
-                room.removeItem(itemToPickUp);
-                survivor.addItemToBackpack(itemToPickUp);
-                System.out.println(itemToPickUp.getName() + " has been added to your backpack.");
-            }
-        }
     }
 
     public void useToolInHand(Survivor survivor, Cell cell) {
@@ -349,15 +328,16 @@ public class Game {
     public Survivor createSurvivor(int survivorID) {
         int id = zombieID % 4;
         String name = "Player#" + survivorID;
+        Gun gun = new Gun();
 
         if (id == 0) {
-            return new Fighter(name);
+            return new Fighter(name, gun);
         } else if (id == 1) {
-            return new Healer(name);
+            return new Healer(name, gun);
         } else if (id == 2) {
-            return new Lucky(name);
+            return new Lucky(name, gun);
         } else {
-            return new Searcher(name);
+            return new Searcher(name, gun);
         }
     }
 
@@ -366,7 +346,6 @@ public class Game {
 
         for (int i = 0; i < numberOfSurvivors; i++) {
             Survivor survivor = createSurvivor(i);
-            survivor.putItemInHand(new Gun());
             spawnSurvivor(survivor, coordinates[0], coordinates[1]);
         }
     }

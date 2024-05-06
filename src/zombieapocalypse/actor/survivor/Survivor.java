@@ -9,6 +9,7 @@ import java.util.Random;
 import zombieapocalypse.actor.Actor;
 import zombieapocalypse.actor.zombie.Zombie;
 import zombieapocalypse.cell.Cell;
+import zombieapocalypse.cell.RoomCell;
 import zombieapocalypse.item.Item;
 import zombieapocalypse.item.tool.HealthPotion;
 import zombieapocalypse.item.tool.MedKit;
@@ -54,11 +55,11 @@ public class Survivor extends Actor {
      * experience points, and an empty
      * backpack.
      */
-    public Survivor(String name) {
+    public Survivor(String name, Item inHand) {
         super(5, name);
         this.level = 1;
         this.backpack = new ArrayList<>();
-        this.inHand = null;
+        this.inHand = inHand;
         this.actionPoints = 3;
         this.experiencePoints = 0;
     }
@@ -201,6 +202,35 @@ public class Survivor extends Actor {
             }
         }
         return actionPoints;
+    }
+
+    public void searchRoom(RoomCell room) {
+        List<Item> roomItems = room.getItems();
+
+        if (roomItems.isEmpty()) {
+            System.out.println("There is no item in this room.");
+        } else {
+            List<Item> survivorBackpack = this.backpack;
+
+            if (survivorBackpack.size() < 5) {
+                while (survivorBackpack.size() < 5 && !roomItems.isEmpty()) {
+                    Item item = roomItems.get(0);
+                    room.removeItem(item);
+                    addItemToBackpack(item);
+                    System.out.println(this.name + " picks up " + item.getName() + ".");
+                }
+            } else {
+                Item itemToThrow = survivorBackpack.get(0);
+                Item itemToPickUp = roomItems.get(0);
+
+                removeItemFromBackpack(itemToThrow);
+                room.addItem(itemToThrow);
+                room.removeItem(itemToPickUp);
+                addItemToBackpack(itemToPickUp);
+                System.out.println(this.name + " picks up " + itemToPickUp.getName() + " and throws away "
+                        + itemToThrow.getName() + ".");
+            }
+        }
     }
 
     public void makeNoise(Cell cell) {

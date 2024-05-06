@@ -1,5 +1,7 @@
 package zombieapocalypse.actor.survivor;
 
+import zombieapocalypse.item.Item;
+
 /**
  * Represents a healer survivor, a specialized type of Survivor, in the game.
  */
@@ -8,8 +10,8 @@ public class Healer extends Survivor {
      * Constructs a Healer survivor with default health points, level, and an empty
      * backpack.
      */
-    public Healer(String name) {
-        super(name);
+    public Healer(String name, Item inHand) {
+        super(name, inHand);
     }
 
     /**
