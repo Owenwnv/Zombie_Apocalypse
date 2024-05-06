@@ -5,7 +5,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import zombieapocalypse.actor.survivor.Fighter;
 import zombieapocalypse.actor.survivor.Healer;
+import zombieapocalypse.actor.survivor.Lucky;
+import zombieapocalypse.actor.survivor.Searcher;
 import zombieapocalypse.actor.survivor.Survivor;
 import zombieapocalypse.actor.zombie.Abomination;
 import zombieapocalypse.actor.zombie.Bigboy;
@@ -394,6 +397,30 @@ public class Game {
             return new Runner(zombieID);
         } else {
             return new Walker(zombieID);
+        }
+    }
+
+    public Survivor createSurvivor(int survivorID) {
+        int id = zombieID % 4;
+        String name = "Player#" + survivorID;
+
+        if (id == 0) {
+            return new Fighter(name);
+        } else if (id == 1) {
+            return new Healer(name);
+        } else if (id == 2) {
+            return new Lucky(name);
+        } else {
+            return new Searcher(name);
+        }
+    }
+
+    public void spawnSurvivors(int numberOfSurvivors) {
+        int[] coordinates = this.map.getMainroads();
+
+        for (int i = 0; i < numberOfSurvivors; i++) {
+            Survivor survivor = createSurvivor(i);
+            spawnSurvivor(survivor, coordinates[0], coordinates[1]);
         }
     }
 
