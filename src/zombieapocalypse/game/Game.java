@@ -191,7 +191,7 @@ public class Game {
         List<Survivor> survivorsInCell = cell.getSurvivors();
         List<Zombie> zombiesInCell = cell.getZombies();
 
-        survivorsInCell.remove(survivor);
+        // survivorsInCell.remove(survivor);
 
         // if zombie in cell
         if (!zombiesInCell.isEmpty()) {
