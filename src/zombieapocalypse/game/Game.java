@@ -29,6 +29,7 @@ import zombieapocalypse.item.tool.HandheldMap;
 import zombieapocalypse.item.tool.HealthPotion;
 import zombieapocalypse.item.tool.InfraredGlasses;
 import zombieapocalypse.item.tool.MedKit;
+import zombieapocalypse.item.weapon.Gun;
 import zombieapocalypse.item.weapon.Weapon;
 
 /**
@@ -57,10 +58,12 @@ public class Game {
      * 
      * @param map The map of the game
      */
-    public Game(Map map) {
+    public Game(Map map, int NbOfSurvivors) {
         this.map = map;
         this.survivors = new ArrayList<>();
         this.zombies = new ArrayList<>();
+        spawnSurvivors(NbOfSurvivors);
+        spawnInitialZombies();
     }
 
     /**
@@ -162,6 +165,7 @@ public class Game {
             while (true) {
                 if (canMove(coordinates[0], coordinates[1], direction, false)) {
                     moveZombie(zombie, coordinates, direction);
+                    System.out.println(zombie.getName() + " moves.");
                     break;
                 }
                 direction = rand.nextInt(4);
@@ -420,6 +424,7 @@ public class Game {
 
         for (int i = 0; i < numberOfSurvivors; i++) {
             Survivor survivor = createSurvivor(i);
+            survivor.putItemInHand(new Gun());
             spawnSurvivor(survivor, coordinates[0], coordinates[1]);
         }
     }
@@ -437,6 +442,32 @@ public class Game {
                 this.zombieID += 1;
                 spawnRate -= 1;
             }
+        }
+    }
+
+    public void gameLoop(int iteration) {
+        for (int i = 0; i < iteration; i++) {
+            System.out.println("********** Round " + i + " **********");
+            System.out.println("");
+            Iterator<Survivor> iterator = this.survivors.iterator();
+
+            while (iterator.hasNext()) {
+                Survivor survivor = iterator.next();
+                System.out.println("Turn of " + survivor.getName() + ":");
+                survivorTurn(survivor);
+                System.out.println("");
+            }
+            System.out.println("");
+
+            Iterator<Zombie> iterator2 = this.zombies.iterator();
+
+            while (iterator2.hasNext()) {
+                Zombie zombie = iterator2.next();
+                zombieTurn(zombie);
+            }
+            System.out.println("");
+
+            this.map.showMap();
         }
     }
 

@@ -1,7 +1,7 @@
 package zombieapocalypse;
 
 import zombieapocalypse.mapcreation.MapGenerator;
-import zombieapocalypse.actor.survivor.*;
+import zombieapocalypse.actor.survivor.Fighter;
 import zombieapocalypse.game.Game;
 import zombieapocalypse.mapcreation.Map;
 
@@ -18,15 +18,10 @@ public class Livrable3 {
         // Génére la ville d'entraînement
         MapGenerator mapg = new MapGenerator(width, height);
         Map map = mapg.generateMap();
-        Game game = new Game(map);
-
-        Survivor fighter = new Fighter("Pierre");
-
-        game.spawnInitialZombies();
-        game.spawnSurvivor(fighter, 3, 2);
-
+        Game game = new Game(map, 1);
+        game.spawnSurvivor(new Fighter("null"), 2, 2);
         game.getMap().showMap();
 
-        game.survivorTurn(fighter);
+        game.gameLoop(1);
     }
 }
