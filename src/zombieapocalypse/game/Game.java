@@ -239,9 +239,35 @@ public class Game {
             while (iterator.hasNext()) {
                 Survivor survivorInCell = iterator.next();
                 if (survivorInCell.getHealthPoints() < 3) {
-                    // heal survivor
-                    System.out.println(
-                            survivor.getName() + " heals " + survivorInCell.getName() + " with health potion.");
+                    if (survivor instanceof Healer) {
+                        Healer healer = (Healer) survivor;
+
+                        System.out.println(survivor.getName() + " heals " + survivorInCell.getName() + ".");
+                        healer.heal(survivorInCell);
+                        actionPoints--;
+                    } else {
+                        Item item = survivor.getItemInHand();
+                        List<Item> backpack = survivor.getBackpack();
+
+                        if (item != null && item instanceof MedKit) {
+                            System.out.println(
+                                    survivor.getName() + " heals " + survivorInCell.getName() + " with medkit.");
+                            useToolInHand(survivor);
+                        } else if (!backpack.isEmpty() && actionPoints > 1) {
+                            Iterator<Item> backpackIterator = backpack.iterator();
+
+                            while (backpackIterator.hasNext()) {
+                                Item itemInBackpack = backpackIterator.next();
+                                if (itemInBackpack instanceof MedKit) {
+                                    putItemInHand(survivor, itemInBackpack);
+                                    System.out.println(survivor.getName() + " heals himself with health potion.");
+                                    useToolInHand(survivor);
+                                    actionPoints -= 2;
+                                    break;
+                                }
+                            }
+                        }
+                    }
                     actionPoints--;
                     break;
                 }
@@ -331,16 +357,13 @@ public class Game {
         }
     }
 
-    public void useToolInHand(Survivor survivor, Cell cell) {
+    public void useToolInHand(Survivor survivor) {
         Item itemInHand = survivor.getItemInHand();
 
         if (itemInHand instanceof HealthPotion) {
             survivor.increaseHealthPoints(1);
             survivor.putItemInHand(null);
         } else if (itemInHand instanceof MedKit) {
-            List<Survivor> survivors = cell.getSurvivors();
-            survivors.remove(survivor);
-
             Survivor survivorToHeal = survivors.get(0);
             survivorToHeal.increaseHealthPoints(1);
             System.out.println("You have healed 1 hp to " + survivorToHeal.getName() + ".");
@@ -468,6 +491,7 @@ public class Game {
             System.out.println("");
 
             this.map.showMap();
+            this.map.resetMapNoiseLevel();
         }
     }
 
