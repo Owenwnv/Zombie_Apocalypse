@@ -1,5 +1,6 @@
 package zombieapocalypse.mapcreation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -31,6 +32,8 @@ public class Map {
      */
     private int[] mainroads;
 
+    private List<Cell> sewerCells;
+
     /**
      * Constructs a Map with the specified width and height.
      * 
@@ -41,6 +44,7 @@ public class Map {
         this.height = height;
         this.width = width;
         this.mainroads = new int[2];
+        this.sewerCells = new ArrayList<>();
         this.cells = new Cell[width][height];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -106,6 +110,14 @@ public class Map {
     public void setMainroads(int x, int y) {
         this.mainroads[0] = x;
         this.mainroads[1] = y;
+    }
+
+    public void addSewerCell(Cell cell) {
+        this.sewerCells.add(cell);
+    }
+
+    public Cell getSewerCell(int index) {
+        return this.sewerCells.get(index);
     }
 
     /**

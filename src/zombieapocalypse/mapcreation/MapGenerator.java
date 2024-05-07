@@ -158,12 +158,16 @@ public class MapGenerator {
         }
         StreetCell cell = (StreetCell) this.map.getCell(mainroads[0], 0);
         cell.setHasSewer(true);
+        this.map.addSewerCell(cell);
         cell = (StreetCell) this.map.getCell(mainroads[0], this.map.getHeight() - 1);
         cell.setHasSewer(true);
+        this.map.addSewerCell(cell);
         cell = (StreetCell) this.map.getCell(0, mainroads[1]);
         cell.setHasSewer(true);
+        this.map.addSewerCell(cell);
         cell = (StreetCell) this.map.getCell(this.map.getWidth() - 1, mainroads[1]);
         cell.setHasSewer(true);
+        this.map.addSewerCell(cell);
         this.map.setMainroads(mainroads[0], mainroads[1]);
     }
 

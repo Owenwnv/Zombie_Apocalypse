@@ -402,6 +402,19 @@ public class Game {
                 Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
                 cell.removeSurvivor(survivor);
                 this.survivors.remove(survivor);
+                if (cell instanceof RoomCell) {
+                    RoomCell room = (RoomCell) cell;
+                    Item item = survivor.getItemInHand();
+                    if (item != null) {
+                        room.addItem(item);
+                    }
+                    Iterator<Item> itemIterator = survivor.getBackpack().iterator();
+
+                    while (itemIterator.hasNext()) {
+                        item = itemIterator.next();
+                        room.addItem(item);
+                    }
+                }
             }
         }
     }

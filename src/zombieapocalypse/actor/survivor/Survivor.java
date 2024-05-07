@@ -111,10 +111,11 @@ public class Survivor extends Actor {
      * increases experience points by 1 XP
      */
     public void increaseExperiencePoints() {
-        this.experiencePoints = this.experiencePoints + 1;
+        this.experiencePoints++;
         if (this.experiencePoints == 3 || this.experiencePoints == 7 || this.experiencePoints == 11) {
-            this.level += 1;
-            this.actionPoints += 1;
+            this.level++;
+            this.actionPoints++;
+            System.out.println(this.name + " has leveled up to level " + this.level + "!");
         }
     }
 
