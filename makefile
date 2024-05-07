@@ -21,7 +21,7 @@ test:
 		./test/**/**/*.java
 
 exec:
-	cd bin/classes; java $(MainClass) 5 5
+	cd bin/classes; java $(MainClass) 10 5
 
 clean:
 	rm -rf bin

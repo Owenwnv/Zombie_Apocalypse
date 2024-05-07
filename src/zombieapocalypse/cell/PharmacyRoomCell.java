@@ -1,5 +1,8 @@
 package zombieapocalypse.cell;
 
+import zombieapocalypse.actor.survivor.Survivor;
+import zombieapocalypse.item.tool.HealthPotion;
+
 /**
  * Represents a pharmacy room cell in the game, extending from RoomCell.
  */
@@ -9,5 +12,11 @@ public class PharmacyRoomCell extends RoomCell {
      */
     public PharmacyRoomCell() {
         super("Pharmacy");
+    }
+
+    @Override
+    public void addSurvivor(Survivor survivor) {
+        this.survivors.add(survivor);
+        this.items.add(new HealthPotion());
     }
 }

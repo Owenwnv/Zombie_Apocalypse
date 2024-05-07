@@ -244,7 +244,8 @@ public class Game {
         } else if (cell instanceof RoomCell) {
             System.out.println("You are in a room.");
         } else if (cell instanceof HotelRoomCell) {
-            System.out.println("You are at the Hotel.");
+            System.out.println("You are at the Continental”.");
+            System.out.println("You can't see who is in this cell”.");
         } else {
             System.out.println("You are at the Pharmacy.");
         }
@@ -254,8 +255,10 @@ public class Game {
         canMove(i, j, 2, true);
         canMove(i, j, 3, true);
 
-        System.out.println("There are " + cell.getSurvivors().size() + " survivors in this cell including you.");
-        System.out.println("There are " + cell.getZombies().size() + " zombies in this cell.");
+        if (!(cell instanceof HotelRoomCell)) {
+            System.out.println("There are " + cell.getSurvivors().size() + " survivors in this cell including you.");
+            System.out.println("There are " + cell.getZombies().size() + " zombies in this cell.");
+        }
     }
 
     public void useToolInHand(Survivor survivor, Cell cell) {
@@ -372,6 +375,37 @@ public class Game {
         }
     }
 
+    public void checkZombieDeath(Survivor survivor) {
+        Iterator<Zombie> iterator = this.zombies.iterator();
+
+        while (iterator.hasNext()) {
+            Zombie zombie = iterator.next();
+            if (zombie.getHealthPoints() <= 0) {
+                System.out.println(survivor.getName() + " killed " + zombie.getName() + ".");
+                int[] coordinates = zombie.getCoordinates();
+                Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
+                cell.removeZombie(zombie);
+                this.zombies.remove(zombie);
+                survivor.increaseExperiencePoints();
+            }
+        }
+    }
+
+    public void checkSurvivorDeath(Zombie zombie) {
+        Iterator<Survivor> iterator = this.survivors.iterator();
+
+        while (iterator.hasNext()) {
+            Survivor survivor = iterator.next();
+            if (survivor.getHealthPoints() <= 0) {
+                System.out.println(zombie.getName() + " killed " + survivor.getName() + ".");
+                int[] coordinates = survivor.getCoordinates();
+                Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
+                cell.removeSurvivor(survivor);
+                this.survivors.remove(survivor);
+            }
+        }
+    }
+
     public void gameLoop(int iteration) {
         for (int i = 0; i < iteration; i++) {
             System.out.println("********** Round " + i + " **********");
@@ -382,6 +416,7 @@ public class Game {
                 Survivor survivor = iterator.next();
                 System.out.println("Turn of " + survivor.getName() + ":");
                 survivorTurn(survivor);
+                checkZombieDeath(survivor);
                 System.out.println("");
             }
             System.out.println("");
@@ -391,6 +426,7 @@ public class Game {
             while (iterator2.hasNext()) {
                 Zombie zombie = iterator2.next();
                 zombieTurn(zombie);
+                checkSurvivorDeath(zombie);
             }
             System.out.println("");
 
