@@ -13,6 +13,7 @@ import zombieapocalypse.cell.RoomCell;
 import zombieapocalypse.item.Item;
 import zombieapocalypse.item.tool.HealthPotion;
 import zombieapocalypse.item.tool.MedKit;
+import zombieapocalypse.item.tool.SkeletonKey;
 import zombieapocalypse.item.weapon.Axe;
 import zombieapocalypse.item.weapon.Chainsaw;
 import zombieapocalypse.item.weapon.Crowbar;
@@ -236,6 +237,14 @@ public class Survivor extends Actor {
     public void makeNoise(Cell cell) {
         cell.increaseNoiseLevel();
         System.out.println(this.name + " makes noise.");
+    }
+
+    public boolean hasDoorItemInHand() {
+        Item item = this.inHand;
+        if (item instanceof SkeletonKey || item instanceof Crowbar || item instanceof Axe || item instanceof Gun) {
+            return true;
+        }
+        return false;
     }
 
     /**

@@ -29,6 +29,7 @@ import zombieapocalypse.item.tool.HandheldMap;
 import zombieapocalypse.item.tool.HealthPotion;
 import zombieapocalypse.item.tool.InfraredGlasses;
 import zombieapocalypse.item.tool.MedKit;
+import zombieapocalypse.item.tool.SkeletonKey;
 import zombieapocalypse.item.weapon.Gun;
 import zombieapocalypse.item.weapon.Weapon;
 
@@ -113,34 +114,24 @@ public class Game {
     }
 
     public boolean canMove(int i, int j, int direction, boolean lookAround) {
-        Cell cell = new EmptyCell();
+        Cell cell = this.map.getCell(i, j);
+        Cell targetCell = new EmptyCell();
+        String doorDirection = getDirectionString(direction);
         int[] coordinates = this.map.getCoordinatesFromDirection(i, j, direction);
 
         if (this.map.cellExists(coordinates[0], coordinates[1])) {
-            cell = this.map.getCell(coordinates[0], coordinates[1]);
+            targetCell = this.map.getCell(coordinates[0], coordinates[1]);
         }
 
-        String doorDirection = getDirectionString(direction);
-        int doorIndex = (direction + 2) % 4;
-
-        if (cell instanceof EmptyCell) {
+        if (targetCell instanceof EmptyCell) {
             return false;
-        } else if (cell instanceof StreetCell) {
-            return true;
-        } else {
-            RoomCell room = (RoomCell) cell;
-            Door door = room.getDoors().get(doorIndex);
-            if (door.getIsOpen()) {
-                if (lookAround) {
-                    System.out.println("There is an open door " + doorDirection + ".");
-                }
-                return true;
-            } else {
-                if (lookAround) {
-                    System.out.println("There is a closed door " + doorDirection + ".");
-                }
-                return false;
+        } else if (this.map.hasClosedDoorBetween(cell, targetCell, direction)) {
+            if (lookAround) {
+                System.out.println("There is a closed door " + doorDirection + ".");
             }
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -170,17 +161,14 @@ public class Game {
         Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
         int actionPoints = survivor.getActionPoints();
 
-        // lookAround
         System.out.println(survivor.getName() + " looks around himself.");
         lookAround(cell, coordinates[0], coordinates[1]);
 
         List<Survivor> survivorsInCell = cell.getSurvivors();
         List<Zombie> zombiesInCell = cell.getZombies();
-
         List<Survivor> survivorsInCellCopy = new ArrayList<>(survivorsInCell);
         survivorsInCellCopy.remove(survivor);
 
-        // if zombie in cell
         if (!zombiesInCell.isEmpty()) {
             // attack zombie
             System.out.println(survivor.getName() + " attacks zombie.");
@@ -190,12 +178,10 @@ public class Game {
             actionPoints--;
         }
 
-        // if low hp
         if (survivor.getHealthPoints() < 3) {
             actionPoints = survivor.healSelf(actionPoints);
         }
 
-        // if survivor in cell and survivor low hp
         if (!survivorsInCell.isEmpty()) {
             Iterator<Survivor> iterator = survivorsInCellCopy.iterator();
 
@@ -208,27 +194,47 @@ public class Game {
             }
         }
 
-        // if no zombie, if room
         if (zombiesInCell.isEmpty() && actionPoints > 0) {
             Random rand = new Random();
             int decision = rand.nextInt(2);
-            // move/open door or search room
+
             if (cell instanceof RoomCell && decision == 0) {
                 RoomCell room = (RoomCell) cell;
                 System.out.println(survivor.getName() + " searches the room.");
                 survivor.searchRoom(room);
+                actionPoints--;
             } else {
-                int direction = rand.nextInt(4);
                 while (true) {
-                    if (canMove(coordinates[0], coordinates[1], direction, false)) {
-                        moveSurvivor(survivor, coordinates, direction);
-                        break;
+                    int direction = rand.nextInt(4);
+                    int[] coordinatesTarget = this.map.getCoordinatesFromDirection(coordinates[0], coordinates[1],
+                            direction);
+
+                    if (this.map.cellExists(coordinatesTarget[0], coordinatesTarget[1])) {
+                        Cell targetCell = this.map.getCell(coordinatesTarget[0], coordinatesTarget[1]);
+                        if (this.map.hasClosedDoorBetween(cell, targetCell, direction)) {
+                            if (survivor.hasDoorItemInHand()) {
+                                Item inHand = survivor.getItemInHand();
+                                if (inHand instanceof SkeletonKey) {
+                                    survivor.putItemInHand(null);
+                                } else {
+                                    cell.increaseNoiseLevel();
+                                }
+                                System.out.println(survivor.getName() + " opens door with " + inHand.getName() + ".");
+                                actionPoints--;
+                                if (actionPoints > 0) {
+                                    moveSurvivor(survivor, coordinates, direction);
+                                    actionPoints--;
+                                }
+                                break;
+                            }
+                        } else {
+                            moveSurvivor(survivor, coordinates, direction);
+                            actionPoints--;
+                        }
                     }
-                    direction = rand.nextInt(4);
                 }
                 System.out.println(survivor.getName() + " moves.");
             }
-            actionPoints--;
         }
     }
 

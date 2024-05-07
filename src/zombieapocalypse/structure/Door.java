@@ -35,4 +35,8 @@ public class Door {
     public boolean getIsOpen() {
         return this.isOpen;
     }
+
+    public void openDoor() {
+        this.isOpen = true;
+    }
 }

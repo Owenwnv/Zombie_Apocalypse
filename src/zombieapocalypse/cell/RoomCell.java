@@ -76,6 +76,11 @@ public class RoomCell extends Cell {
         return this.doors;
     }
 
+    public void openDoor(int index) {
+        Door door = this.doors.get(index);
+        door.openDoor();
+    }
+
     /**
      * Returns a description of this RoomCell.
      * 

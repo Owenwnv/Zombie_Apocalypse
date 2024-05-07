@@ -272,6 +272,22 @@ public class Map {
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 
+    public boolean hasClosedDoorBetween(Cell cell, Cell targetCell, int direction) {
+        if (cell instanceof RoomCell) {
+            RoomCell room = (RoomCell) cell;
+            List<Door> doors = room.getDoors();
+            Door door = doors.get(direction);
+            return !door.getIsOpen();
+        } else if (targetCell instanceof RoomCell) {
+            RoomCell room = (RoomCell) targetCell;
+            List<Door> doors = room.getDoors();
+            direction = (direction + 2) % 4;
+            Door door = doors.get(direction);
+            return !door.getIsOpen();
+        }
+        return false;
+    }
+
     /**
      * resets noiseLevel for every Cell in the map
      */
