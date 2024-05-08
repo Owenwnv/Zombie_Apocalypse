@@ -36,6 +36,12 @@ public class Street {
         this.isMainroads = isMainroads;
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * 
+     * @param object the reference object with which to compare.
+     * @return       true if this object is the same as the object argument, false otherwise.
+     */
     public boolean equals(Object object) {
         if (object instanceof Street) {
             Street street = (Street) object;
