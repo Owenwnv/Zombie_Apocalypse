@@ -16,8 +16,8 @@ public class Livrable3 {
 
         MapGenerator mapg = new MapGenerator(width, height);
         Map map = mapg.generateMap();
-        Game game = new Game(map, 1);
+        Game game = new Game(map, 4);
 
-        game.gameLoop(1);
+        game.gameLoop();
     }
 }

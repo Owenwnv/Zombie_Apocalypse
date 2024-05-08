@@ -5,8 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.tree.RowMapper;
-
 import zombieapocalypse.actor.survivor.Fighter;
 import zombieapocalypse.actor.survivor.Healer;
 import zombieapocalypse.actor.survivor.Lucky;
@@ -18,7 +16,6 @@ import zombieapocalypse.actor.zombie.Runner;
 import zombieapocalypse.actor.zombie.Walker;
 import zombieapocalypse.actor.zombie.Zombie;
 import zombieapocalypse.mapcreation.Map;
-import zombieapocalypse.structure.Door;
 
 import zombieapocalypse.cell.Cell;
 import zombieapocalypse.cell.EmptyCell;
@@ -28,12 +25,9 @@ import zombieapocalypse.cell.StreetCell;
 
 import zombieapocalypse.item.Item;
 import zombieapocalypse.item.tool.HandheldMap;
-import zombieapocalypse.item.tool.HealthPotion;
 import zombieapocalypse.item.tool.InfraredGlasses;
-import zombieapocalypse.item.tool.MedKit;
 import zombieapocalypse.item.tool.SkeletonKey;
 import zombieapocalypse.item.weapon.Gun;
-import zombieapocalypse.item.weapon.Weapon;
 
 /**
  * Represents the game engine.
@@ -215,7 +209,7 @@ public class Game {
             }
         }
 
-        if (zombiesInCell.isEmpty() && actionPoints > 0) {
+        if (zombiesInCell.isEmpty() || actionPoints > 0) {
             Random rand = new Random();
             int decision = rand.nextInt(2);
 
@@ -246,11 +240,12 @@ public class Game {
                                     moveSurvivor(survivor, coordinates, direction);
                                     actionPoints--;
                                 }
-                                break;
                             }
+                            break;
                         } else {
                             moveSurvivor(survivor, coordinates, direction);
                             actionPoints--;
+                            break;
                         }
                     }
                 }
@@ -404,7 +399,7 @@ public class Game {
         while (iterator.hasNext()) {
             Zombie zombie = iterator.next();
             if (zombie.getHealthPoints() <= 0) {
-                System.out.println(survivor.getName() + " killed " + zombie.getName() + ".");
+                System.out.println(survivor.getName() + " kills " + zombie.getName() + ".");
                 int[] coordinates = zombie.getCoordinates();
                 Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
                 cell.removeZombie(zombie);
@@ -423,7 +418,7 @@ public class Game {
         while (iterator.hasNext()) {
             Survivor survivor = iterator.next();
             if (survivor.getHealthPoints() <= 0) {
-                System.out.println(zombie.getName() + " killed " + survivor.getName() + ".");
+                System.out.println(zombie.getName() + " kills " + survivor.getName() + ".");
                 int[] coordinates = survivor.getCoordinates();
                 Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
                 cell.removeSurvivor(survivor);
@@ -442,9 +437,10 @@ public class Game {
         this.survivors.removeAll(survivorsToRemove);
     }
 
-    public void gameLoop(int iteration) {
-        for (int i = 0; i < iteration; i++) {
-            System.out.println("********** Round " + i + " **********");
+    public void gameLoop() {
+        int round = 1;
+        while (getGlobalExperiencePoints() < 30 && !this.zombies.isEmpty() && !this.survivors.isEmpty() && round < 50) {
+            System.out.println("********** Round " + round + " **********");
             System.out.println("");
             Iterator<Survivor> iterator = this.survivors.iterator();
 
@@ -468,6 +464,14 @@ public class Game {
 
             this.map.showMap();
             this.map.resetMapNoiseLevel();
+            round++;
+        }
+        System.out.println("");
+
+        if (this.survivors.isEmpty()) {
+            System.out.println("The survivors lost.");
+        } else {
+            System.out.println("The survivors won.");
         }
     }
 

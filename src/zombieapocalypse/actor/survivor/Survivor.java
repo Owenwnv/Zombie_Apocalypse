@@ -171,7 +171,7 @@ public class Survivor extends Actor {
             while (iterator.hasNext()) {
                 Item itemInBackpack = iterator.next();
                 if (itemInBackpack instanceof HealthPotion) {
-                    HealthPotion healthPotion = (HealthPotion) item;
+                    HealthPotion healthPotion = (HealthPotion) itemInBackpack;
                     putItemInHand(itemInBackpack);
                     healthPotion.heal(this);
                     actionPoints -= 2;
@@ -195,7 +195,7 @@ public class Survivor extends Actor {
             while (backpackIterator.hasNext()) {
                 Item itemInBackpack = backpackIterator.next();
                 if (itemInBackpack instanceof MedKit) {
-                    MedKit medkit = (MedKit) item;
+                    MedKit medkit = (MedKit) itemInBackpack;
                     putItemInHand(itemInBackpack);
                     medkit.heal(this, survivorToHeal);
                     actionPoints -= 2;
