@@ -363,6 +363,11 @@ public class Game {
         }
     }
 
+    /**
+     * Calculates the total experience points accumulated by all survivors.
+     * 
+     * @return The total experience points of all survivors combined
+     */
     public int getGlobalExperiencePoints() {
         int globalExperiencePoints = 0;
         Iterator<Survivor> iterator = this.survivors.iterator();
