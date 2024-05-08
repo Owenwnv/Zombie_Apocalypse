@@ -313,6 +313,14 @@ public class Map {
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 
+    /**
+     * Checks if there is a closed door between two cells in a specified direction.
+     * 
+     * @param cell        The cell from which to check for a door.
+     * @param targetCell  The target cell towards which to check for a door.
+     * @param direction   The direction in which to check for a door (0: up, 1: right, 2: down, 3: left).
+     * @return True if there is a closed door between the cells in the specified direction, false otherwise.
+     */
     public boolean hasClosedDoorBetween(Cell cell, Cell targetCell, int direction) {
         if (cell instanceof RoomCell) {
             RoomCell room = (RoomCell) cell;
