@@ -32,6 +32,12 @@ public class Zombie extends Actor {
         return this.damage;
     }
 
+    /**
+     * Attacks a survivor with the specified damage and reduces their health points accordingly.
+     * Prints a message indicating the damage dealt.
+     *
+     * @param survivor The survivor to attack.
+     */
     public void attackSurvivor(Survivor survivor) {
         survivor.decreaseHealthPoints(damage);
         System.out.println(this.name + " deals " + this.damage + " damages to " + survivor.getName() + ".");
