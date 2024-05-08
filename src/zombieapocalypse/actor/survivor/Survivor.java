@@ -66,22 +66,6 @@ public class Survivor extends Actor {
     }
 
     /**
-     * Constructs a Survivor with default health points, level, action points, Gun inhand and
-     * experience points, and an empty
-     * backpack.
-     * @param name
-     */
-    public Survivor(String name){
-        this(name, new Gun());
-        this.level = 1;
-        this.backpack = new ArrayList<>();
-        this.inHand = new Gun();
-        this.actionPoints = 3;
-        this.experiencePoints = 0;
-
-    }
-
-    /**
      * Returns this Survivor's level.
      * 
      * @return The Survivor's level
