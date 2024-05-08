@@ -435,6 +435,12 @@ public class Game {
         }
     }
 
+    /**
+     * Creates and returns a new Survivor based on the provided survivor ID.
+     *
+     * @param survivorID The ID of the survivor
+     * @return A new Survivor
+     */
     public Survivor createSurvivor(int survivorID) {
         int id = zombieID % 4;
         String name = "Player#" + survivorID;
