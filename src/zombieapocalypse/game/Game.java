@@ -323,6 +323,12 @@ public class Game {
         }
     }
 
+    /**
+     * Uses the item currently held by the survivor.
+     * 
+     * @param survivor The survivor using the tool
+     * @param cell     The current cell where the survivor is located
+     */
     public void useToolInHand(Survivor survivor, Cell cell) {
         Item itemInHand = survivor.getItemInHand();
 
