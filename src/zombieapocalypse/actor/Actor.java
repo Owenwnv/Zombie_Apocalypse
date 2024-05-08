@@ -13,10 +13,6 @@ public class Actor {
 
     protected int[] coordinates;
 
-    protected int horizontalCoordinates;
-
-    protected int verticalCoordinates;
-
     /**
      * Constructs an Actor with the specified health points.
      * 
@@ -26,8 +22,6 @@ public class Actor {
         this.healthPoints = healthPoints;
         this.name = name;
         this.coordinates = new int[2];
-        this.horizontalCoordinates = this.coordinates[0];
-        this.verticalCoordinates = this.coordinates[1];
     }
 
     public String getName() {
@@ -38,19 +32,9 @@ public class Actor {
         return this.coordinates;
     }
 
-    public int getHorizontalCoordinates(){
-        return this.horizontalCoordinates;
-    }
-
-    public int getVerticalCoordinates(){
-        return this.verticalCoordinates;
-    }
-
     public void setCoordinates(int i, int j) {
         this.coordinates[0] = i;
         this.coordinates[1] = j;
-        this.horizontalCoordinates = i;
-        this.verticalCoordinates = j;
     }
 
     /**

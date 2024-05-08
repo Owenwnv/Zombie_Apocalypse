@@ -51,6 +51,18 @@ public class Weapon extends Item {
         this.noisy = noisy;
     }
 
+    public int getNbDiceRoll() {
+        return this.nbDiceRoll;
+    }
+
+    public int getThreshold() {
+        return this.threshold;
+    }
+
+    public int getDamage() {
+        return this.damage;
+    }
+
     public boolean getNoisy() {
         return this.noisy;
     }

@@ -49,6 +49,10 @@ public class RoomCell extends Cell {
         this.items.add(item);
     }
 
+    public void addAllItems(List<Item> itemsToAdd) {
+        this.items.addAll(itemsToAdd);
+    }
+
     public List<Item> getItems() {
         return this.items;
     }

@@ -240,6 +240,12 @@ public class Survivor extends Actor {
         System.out.println(this.name + " makes noise.");
     }
 
+    public boolean throwDice(int threshold) {
+        Random rand = new Random();
+        int result = rand.nextInt(6) + 1;
+        return (result >= threshold);
+    }
+
     public boolean hasDoorItemInHand() {
         Item item = this.inHand;
         if (item instanceof SkeletonKey || item instanceof Crowbar || item instanceof Axe || item instanceof Gun) {
@@ -248,32 +254,20 @@ public class Survivor extends Actor {
         return false;
     }
 
-    /**
-     * Check if the attack is valid.
-     * 
-     * @param zombie the zombie that we want to attack
-     * 
-     * @return boolean
-     */
-    public boolean checkAttackValidity(Zombie zombie) {
+    public Weapon getBestWeapon() {
+        Weapon bestWeapon = null;
+        int maxDamage = 0;
 
-        int range;
-        if (this.horizontalCoordinates == zombie.getHorizontalCoordinates()) {
-            range = Math.abs(this.verticalCoordinates - zombie.getVerticalCoordinates());
-        } else if (this.verticalCoordinates == zombie.getVerticalCoordinates()) {
-            range = Math.abs(this.horizontalCoordinates - zombie.getHorizontalCoordinates());
-        } else {
-            range = -1;
-        }
-        if (range != -1 && inHand instanceof Weapon) {
-            if ((inHand instanceof Rifle && range > 0 && range < 4) ||
-                    (inHand instanceof Gun && range <= 1 && range >= 0) ||
-                    ((inHand instanceof Axe || inHand instanceof Chainsaw || inHand instanceof Crowbar)
-                            && range == 0)) {
-                return true;
+        for (Item item : this.backpack) {
+            if (item instanceof Weapon) {
+                Weapon weapon = (Weapon) item;
+                if (weapon.getDamage() > maxDamage) {
+                    maxDamage = weapon.getDamage();
+                    bestWeapon = weapon;
+                }
             }
         }
-        return false;
+        return bestWeapon;
     }
 
     /**
@@ -283,50 +277,38 @@ public class Survivor extends Actor {
      * 
      * @return boolean
      */
+    public int attackZombie(Zombie zombie, int actionPoints) {
+        Weapon weaponInHand = null;
+        if (this.inHand instanceof Weapon) {
+            weaponInHand = (Weapon) this.inHand;
+        }
+        Weapon bestWeapon = getBestWeapon();
 
-    public boolean attackZombie(Zombie zombie) {
-        boolean result = false;
+        if (bestWeapon != null && (weaponInHand == null || bestWeapon.getDamage() > weaponInHand.getDamage())) {
+            putItemInHand(bestWeapon);
+            actionPoints--;
+            weaponInHand = bestWeapon;
+        }
 
-        if (checkAttackValidity(zombie)) {
-            Random random = new Random();
-            int randDice1 = random.nextInt(6) + 1;
-            int randDice2 = random.nextInt(6) + 1;
-            if (this.inHand instanceof Crowbar) {
-                if (randDice1 >= 4) {
-                    zombie.decreaseHealthPoints(1);
-                    result = true;
-                }
-            } else if (this.inHand instanceof Axe) {
-                if (randDice1 >= 4) {
-                    zombie.decreaseHealthPoints(2);
-                    result = true;
-                }
-            } else if (this.inHand instanceof Chainsaw) {
-                if (randDice1 >= 5) {
-                    zombie.decreaseHealthPoints(3);
-                    result = true;
-                } else if (randDice2 >= 5) {
-                    zombie.decreaseHealthPoints(3);
-                    result = true;
-                }
-            } else if (this.inHand instanceof Gun) {
-                if (randDice1 >= 4) {
-                    zombie.decreaseHealthPoints(1);
-                    result = true;
-                }
-            } else if (this.inHand instanceof Rifle) {
-                if (randDice1 >= 4) {
-                    zombie.decreaseHealthPoints(1);
-                    result = true;
-                } else {
-                    if (randDice2 >= 4) {
-                        zombie.decreaseHealthPoints(1);
-                        result = true;
-                    }
+        if (weaponInHand instanceof Weapon) {
+            int nbDiceRoll = weaponInHand.getNbDiceRoll();
+            int threshold = weaponInHand.getThreshold();
+            int damage = weaponInHand.getDamage();
+
+            if (this instanceof Lucky) {
+                nbDiceRoll++;
+            }
+
+            for (int i = 0; i < nbDiceRoll; i++) {
+                if (throwDice(threshold)) {
+                    zombie.decreaseHealthPoints(damage);
+                    System.out.println(this.name + " deals " + damage + " damages to " + zombie.getName() + " with "
+                            + weaponInHand.getName() + ".");
                 }
             }
+            actionPoints--;
         }
-        return result;
+        return actionPoints;
     }
 
     /**

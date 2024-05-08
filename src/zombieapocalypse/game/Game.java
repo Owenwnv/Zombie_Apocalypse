@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.tree.RowMapper;
+
 import zombieapocalypse.actor.survivor.Fighter;
 import zombieapocalypse.actor.survivor.Healer;
 import zombieapocalypse.actor.survivor.Lucky;
@@ -156,6 +158,20 @@ public class Game {
         }
     }
 
+    public Zombie getLowestHpZombie(List<Zombie> zombies) {
+        Zombie zombie = null;
+        int lowestHp = Integer.MAX_VALUE;
+
+        for (Zombie currentZombie : zombies) {
+            int hp = currentZombie.getHealthPoints();
+            if (hp < lowestHp) {
+                lowestHp = hp;
+                zombie = currentZombie;
+            }
+        }
+        return zombie;
+    }
+
     public void survivorTurn(Survivor survivor) {
         int[] coordinates = survivor.getCoordinates();
         Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
@@ -169,10 +185,15 @@ public class Game {
         List<Survivor> survivorsInCellCopy = new ArrayList<>(survivorsInCell);
         survivorsInCellCopy.remove(survivor);
 
+        if ((survivor instanceof Searcher) && (cell instanceof RoomCell)) {
+            RoomCell room = (RoomCell) cell;
+            System.out.println(survivor.getName() + " searches the room.");
+            survivor.searchRoom(room);
+        }
+
         if (!zombiesInCell.isEmpty()) {
-            // attack zombie
-            System.out.println(survivor.getName() + " attacks zombie.");
-            actionPoints--;
+            Zombie targetZombie = getLowestHpZombie(zombiesInCell);
+            actionPoints = survivor.attackZombie(targetZombie, actionPoints);
         } else {
             survivor.makeNoise(cell);
             actionPoints--;
@@ -198,7 +219,7 @@ public class Game {
             Random rand = new Random();
             int decision = rand.nextInt(2);
 
-            if (cell instanceof RoomCell && decision == 0) {
+            if ((cell instanceof RoomCell) && (decision == 0) && !(survivor instanceof Searcher)) {
                 RoomCell room = (RoomCell) cell;
                 System.out.println(survivor.getName() + " searches the room.");
                 survivor.searchRoom(room);
@@ -376,6 +397,8 @@ public class Game {
     }
 
     public void checkZombieDeath(Survivor survivor) {
+        List<Zombie> zombiesToRemove = new ArrayList<>();
+
         Iterator<Zombie> iterator = this.zombies.iterator();
 
         while (iterator.hasNext()) {
@@ -385,13 +408,16 @@ public class Game {
                 int[] coordinates = zombie.getCoordinates();
                 Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
                 cell.removeZombie(zombie);
-                this.zombies.remove(zombie);
+                zombiesToRemove.add(zombie);
                 survivor.increaseExperiencePoints();
             }
         }
+        this.zombies.removeAll(zombiesToRemove);
     }
 
     public void checkSurvivorDeath(Zombie zombie) {
+        List<Survivor> survivorsToRemove = new ArrayList<>();
+
         Iterator<Survivor> iterator = this.survivors.iterator();
 
         while (iterator.hasNext()) {
@@ -401,22 +427,19 @@ public class Game {
                 int[] coordinates = survivor.getCoordinates();
                 Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
                 cell.removeSurvivor(survivor);
-                this.survivors.remove(survivor);
+
                 if (cell instanceof RoomCell) {
                     RoomCell room = (RoomCell) cell;
                     Item item = survivor.getItemInHand();
                     if (item != null) {
                         room.addItem(item);
                     }
-                    Iterator<Item> itemIterator = survivor.getBackpack().iterator();
-
-                    while (itemIterator.hasNext()) {
-                        item = itemIterator.next();
-                        room.addItem(item);
-                    }
+                    room.addAllItems(survivor.getBackpack());
                 }
+                survivorsToRemove.add(survivor);
             }
         }
+        this.survivors.removeAll(survivorsToRemove);
     }
 
     public void gameLoop(int iteration) {
