@@ -490,6 +490,12 @@ public class Game {
         }
     }
 
+    /**
+     * Checks if any zombie is dead and removes it from the map if so.
+     * Also increases the experience points of the survivor who killed the zombie.
+     *
+     * @param survivor The survivor who may have killed the zombie.
+     */
     public void checkZombieDeath(Survivor survivor) {
         List<Zombie> zombiesToRemove = new ArrayList<>();
 
