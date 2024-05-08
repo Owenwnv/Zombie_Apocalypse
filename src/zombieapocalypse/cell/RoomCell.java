@@ -45,18 +45,38 @@ public class RoomCell extends Cell {
         }
     }
 
+    /**
+     * Adds an item to the list of items in this room cell.
+     * 
+     * @param item the item to add.
+     */
     public void addItem(Item item) {
         this.items.add(item);
     }
 
+    /**
+     * Adds all items from the provided list to the list of items in this room cell.
+     * 
+     * @param itemsToAdd the list of items to add.
+     */
     public void addAllItems(List<Item> itemsToAdd) {
         this.items.addAll(itemsToAdd);
     }
 
+    /**
+     * Retrieves the list of items in this room cell.
+     * 
+     * @return the list of items in this room cell.
+     */
     public List<Item> getItems() {
         return this.items;
     }
 
+    /**
+     * Removes the specified item from the list of items in this room cell.
+     * 
+     * @param item the item to remove.
+     */
     public void removeItem(Item item) {
         this.items.remove(item);
     }
