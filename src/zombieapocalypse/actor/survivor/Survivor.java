@@ -53,6 +53,7 @@ public class Survivor extends Actor {
      * Constructs a Survivor with default health points, level, action points and
      * experience points, and an empty
      * backpack.
+     * 
      * @param name
      * @param inHand
      */
