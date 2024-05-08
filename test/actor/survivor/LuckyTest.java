@@ -10,7 +10,7 @@ public class LuckyTest {
 
     @Test
     public void initLucky() {
-        Lucky lucky = new Lucky("");
+        Lucky lucky = new Lucky("", null);
         assertEquals(5, lucky.getHealthPoints());
         assertEquals(1, lucky.getLevel());
     }

@@ -4,19 +4,21 @@ import zombieapocalypse.mapcreation.MapGenerator;
 import zombieapocalypse.game.Game;
 import zombieapocalypse.mapcreation.Map;
 
-public class Livrable3 {
+public class Livrable4 {
     public static void main(String[] args) {
         int width = 5;
         int height = 5;
+        int nbSurvivors = 4;
 
-        if (args.length > 1) {
+        if (args.length > 2) {
             width = Integer.parseInt(args[0]);
             height = Integer.parseInt(args[1]);
+            nbSurvivors = Integer.parseInt(args[2]);
         }
 
         MapGenerator mapg = new MapGenerator(width, height);
         Map map = mapg.generateMap();
-        Game game = new Game(map, 4);
+        Game game = new Game(map, nbSurvivors);
 
         game.gameLoop();
     }

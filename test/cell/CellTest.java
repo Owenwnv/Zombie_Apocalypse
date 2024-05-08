@@ -21,7 +21,7 @@ public class CellTest {
         Cell cell = new CellImpl("Test Cell");
         assertTrue(cell.getSurvivors().isEmpty());
 
-        Survivor survivor = new Survivor();
+        Survivor survivor = new Survivor("", null);
         cell.addSurvivor(survivor);
         List<Survivor> survivors = cell.getSurvivors();
         assertEquals(1, survivors.size());
@@ -33,7 +33,7 @@ public class CellTest {
         Cell cell = new CellImpl("Test Cell");
         assertTrue(cell.getZombies().isEmpty());
 
-        Zombie zombie = new Zombie();
+        Zombie zombie = new Zombie(1, 1, "");
         cell.addZombie(zombie);
         List<Zombie> zombies = cell.getZombies();
         assertEquals(1, zombies.size());
@@ -55,7 +55,7 @@ public class CellTest {
     @Test
     public void testAddSurvivor() {
         Cell cell = new CellImpl("Test Cell");
-        Survivor survivor = new Survivor();
+        Survivor survivor = new Survivor("", null);
         cell.addSurvivor(survivor);
         assertTrue(cell.getSurvivors().contains(survivor));
     }
@@ -63,7 +63,7 @@ public class CellTest {
     @Test
     public void testAddZombie() {
         Cell cell = new CellImpl("Test Cell");
-        Zombie zombie = new Zombie();
+        Zombie zombie = new Zombie(1, 1, "");
         cell.addZombie(zombie);
         assertTrue(cell.getZombies().contains(zombie));
     }
@@ -71,7 +71,7 @@ public class CellTest {
     @Test
     public void testRemoveSurvivor() {
         Cell cell = new CellImpl("Test Cell");
-        Survivor survivor = new Survivor();
+        Survivor survivor = new Survivor("", null);
         cell.addSurvivor(survivor);
         assertTrue(cell.getSurvivors().contains(survivor));
         cell.removeSurvivor(survivor);
@@ -81,7 +81,7 @@ public class CellTest {
     @Test
     public void testRemoveZombie() {
         Cell cell = new CellImpl("Test Cell");
-        Zombie zombie = new Zombie();
+        Zombie zombie = new Zombie(1, 1, "");
         cell.addZombie(zombie);
         assertTrue(cell.getZombies().contains(zombie));
         cell.removeZombie(zombie);

@@ -15,10 +15,8 @@ import zombieapocalypse.item.tool.HealthPotion;
 import zombieapocalypse.item.tool.MedKit;
 import zombieapocalypse.item.tool.SkeletonKey;
 import zombieapocalypse.item.weapon.Axe;
-import zombieapocalypse.item.weapon.Chainsaw;
 import zombieapocalypse.item.weapon.Crowbar;
 import zombieapocalypse.item.weapon.Gun;
-import zombieapocalypse.item.weapon.Rifle;
 import zombieapocalypse.item.weapon.Weapon;
 
 /**

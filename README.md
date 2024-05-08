@@ -97,6 +97,30 @@ L'UML a été mis à jour, vous pouvez constater l'ajout des méthodes d'action,
 
 ## Livrable 4
 
+Pour compiler le jeu et les tests:
+```make cls```
+
+Pour executer le jeu depuis les fichiers .class:
+```cd bin/classes; java zombieapocalypse.Livrable4 10 14 4``` 
+
+Pour executer les tests:
+```java -jar junit-console.jar -classpath bin/classes:test -select-package test``` 
+
+Pour générer la documentation:
+```make doc```
+
+Pour générer zombicide.jar:
+```make zombicide.jar```
+
+Pour exécuter zombicide.jar produit sur une machines du M5:
+```java -jar jar/zombicide.jar 10 14 4```
+
+Pour exécuter zombicide.jar produit localement:
+```java -jar zombicide.jar 10 14 4```
+
+Pour supprimer les fichiers générés:
+```make clean```
+
 ### Atteinte des objectifs
 
 ### Difficultés restant à résoudre
