@@ -36,6 +36,9 @@ public class Door {
         return this.isOpen;
     }
 
+    /**
+     * Opens the door.
+     */
     public void openDoor() {
         this.isOpen = true;
     }
