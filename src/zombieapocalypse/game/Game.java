@@ -515,6 +515,12 @@ public class Game {
         this.zombies.removeAll(zombiesToRemove);
     }
 
+    /**
+     * Checks if any survivor is dead and removes it from the map if so.
+     * Additionally, if a survivor dies in a room, their items are dropped into the room.
+     *
+     * @param zombie The zombie that may have killed the survivor.
+     */
     public void checkSurvivorDeath(Zombie zombie) {
         List<Survivor> survivorsToRemove = new ArrayList<>();
 
