@@ -106,6 +106,13 @@ public class Game {
         zombie.setCoordinates(newCoordinates[0], newCoordinates[1]);
     }
 
+    /**
+     * Moves the specified survivor to new coordinates based on the given direction.
+     * 
+     * @param survivor     The survivor to move
+     * @param coordinates  The current coordinates of the survivor
+     * @param direction    The direction to move the survivor (0 for up, 1 for right, 2 for down, 3 for left)
+     */
     public void moveSurvivor(Survivor survivor, int[] coordinates, int direction) {
         int[] newCoordinates = this.map.getCoordinatesFromDirection(coordinates[0], coordinates[1], direction);
         Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
