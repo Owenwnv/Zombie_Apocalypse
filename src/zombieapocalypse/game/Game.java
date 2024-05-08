@@ -379,6 +379,11 @@ public class Game {
         return globalExperiencePoints;
     }
 
+    /**
+     * Calculates the initial zombie spawn rate based on the dimensions of the map.
+     * 
+     * @return The initial zombie spawn rate
+     */
     public int getInitialZombieSpawnRate() {
         return this.map.getHeight() + this.map.getWidth();
     }
