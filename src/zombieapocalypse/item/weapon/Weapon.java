@@ -51,18 +51,38 @@ public class Weapon extends Item {
         this.noisy = noisy;
     }
 
+    /**
+     * Gets the number of dice rolls for an attack.
+     * 
+     * @return The number of dice rolls.
+     */
     public int getNbDiceRoll() {
         return this.nbDiceRoll;
     }
 
+    /**
+     * Gets the threshold value for an attack.
+     * 
+     * @return The threshold value.
+     */
     public int getThreshold() {
         return this.threshold;
     }
 
+    /**
+     * Gets the damage value for an attack.
+     * 
+     * @return The damage value.
+     */
     public int getDamage() {
         return this.damage;
     }
 
+    /**
+     * Checks if the attack produces noise.
+     * 
+     * @return True if the attack is noisy, false otherwise.
+     */
     public boolean getNoisy() {
         return this.noisy;
     }
