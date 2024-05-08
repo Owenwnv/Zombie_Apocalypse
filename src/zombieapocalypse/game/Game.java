@@ -180,6 +180,12 @@ public class Game {
         }
     }
 
+    /**
+     * Returns the zombie with the lowest health points among the specified ones.
+     * 
+     * @param zombies    The list of zombies to search among
+     * @return           The zombie with the lowest health points, or null if none
+     */
     public Zombie getLowestHpZombie(List<Zombie> zombies) {
         Zombie zombie = null;
         int lowestHp = Integer.MAX_VALUE;
