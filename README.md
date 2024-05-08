@@ -133,8 +133,18 @@ Pour supprimer les fichiers générés:
     - nombre supérieur gauche: nombre de zombies dans la case
 
 ### Atteinte des objectifs
+    - le jeu se déroule du début jusqu'à la fin sans interactions
+    - l'affichage de la carte est clair et compréhensible
+    - une description détaillée des tours de chaque acteur est affiché
+    - les survivants peuvent ramasser/utiliser des objets et ouvrir des portes
+    - certaines actions génèrent du bruit
 
 ### Difficultés restant à résoudre
+    - résoudre les edge cases d'une façon plus structurée
+    - l'algorithme des tours des survivants n'est pas efficace et les survivants perdent dans la majorité des parties
+    - avoir plus de tests pour l'ensemble du projet
+    - la classe Game n'est pas vraiment extensible
+    - certaines fonctionnalités sont absentes (zombies qui se déplacent vers le bruit, apparition des zombies entre chaque manche)
 
 # Journal de bord
 
