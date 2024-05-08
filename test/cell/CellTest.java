@@ -6,7 +6,7 @@ import org.junit.Test;
 import zombieapocalypse.actor.survivor.Survivor;
 import zombieapocalypse.actor.zombie.Zombie;
 import java.util.List;
-import java.util.ArrayList;
+
 
 public class CellTest {
 

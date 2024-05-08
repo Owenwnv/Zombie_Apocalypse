@@ -1,8 +1,10 @@
-package zombieapocalypse.cell;
+package test.cell;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import zombieapocalypse.cell.PharmacyRoomCell;
 
 public class PharmacyRoomCellTest {
 
