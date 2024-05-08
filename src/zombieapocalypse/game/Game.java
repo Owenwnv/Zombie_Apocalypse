@@ -457,6 +457,11 @@ public class Game {
         }
     }
 
+    /**
+     * Spawns the specified number of survivors on the map.
+     *
+     * @param numberOfSurvivors The number of survivors to spawn
+     */
     public void spawnSurvivors(int numberOfSurvivors) {
         int[] coordinates = this.map.getMainroads();
 
