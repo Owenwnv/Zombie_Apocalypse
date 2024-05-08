@@ -100,7 +100,7 @@ L'UML a été mis à jour, vous pouvez constater l'ajout des méthodes d'action,
 Pour compiler le jeu et les tests:
 ```make cls```
 
-Pour executer le jeu depuis les fichiers .class (ne pas oublier de revenir après pour les autres commandes):
+Pour executer le jeu depuis les fichiers .class (ne pas oublier de revenir à la racine après pour les autres commandes):
 ```cd bin/classes; java zombieapocalypse.Livrable4 10 14 4``` 
 
 Pour executer les tests:
