@@ -121,6 +121,17 @@ Pour exécuter zombicide.jar produit localement:
 Pour supprimer les fichiers générés:
 ```make clean```
 
+- Dans le terminal: 
+
+    - "-" bleu: Door
+    - "S" jaune: Sewer
+    - "S" bleu: Street
+    - "R" rouge: Room
+    - "C" jaune: Continental
+    - "+" vert: Pharmacy
+    - nombre supérieur droit: nombre de survivants dans la case
+    - nombre supérieur gauche: nombre de zombies dans la case
+
 ### Atteinte des objectifs
 
 ### Difficultés restant à résoudre
@@ -184,6 +195,12 @@ Pour supprimer les fichiers générés:
 
 - Ajout de la méthode search
 
-## Semaine 11
+## Semaine 11/12
 
-## Semaine 12
+- Supression des fichiers inutiles
+- Ajout des méthodes d'actions dans Game
+- Ajout des UML des 4 livrables différents au format .png 
+- Ajout des méthodes de jeu gameloop, survivorTurn et zombieTurn
+- Ajout des dernières javadoc et mise à jour du makefile
+- Finalisation des derniers tests
+- Ajout Livrable4.java
