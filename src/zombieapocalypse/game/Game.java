@@ -293,6 +293,13 @@ public class Game {
         }
     }
 
+    /**
+     * Provides information about the surrounding environment to the survivor.
+     * 
+     * @param cell  The current cell where the survivor is located
+     * @param i     The x-coordinate of the survivor
+     * @param j     The y-coordinate of the survivor
+     */
     public void lookAround(Cell cell, int i, int j) {
         if (cell instanceof StreetCell) {
             System.out.println("You are in the streets.");
