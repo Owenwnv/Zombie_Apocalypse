@@ -154,6 +154,11 @@ public class Game {
         }
     }
 
+    /**
+     * Handles a zombie's turn by deciding its action (move or attack).
+     * 
+     * @param zombie    The zombie whose turn it is
+     */
     public void zombieTurn(Zombie zombie) {
         int[] coordinates = zombie.getCoordinates();
         Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
