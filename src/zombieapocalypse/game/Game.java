@@ -548,6 +548,12 @@ public class Game {
         this.survivors.removeAll(survivorsToRemove);
     }
 
+    /**
+     * The main game loop that orchestrates the turns of survivors and zombies until
+     * one of the game-ending conditions is met: all survivors are dead, all zombies
+     * are dead, the survivors have gained enough experience points, or a maximum
+     * number of rounds has been reached.
+     */
     public void gameLoop() {
         int round = 1;
         while (getGlobalExperiencePoints() < 30 && !this.zombies.isEmpty() && !this.survivors.isEmpty() && round < 50) {
