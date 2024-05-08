@@ -388,6 +388,11 @@ public class Game {
         return this.map.getHeight() + this.map.getWidth();
     }
 
+    /**
+     * Calculates the current zombie spawn rate based on the global experience points and the number of survivors.
+     * 
+     * @return The current zombie spawn rate
+     */
     public int getZombieSpawnRate() {
         return (int) Math.ceil((double) (getGlobalExperiencePoints() / this.survivors.size()) / 3);
     }
