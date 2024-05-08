@@ -123,6 +123,15 @@ public class Game {
         survivor.setCoordinates(newCoordinates[0], newCoordinates[1]);
     }
 
+    /**
+     * Checks if a move is possible from the specified coordinates in a certain direction.
+     * 
+     * @param i            The x-coordinate
+     * @param j            The y-coordinate
+     * @param direction    The direction of movement (0 for up, 1 for right, 2 for down, 3 for left)
+     * @param lookAround   Indicates whether the survivor should look around to detect obstacles
+     * @return             true if the move is possible, false otherwise
+     */
     public boolean canMove(int i, int j, int direction, boolean lookAround) {
         Cell cell = this.map.getCell(i, j);
         Cell targetCell = new EmptyCell();
