@@ -298,6 +298,15 @@ public class Map {
         return new int[] { i, j };
     }
 
+    /**
+     * Calculates the distance between two points in a two-dimensional space.
+     * 
+     * @param x1 The x-coordinate of the first point.
+     * @param y1 The y-coordinate of the first point.
+     * @param x2 The x-coordinate of the second point.
+     * @param y2 The y-coordinate of the second point.
+     * @return The distance between the two points.
+     */
     public static double distanceBetweenPoints(int x1, int y1, int x2, int y2) {
         int deltaX = x2 - x1;
         int deltaY = y2 - y1;
