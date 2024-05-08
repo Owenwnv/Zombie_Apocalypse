@@ -286,6 +286,11 @@ public class Map {
         return new int[] { i, j };
     }
 
+    /**
+     * Generates random coordinates within the map's dimensions.
+     * 
+     * @return An array containing random x and y coordinates within the map's boundaries.
+     */
     public int[] getRandomCellCoordinates() {
         Random random = new Random();
         int i = random.nextInt(this.width);
