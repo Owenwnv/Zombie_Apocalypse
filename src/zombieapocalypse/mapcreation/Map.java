@@ -265,6 +265,14 @@ public class Map {
         return false;
     }
 
+    /**
+     * Computes the new coordinates based on the given direction from the current coordinates.
+     * 
+     * @param i The x-coordinate of the starting point.
+     * @param j The y-coordinate of the starting point.
+     * @param direction The direction in which to move (0 for up, 1 for right, 2 for down, 3 for left).
+     * @return An array containing the new coordinates after moving in the specified direction.
+     */
     public int[] getCoordinatesFromDirection(int i, int j, int direction) {
         if (direction == 0) {
             i -= 1;
