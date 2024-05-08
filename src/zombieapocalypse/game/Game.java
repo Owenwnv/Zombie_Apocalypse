@@ -200,6 +200,11 @@ public class Game {
         return zombie;
     }
 
+    /**
+     * Handles a survivor's turn by performing various actions depending on the situation.
+     * 
+     * @param survivor    The survivor whose turn it is
+     */
     public void survivorTurn(Survivor survivor) {
         int[] coordinates = survivor.getCoordinates();
         Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
