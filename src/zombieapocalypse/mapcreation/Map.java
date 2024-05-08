@@ -251,6 +251,13 @@ public class Map {
         }
     }
 
+    /**
+     * Checks if a cell exists at the specified coordinates.
+     * 
+     * @param i The x-coordinate of the cell.
+     * @param j The y-coordinate of the cell.
+     * @return True if the cell exists within the map boundaries, false otherwise.
+     */
     public boolean cellExists(int i, int j) {
         if (i >= 0 && i < this.width && j >= 0 && j < this.height) {
             return true;
