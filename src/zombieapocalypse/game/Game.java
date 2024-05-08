@@ -89,6 +89,13 @@ public class Game {
         zombie.setCoordinates(i, j);
     }
 
+    /**
+     * Moves the specified zombie to new coordinates based on the given direction.
+     * 
+     * @param zombie       The zombie to move
+     * @param coordinates  The current coordinates of the zombie
+     * @param direction    The direction to move the zombie (0 for up, 1 for right, 2 for down, 3 for left)
+     */
     public void moveZombie(Zombie zombie, int[] coordinates, int direction) {
         int[] newCoordinates = this.map.getCoordinatesFromDirection(coordinates[0], coordinates[1], direction);
         Cell cell = this.map.getCell(coordinates[0], coordinates[1]);
