@@ -247,6 +247,9 @@ public class MapGenerator {
         }
     }
 
+    /**
+     * Overrides the main roads in the map with the same street instance to ensure connectivity.
+     */
     public void overrideMainroads() {
         int[] mainroads = this.map.getMainroads();
         Street mainroadX = ((StreetCell) this.map.getCell(mainroads[0], 0)).getStreet();
