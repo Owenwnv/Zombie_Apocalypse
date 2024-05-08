@@ -397,6 +397,12 @@ public class Game {
         return (int) Math.ceil((double) (getGlobalExperiencePoints() / this.survivors.size()) / 3);
     }
 
+    /**
+     * Returns a string representation of the direction based on the provided integer.
+     *
+     * @param direction The integer representing the direction (0 for up, 1 for right, 2 for down, 3 for left)
+     * @return The string representation of the direction
+     */
     public String getDirectionString(int direction) {
         if (direction == 0) {
             return "on top of you";
