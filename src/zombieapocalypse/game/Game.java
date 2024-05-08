@@ -344,6 +344,12 @@ public class Game {
         }
     }
 
+    /**
+     * Uses infrared glasses to inspect neighboring cells for survivors and zombies.
+     * 
+     * @param i The x-coordinate of the survivor using the infrared glasses
+     * @param j The y-coordinate of the survivor using the infrared glasses
+     */
     public void infraredGlasses(int i, int j) {
         for (int direction = 0; i < 4; i++) {
             int[] coordinates = this.map.getCoordinatesFromDirection(i, j, direction);
