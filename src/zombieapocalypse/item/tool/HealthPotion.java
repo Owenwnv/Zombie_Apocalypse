@@ -13,6 +13,12 @@ public class HealthPotion extends Tool {
         super("Health potion", "The heal potion allows a survivor to heal himself 1 health point.");
     }
 
+    /**
+     * Heals the specified survivor by increasing their health points by 1 and removing
+     * the health potion from their hand. Prints a message indicating the healing action.
+     * 
+     * @param survivor The survivor to be healed.
+     */
     public void heal(Survivor survivor) {
         survivor.increaseHealthPoints(1);
         survivor.putItemInHand(null);
