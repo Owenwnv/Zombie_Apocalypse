@@ -471,6 +471,9 @@ public class Game {
         }
     }
 
+    /**
+     * Spawns the initial zombies on the map based on the initial spawn rate.
+     */
     public void spawnInitialZombies() {
         int spawnRate = getInitialZombieSpawnRate();
 
