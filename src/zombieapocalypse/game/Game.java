@@ -415,6 +415,12 @@ public class Game {
         }
     }
 
+    /**
+     * Creates and returns a new Zombie based on the provided zombie ID.
+     *
+     * @param zombieID The ID of the zombie
+     * @return A new Zombie
+     */
     public Zombie createZombie(int zombieID) {
         int id = zombieID % 4;
 
