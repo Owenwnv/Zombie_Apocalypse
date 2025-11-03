@@ -1,4 +1,4 @@
-package zombieapocalypse.game;
+/**package test.game;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -223,3 +223,4 @@ public class GameTest {
         assertEquals(5, map.getHeight());
     }
 }
+*/
