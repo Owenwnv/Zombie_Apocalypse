@@ -1,6 +1,6 @@
-# l2s4-projet-2024
+# Zombie_Apocalypse
 
-Vous devez *forker* ce projet dans votre espace de travail Gitlab (bouton `Fork`) et vidéo sur le [portail](https://www.fil.univ-lille.fr/portail/index.php?dipl=L&sem=S4&ue=Projet&label=Documents)
+Vous devez _forker_ ce projet dans votre espace de travail Gitlab (bouton `Fork`) et vidéo sur le [portail](https://www.fil.univ-lille.fr/portail/index.php?dipl=L&sem=S4&ue=Projet&label=Documents)
 Un unique fork doit être réalisé par équipe.
 
 Une fois cela réalisé, supprimer ces premières lignes et remplissez les noms des membres de votre équipe.
@@ -26,10 +26,10 @@ https://lucid.app/lucidchart/456a610a-a383-48a7-834a-eb0eaf49c5d9/edit?invitatio
 ## Livrable 1
 
 Pour compiler et executer le jeu:  
-```make```  
+`make`  
 Pour choisir la taille de la map:  
-```cd bin/classes```  
-```java zombieapocalypse.TestMain 5 5```
+`cd bin/classes`  
+`java zombieapocalypse.TestMain 5 5`
 
 ### Atteinte des objectifs
 
@@ -38,29 +38,28 @@ Pour choisir la taille de la map:
 ## Livrable 2
 
 Pour compiler et executer le jeu:
-```make```
+`make`
 
 Pour executer les tests:
-```java -jar junit-console.jar -classpath bin/classes:test -select-package test``` 
+`java -jar junit-console.jar -classpath bin/classes:test -select-package test`
 
 Pour générer la documentation:
-```javadoc -sourcepath src -subpackages zombieapocalypse -d docs```
+`javadoc -sourcepath src -subpackages zombieapocalypse -d docs`
 
 Pour voir l'ajout des acteurs et de leurs équipements comme demandé dans l'énoncé:
 
 - Dans le code: src>zombieapocalypse>Livrable2.java
 
-- Dans le terminal: 
+- Dans le terminal:
 
-    - "-" bleu: Door
-    - "S" jaune: Sewer
-    - "S" bleu: Street
-    - "R" rouge: Room
-    - "C" jaune: Continental
-    - "+" vert: Pharmacy
-    - nombre supérieur droit: nombre de survivants dans la case
-    - nombre supérieur gauche: nombre de zombies dans la case
-
+  - "-" bleu: Door
+  - "S" jaune: Sewer
+  - "S" bleu: Street
+  - "R" rouge: Room
+  - "C" jaune: Continental
+  - "+" vert: Pharmacy
+  - nombre supérieur droit: nombre de survivants dans la case
+  - nombre supérieur gauche: nombre de zombies dans la case
 
 ### Atteinte des objectifs
 
@@ -75,19 +74,19 @@ Pour finir, nous avons déplacé tous les survivants de chaque rôle vers le nor
 ## Livrable 3
 
 Pour compiler et executer le jeu:
-```make```
+`make`
 
 Pour executer les tests:
-```java -jar junit-console.jar -classpath bin/classes:test -select-package test``` 
+`java -jar junit-console.jar -classpath bin/classes:test -select-package test`
 
 Pour générer la documentation:
-```javadoc -sourcepath src -subpackages zombieapocalypse -d docs```
+`javadoc -sourcepath src -subpackages zombieapocalypse -d docs`
 
 Pour générer Livrable3.jar:
-```jar cfm Livrable3.jar manifest.txt -C bin/classes .```
+`jar cfm Livrable3.jar manifest.txt -C bin/classes .`
 
 Pour exécuter Livrable3.jar:
-```java -jar Livrable3.jar```
+`java -jar Livrable3.jar`
 
 ### Atteinte des objectifs
 
@@ -98,41 +97,42 @@ L'UML a été mis à jour, vous pouvez constater l'ajout des méthodes d'action,
 ## Livrable 4
 
 Pour compiler le jeu et les tests:  
-```make cls```
+`make cls`
 
 Pour executer le jeu depuis les fichiers .class (ne pas oublier de revenir à la racine après pour les autres commandes):  
-```cd bin/classes; java zombieapocalypse.Livrable4 10 14 4``` 
+`cd bin/classes; java zombieapocalypse.Livrable4 10 14 4`
 
 Pour executer les tests:  
-```java -jar junit-console.jar -classpath bin/classes:test -select-package test``` 
+`java -jar junit-console.jar -classpath bin/classes:test -select-package test`
 
 Pour générer la documentation:  
-```make doc```
+`make doc`
 
 Pour générer zombicide.jar:  
-```make zombicide.jar```
+`make zombicide.jar`
 
 Pour exécuter zombicide.jar produit sur une machines du M5:  
-```java -jar jar/zombicide.jar 10 14 4```
+`java -jar jar/zombicide.jar 10 14 4`
 
 Pour exécuter zombicide.jar produit localement:  
-```java -jar zombicide.jar 10 14 4```
+`java -jar zombicide.jar 10 14 4`
 
 Pour supprimer les fichiers générés:  
-```make clean```
+`make clean`
 
-- Dans le terminal: 
+- Dans le terminal:
 
-    - "-" bleu: Door
-    - "S" jaune: Sewer
-    - "S" bleu: Street
-    - "R" rouge: Room
-    - "C" jaune: Continental
-    - "+" vert: Pharmacy
-    - nombre supérieur droit: nombre de survivants dans la case
-    - nombre supérieur gauche: nombre de zombies dans la case
+  - "-" bleu: Door
+  - "S" jaune: Sewer
+  - "S" bleu: Street
+  - "R" rouge: Room
+  - "C" jaune: Continental
+  - "+" vert: Pharmacy
+  - nombre supérieur droit: nombre de survivants dans la case
+  - nombre supérieur gauche: nombre de zombies dans la case
 
 ### Atteinte des objectifs
+
     - le jeu se déroule du début jusqu'à la fin sans interactions
     - l'affichage de la carte est clair et compréhensible
     - une description détaillée des tours de chaque acteur est affiché
@@ -140,6 +140,7 @@ Pour supprimer les fichiers générés:
     - certaines actions génèrent du bruit
 
 ### Difficultés restant à résoudre
+
     - résoudre les edge cases d'une façon plus structurée
     - l'algorithme des tours des survivants n'est pas efficace et les survivants perdent dans la majorité des parties
     - avoir plus de tests pour l'ensemble du projet
@@ -209,7 +210,7 @@ Pour supprimer les fichiers générés:
 
 - Supression des fichiers inutiles
 - Ajout des méthodes d'actions dans Game
-- Ajout des UML des 4 livrables différents au format .png 
+- Ajout des UML des 4 livrables différents au format .png
 - Ajout des méthodes de jeu gameloop, survivorTurn et zombieTurn
 - Ajout des dernières javadoc et mise à jour du makefile
 - Finalisation des derniers tests
