@@ -1,11 +1,5 @@
 # Zombie_Apocalypse
 
-Vous devez _forker_ ce projet dans votre espace de travail Gitlab (bouton `Fork`) et vidéo sur le [portail](https://www.fil.univ-lille.fr/portail/index.php?dipl=L&sem=S4&ue=Projet&label=Documents)
-Un unique fork doit être réalisé par équipe.
-
-Une fois cela réalisé, supprimer ces premières lignes et remplissez les noms des membres de votre équipe.
-N'oubliez pas d'ajouter les autres membres de votre équipe aux membres du projet, ainsi que votre enseignant·e (statut Maintainer).
-
 # Equipe
 
 - Owen Wanaverbecque
